@@ -1,0 +1,66 @@
+Prepared 4000x3000 RGB + 96x64 RGBA PNG; snapshotted protected files.
+render-check.exe: PASS x86 PE32, OS/subsystem 5.1, no CRT; known post-XP imports absent
+  kernel32.dll(8), gdiplus.dll(19), user32.dll(2), gdi32.dll(18), psapi.dll(1)
+render-check-safe.exe: PASS x86 PE32, OS/subsystem 5.1, no CRT; host safety check only
+  kernel32.dll(24), gdiplus.dll(19), user32.dll(2), gdi32.dll(18), psapi.dll(1), ntdll.dll(11)
+Application binary/UI/Win32/build files unchanged. No XP runtime claim.
+
+=== render-check.exe ===
+12MP -> 1600x1000, viewport 1280x800, 60 pans, GdiFlush each frame:
+  initial HQ build 162.136 ms; baseline 8751.003 ms (145.850/frame); cached 9.843 ms (0.164/frame); speedup 889.03x
+  retained raster 6400000 bytes; GDI 10->10; private bytes 21680128->21680128
+pixel reference: 20748 RGB samples, max channel error 0
+pixel reference: 693 RGB samples, max channel error 1
+quality: interactive build 103.328 ms; idle HQ upgrade 143.130 ms; 33723 changed interior pixels
+pixel reference: 486 RGB samples, max channel error 0
+pixel reference: 988 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 12
+fallback: 200000x150000 (30G pixels), visible 270x185: 2.849 ms; retained raster 0 bytes
+pixel reference: 693 RGB samples, max channel error 0
+pixel reference: 693 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 0
+pixel reference: 988 RGB samples, max channel error 0
+interactive zoom: 12 changing sizes 700x525 -> 1415x1061, includes allocation/checker/GdiFlush:
+  12MP source 516.754 ms total, 43.063/step, max 70.373; 1600x1200 native preview 188.553 ms total, 15.713/step, max 22.077; speedup 2.74x
+  retained StretchBlt proxy 17.855 ms total, 1.488/step, max 13.216; speedup vs preview misses 10.56x
+  60 zoom+pan pairs: zoom 1.293 ms/frame, pan 1.283 ms/frame, max 12.181; GDI 16->16; private bytes 84959232->84979712
+pixel reference: 20748 RGB samples, max channel error 2
+  idle original-HQ settle 88.853 ms; preview preparation outside gesture 172.867 ms; borrowed preview 7,680,000 bytes; raster budget unchanged
+oversized transient crop 200000x150000, visible 270x185: 1.538 ms including checks; raster 393216 bytes
+tiny 8x8 at 60000%, 60 cropped pans: 0.031 ms/frame, max 0.033; raster 0 bytes; GDI 12->12
+tiny pixel art: 1x1 / 2x3 / 8x8, 4x/32x/600x, all source cells/cropped edges exact; 35.755 ms including checks; geometry cap 8388608
+100 replacement/settle/invalidate/deinit cycles: GDI 8->8; native handles 123->123; private bytes 63684608->63684608
+real GDI quota exhaustion: cache creation failed safely, direct pixels passed, GDI restored to 8
+render: x86 native PASS (49787 checks)
+
+=== render-check-safe.exe ===
+12MP -> 1600x1000, viewport 1280x800, 60 pans, GdiFlush each frame:
+  initial HQ build 161.908 ms; baseline 7978.998 ms (132.983/frame); cached 6.690 ms (0.112/frame); speedup 1192.66x
+  retained raster 6400000 bytes; GDI 10->10; private bytes 21680128->21680128
+pixel reference: 20748 RGB samples, max channel error 0
+pixel reference: 693 RGB samples, max channel error 1
+quality: interactive build 100.206 ms; idle HQ upgrade 137.178 ms; 33723 changed interior pixels
+pixel reference: 486 RGB samples, max channel error 0
+pixel reference: 988 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 12
+fallback: 200000x150000 (30G pixels), visible 270x185: 2.048 ms; retained raster 0 bytes
+pixel reference: 693 RGB samples, max channel error 0
+pixel reference: 693 RGB samples, max channel error 1
+pixel reference: 988 RGB samples, max channel error 0
+pixel reference: 988 RGB samples, max channel error 0
+interactive zoom: 12 changing sizes 700x525 -> 1415x1061, includes allocation/checker/GdiFlush:
+  12MP source 483.672 ms total, 40.306/step, max 48.907; 1600x1200 native preview 183.698 ms total, 15.308/step, max 21.594; speedup 2.63x
+  retained StretchBlt proxy 14.965 ms total, 1.247/step, max 10.540; speedup vs preview misses 12.27x
+  60 zoom+pan pairs: zoom 1.226 ms/frame, pan 1.207 ms/frame, max 10.702; GDI 16->16; private bytes 84963328->84983808
+pixel reference: 20748 RGB samples, max channel error 2
+  idle original-HQ settle 85.598 ms; preview preparation outside gesture 168.984 ms; borrowed preview 7,680,000 bytes; raster budget unchanged
+oversized transient crop 200000x150000, visible 270x185: 1.553 ms including checks; raster 393216 bytes
+tiny 8x8 at 60000%, 60 cropped pans: 0.031 ms/frame, max 0.033; raster 0 bytes; GDI 12->12
+tiny pixel art: 1x1 / 2x3 / 8x8, 4x/32x/600x, all source cells/cropped edges exact; 33.044 ms including checks; geometry cap 8388608
+100 replacement/settle/invalidate/deinit cycles: GDI 8->8; native handles 123->123; private bytes 63700992->63930368
+real GDI quota exhaustion: cache creation failed safely, direct pixels passed, GDI restored to 8
+render: x86 native PASS (49787 checks)
+Application binary/UI/Win32/build files unchanged after native tests.
+Render harness: both configurations passed.

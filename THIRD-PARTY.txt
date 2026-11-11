@@ -1,0 +1,34 @@
+Kadr 0.2 — GPL-3.0-or-later (pełny tekst w LICENSE)
+Ikony interfejsu i znak Kadr są oryginalną grafiką projektu (src/ui.zig,
+tools/make_icon.py); nie wymagają zewnętrznych fontów ikon ani usług internetowych.
+Źródła aplikacji: src/. Kompilacja: build.cmd, Zig 0.11.0.
+Nowe dekodery TGA, PCX, PSD (scalony obraz), PNM i QOI są natywnym kodem
+projektu w Zigu (src/codecs.zig), na tej samej licencji GPL-3.0-or-later.
+Nie wymagają dodatkowych DLL, CRT ani instalowania kodeków systemowych.
+Generowanie oryginalnej ikony: tools/build_icon.cmd (Pillow + windres/objcopy).
+
+Dekoder DjVu: DjVuLibre 3.5.27 z oficjalnego pakietu
+DjVuLibre-3.5.27_DjView-4.11_Setup.exe (2018, Qt4/x86).
+https://sourceforge.net/projects/djvu/files/DjVuLibre_Windows/3.5.27%2B4.11/
+SHA256 instalatora: dd147600f10e891b613dc1790e25f2d568154ca65777b060f1aa6ff91ae4e0b3
+Pakiet został tylko rozpakowany — nie instalowano ani nie rejestrowano nic w Windows.
+Wykorzystywane są libdjvulibre.dll, libjpeg.dll i zależności VC100.
+DjVuLibre: GPL-2.0-or-later; pełny tekst COPYING.txt.
+Źródła upstream: https://sourceforge.net/projects/djvu/files/DjVuLibre/3.5.27/
+Informacje i licencje upstream: tools/djvu-extracted/ i tools/djvulibre-3.5.27.tar.gz.
+Przy dalszej dystrybucji zachowaj wymagane informacje/licencje i zapewnij odpowiednie źródła.
+
+UWAGA: DjVuLibre 3.5.27 wybrano ze względu na cel Windows XP. Jest starszą,
+nieaktualną wersją dekodera, bez późniejszych poprawek bezpieczeństwa.
+Otwieraj tylko zaufane pliki DjVu. Kadr nie zapewnia piaskownicy dekoderów.
+Dotyczy to również starych systemowych kodeków GDI+ w Windows XP.
+
+VC100: msvcr100.dll i msvcp100.dll, Microsoft Visual C++ 2010 Redistributable,
+pochodzą z tego samego oficjalnego pakietu; obowiązują warunki Microsoft.
+libjpeg: Independent JPEG Group; odpowiednie informacje w źródłach DjVuLibre.
+GDI+, GDI i Win32: biblioteki systemowe Windows, nie są dołączane do Kadr.
+
+Zig 0.11.0: MIT, szczegóły tools/zig-windows-x86_64-0.11.0/LICENSE.
+Archiwum: https://ziglang.org/download/0.11.0/zig-windows-x86_64-0.11.0.zip
+SHA256: 142caa3b804d86b4752556c9b6b039b7517a08afa3af842645c7e2dcd125f652
+Kompilator wymaga nowszego Windows; gotowy Kadr.exe jest budowany dla XP x86.

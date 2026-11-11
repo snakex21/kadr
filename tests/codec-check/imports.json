@@ -1,0 +1,318 @@
+[
+  {
+    "file": "codec-check.exe",
+    "sha256": "722575849ad4575799c4e853c140960cb781135f3897af6d00f8905cb5ae69d1",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": true,
+    "imports": {
+      "kernel32.dll": [
+        "CloseHandle",
+        "CreateFileW",
+        "DeleteFileW",
+        "ExitProcess",
+        "FreeLibrary",
+        "GetCurrentProcess",
+        "GetFileSize",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetProcessHandleCount",
+        "GetStdHandle",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalLock",
+        "GlobalUnlock",
+        "LoadLibraryW",
+        "ReadFile",
+        "SetEndOfFile",
+        "SetFilePointer",
+        "Sleep",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipCreateBitmapFromHICON",
+        "GdipCreateBitmapFromScan0",
+        "GdipDisposeImage",
+        "GdipGetImageHeight",
+        "GdipGetImageWidth",
+        "GdipGetPropertyItem",
+        "GdipGetPropertyItemSize",
+        "GdipImageGetFrameCount",
+        "GdipImageRotateFlip",
+        "GdipImageSelectActiveFrame",
+        "GdipLoadImageFromFile",
+        "GdipLoadImageFromStream",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "CreateIconFromResourceEx",
+        "DestroyIcon"
+      ],
+      "ole32.dll": [
+        "CreateStreamOnHGlobal"
+      ]
+    }
+  },
+  {
+    "file": "codec-check-safe.exe",
+    "sha256": "06c9f59275391418ded8d313b9d8ff20466cd7529c2154fa4fbfd993fc098558",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": false,
+    "imports": {
+      "kernel32.dll": [
+        "AddVectoredExceptionHandler",
+        "CloseHandle",
+        "CreateFileW",
+        "CreateToolhelp32Snapshot",
+        "DeleteFileW",
+        "ExitProcess",
+        "FreeLibrary",
+        "GetConsoleMode",
+        "GetConsoleScreenBufferInfo",
+        "GetCurrentProcess",
+        "GetFileSize",
+        "GetFileSizeEx",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetProcessHandleCount",
+        "GetStdHandle",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalLock",
+        "GlobalUnlock",
+        "K32GetModuleFileNameExW",
+        "LoadLibraryW",
+        "Module32First",
+        "Module32Next",
+        "ReadFile",
+        "RtlCaptureStackBackTrace",
+        "SetConsoleTextAttribute",
+        "SetEndOfFile",
+        "SetFilePointer",
+        "SetFilePointerEx",
+        "Sleep",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipCreateBitmapFromHICON",
+        "GdipCreateBitmapFromScan0",
+        "GdipDisposeImage",
+        "GdipGetImageHeight",
+        "GdipGetImageWidth",
+        "GdipGetPropertyItem",
+        "GdipGetPropertyItemSize",
+        "GdipImageGetFrameCount",
+        "GdipImageRotateFlip",
+        "GdipImageSelectActiveFrame",
+        "GdipLoadImageFromFile",
+        "GdipLoadImageFromStream",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "CreateIconFromResourceEx",
+        "DestroyIcon"
+      ],
+      "ole32.dll": [
+        "CreateStreamOnHGlobal"
+      ],
+      "ntdll.dll": [
+        "NtClose",
+        "NtCreateFile",
+        "NtCreateSection",
+        "NtLockFile",
+        "NtMapViewOfSection",
+        "NtQueryInformationFile",
+        "NtQueryVolumeInformationFile",
+        "NtUnmapViewOfSection",
+        "RtlEqualUnicodeString",
+        "RtlGetFullPathName_U",
+        "RtlUpcaseUnicodeChar"
+      ]
+    }
+  },
+  {
+    "file": "legacy-check.exe",
+    "sha256": "30a19ece076c40efde17c976a26041de4ea2efe9a331908bf446872e3da3f8d7",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": true,
+    "imports": {
+      "kernel32.dll": [
+        "CloseHandle",
+        "CreateFileW",
+        "ExitProcess",
+        "FreeLibrary",
+        "GetFileSize",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetStdHandle",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalLock",
+        "GlobalUnlock",
+        "LoadLibraryW",
+        "ReadFile",
+        "Sleep",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipCreateBitmapFromHICON",
+        "GdipCreateBitmapFromScan0",
+        "GdipDisposeImage",
+        "GdipGetImageHeight",
+        "GdipGetImageWidth",
+        "GdipGetPropertyItem",
+        "GdipGetPropertyItemSize",
+        "GdipImageGetFrameCount",
+        "GdipImageRotateFlip",
+        "GdipImageSelectActiveFrame",
+        "GdipLoadImageFromFile",
+        "GdipLoadImageFromStream",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "CreateIconFromResourceEx",
+        "DestroyIcon"
+      ],
+      "ole32.dll": [
+        "CreateStreamOnHGlobal"
+      ],
+      "ntdll.dll": [
+        "NtClose",
+        "NtCreateFile",
+        "RtlGetFullPathName_U"
+      ]
+    }
+  },
+  {
+    "file": "legacy-check-safe.exe",
+    "sha256": "76163cdabfdb67e048d9488ba167df8d9b9553270af657d8701c5bf164cfb1c0",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": false,
+    "imports": {
+      "kernel32.dll": [
+        "AddVectoredExceptionHandler",
+        "CloseHandle",
+        "CreateFileW",
+        "CreateToolhelp32Snapshot",
+        "ExitProcess",
+        "FreeLibrary",
+        "GetConsoleMode",
+        "GetConsoleScreenBufferInfo",
+        "GetCurrentProcess",
+        "GetFileSize",
+        "GetFileSizeEx",
+        "GetLastError",
+        "GetModuleFileNameW",
+        "GetProcAddress",
+        "GetStdHandle",
+        "GetTickCount",
+        "GlobalAlloc",
+        "GlobalFree",
+        "GlobalLock",
+        "GlobalUnlock",
+        "K32GetModuleFileNameExW",
+        "LoadLibraryW",
+        "Module32First",
+        "Module32Next",
+        "ReadFile",
+        "RtlCaptureStackBackTrace",
+        "SetConsoleTextAttribute",
+        "SetFilePointerEx",
+        "Sleep",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipCreateBitmapFromHICON",
+        "GdipCreateBitmapFromScan0",
+        "GdipDisposeImage",
+        "GdipGetImageHeight",
+        "GdipGetImageWidth",
+        "GdipGetPropertyItem",
+        "GdipGetPropertyItemSize",
+        "GdipImageGetFrameCount",
+        "GdipImageRotateFlip",
+        "GdipImageSelectActiveFrame",
+        "GdipLoadImageFromFile",
+        "GdipLoadImageFromStream",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "CreateIconFromResourceEx",
+        "DestroyIcon"
+      ],
+      "ole32.dll": [
+        "CreateStreamOnHGlobal"
+      ],
+      "ntdll.dll": [
+        "NtClose",
+        "NtCreateFile",
+        "NtCreateSection",
+        "NtLockFile",
+        "NtMapViewOfSection",
+        "NtQueryInformationFile",
+        "NtQueryVolumeInformationFile",
+        "NtUnmapViewOfSection",
+        "RtlEqualUnicodeString",
+        "RtlGetFullPathName_U",
+        "RtlUpcaseUnicodeChar"
+      ]
+    }
+  }
+]

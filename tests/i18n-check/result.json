@@ -1,0 +1,101 @@
+{
+  "unit_tests": 3,
+  "app_audit": {
+    "x86": true,
+    "xp_headers": true,
+    "tls": false,
+    "crt": false,
+    "asInvoker": true,
+    "imports": {
+      "KERNEL32.dll": [
+        "ExitProcess",
+        "GetCommandLineW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetPrivateProfileStringW",
+        "GetUserDefaultUILanguage",
+        "WritePrivateProfileStringW"
+      ],
+      "USER32.dll": [
+        "CreateWindowExW",
+        "DialogBoxIndirectParamW",
+        "DrawFocusRect",
+        "DrawTextW",
+        "EndDialog",
+        "FillRect",
+        "GetSysColor",
+        "GetSysColorBrush",
+        "GetWindowLongW",
+        "MapDialogRect",
+        "MessageBoxW",
+        "SendMessageW",
+        "SetWindowLongW",
+        "SetWindowTextW"
+      ],
+      "GDI32.dll": [
+        "CreateFontW",
+        "DeleteObject",
+        "SelectObject",
+        "SetBkMode",
+        "SetTextColor"
+      ]
+    }
+  },
+  "probe_audit": {
+    "x86": true,
+    "xp_headers": true,
+    "tls": false,
+    "crt": false,
+    "asInvoker": true,
+    "imports": {
+      "KERNEL32.dll": [
+        "ExitProcess",
+        "GetCommandLineW",
+        "GetModuleFileNameW",
+        "GetModuleHandleW",
+        "GetPrivateProfileStringW",
+        "GetStdHandle",
+        "GetUserDefaultUILanguage",
+        "WriteFile",
+        "WritePrivateProfileStringW"
+      ],
+      "USER32.dll": [
+        "CreateWindowExW",
+        "DialogBoxIndirectParamW",
+        "DrawFocusRect",
+        "DrawTextW",
+        "EndDialog",
+        "FillRect",
+        "GetSysColor",
+        "GetSysColorBrush",
+        "GetWindowLongW",
+        "MapDialogRect",
+        "MessageBoxW",
+        "SendMessageW",
+        "SetWindowLongW",
+        "SetWindowTextW"
+      ],
+      "GDI32.dll": [
+        "CreateFontW",
+        "DeleteObject",
+        "SelectObject",
+        "SetBkMode",
+        "SetTextColor"
+      ]
+    }
+  },
+  "detected_code": "pl",
+  "catalog_entries": 351,
+  "first_start_persist_restart_unicode_path_cwd": true,
+  "selected_catalog_and_metadata_languages": 30,
+  "invalid_absent_code_repaired_case_canonicalized": true,
+  "readonly_ini_error": true,
+  "readonly_directory_error_no_fallback": true,
+  "runtime_token_virtualization_disabled": true,
+  "selector_private_desktop_save_restart_cancel_close_error": true,
+  "cwd_ini_untouched": true,
+  "missing_checks": [
+    "Actual Windows XP SP3 runtime/font-pack rendering",
+    "Final coordinator-integrated Kadr.exe import audit"
+  ]
+}

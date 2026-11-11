@@ -1,0 +1,8 @@
+1/2 test.folder navigation stops at both ends and handles empty or single-image lists... OK
+2/2 test.folder navigation skips unreadable entries without wrapping or retry loops... OK
+All 2 tests passed.
+1/4 test.neutral adjustments preserve straight alpha exactly... OK
+2/4 test.grayscale and zero saturation agree and preserve alpha... OK
+3/4 test.brightness and contrast clamp safely at both extremes... OK
+4/4 test.crop validation rejects empty outside and overflowing bounds... OK
+All 4 tests passed.

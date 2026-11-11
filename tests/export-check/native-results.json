@@ -1,0 +1,20 @@
+[
+  {
+    "case": "invalid inputs, aspect lock, JPEG enable, explicit size, native save cancellation, whole dialog cancellation",
+    "passed": true,
+    "measured_bytes": 190
+  },
+  {
+    "case": "new PNG via native save dialog: alpha, baked rotation, aspect dimensions and exact measured bytes",
+    "passed": true,
+    "bytes": 190
+  },
+  {
+    "case": "source rejection; existing target default-No and explicit Yes",
+    "passed": true
+  },
+  {
+    "case": "destination appeared during real 24 MP encoding: non-replacing commit and temp cleanup",
+    "passed": true
+  }
+]

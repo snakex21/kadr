@@ -1,0 +1,93 @@
+Brak obrazu do wydrukowania.
+Nie można przygotować obrazu do podglądu wydruku.
+Nie można utworzyć okna podglądu wydruku.
+Kadr — podgląd wydruku
+Nie można utworzyć kontrolek podglądu wydruku.
+Kadr — drukowanie
+Drukarka:
+Nie wybrano
+Wybierz…
+Wybierz drukarkę. Nie rozpoczyna drukowania.
+Papier:
+Orientacja:
+Skala obrazu:
+Kolor:
+A4
+A5
+Letter
+10 × 15 cm
+A3
+A6
+B4 (ISO)
+B5 (ISO)
+Legal
+Executive
+Tabloid
+13 × 18 cm
+15 × 20 cm
+20 × 25 cm
+4 × 6 cali
+5 × 7 cali
+8 × 10 cali
+Własny (mm)
+Z drukarki
+Pionowa
+Pozioma
+Dopasuj (cały obraz)
+Wypełnij (przytnij)
+100% (96 DPI)
+Własny procent
+Szerokość (mm)
+Wysokość (mm)
+Kolor
+Skala szarości
+Zaawansowane ▸
+Wartość skali:
+Papier mm:
+Marginesy (mm):
+Lewy:
+Prawy:
+Górny:
+Dolny:
+Pozycja od rogu arkusza (mm):
+X:
+Y:
+Wyśrodkuj / reset pozycji
+Drukuj
+Wydrukuj bieżący układ po potwierdzeniu.
+Wróć
+Zamknij podgląd; podczas drukowania przerwij zadanie.
+100% i własny procent: 1 piksel = 1/96 cala. Wymiary w mm zachowują proporcje.
+Procent: 0,1–1000. Wymiar: 0,1–10000 mm. Proporcje są zablokowane.
+Własny papier: szerokość i wysokość 10–3276,7 mm, przed obrotem.
+Od lewego górnego rogu fizycznego arkusza, nie od marginesów. Zakres ±10000 mm.
+Dotyczy tylko podglądu i wydruku. Obraz źródłowy pozostaje bez zmian.
+Arkusz / obraz. Szara linia: granica drukarki. Zielona: marginesy.
+Zaawansowane ▾
+Przerywanie zadania drukowania…
+Procent (96 DPI):
+Szerokość (mm):
+Wysokość (mm):
+Popraw liczby. Zachowano ostatni poprawny podgląd.
+Obraz poza obszarem druku. Zmień marginesy lub wyśrodkuj.
+Wybierz drukarkę, aby sprawdzić rzeczywisty obszar druku.
+Nie przyjęto ustawień. Wybierz drukarkę ponownie.
+Sterownik zmienił format. Podgląd pokazuje przyjęty arkusz.
+Drukarka przyjęła skalę szarości zamiast koloru.
+Część obrazu zostanie przycięta do obszaru druku.
+Obraz mieści się w obszarze druku.
+Nie można otworzyć ustawień drukarki. Sprawdź, czy drukarka jest zainstalowana i dostępna.
+Drukarka nie udostępnia poprawnego rozmiaru papieru lub obszaru druku. Nie rozpoczęto drukowania.
+Sterownik odrzucił papier. Zachowano przyjęty arkusz.
+Ustawienia wydruku
+Podgląd wydruku
+Nie udało się narysować obrazu.
+Przeciągnij obraz na arkuszu. Linie pomocnicze nie są drukowane.
+Kadr — fotografia
+Wydrukować stronę według podglądu?
+Kadr — potwierdź wydruk
+Przerwij
+Wysyłanie strony do drukarki…
+Strona została przekazana do kolejki drukarki.
+Anulowano zadanie drukowania.
+Nie udało się przekazać strony do drukarki. Zadanie przerwano. Sprawdź drukarkę i jej kolejkę.

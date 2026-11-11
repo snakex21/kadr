@@ -1,0 +1,48 @@
+{
+  "before": {
+    "JPEG": {
+      "load_ms": 0.33,
+      "preview_ms": 88.252,
+      "access_ms": 0.0,
+      "sample_ms": 0.0,
+      "total_ms": 92.965
+    },
+    "PNG": {
+      "load_ms": 0.819,
+      "preview_ms": 117.502,
+      "access_ms": 0.0,
+      "sample_ms": 0.0,
+      "total_ms": 124.931
+    },
+    "QOI": {
+      "load_ms": 24.157,
+      "preview_ms": 63.056,
+      "access_ms": 0.0,
+      "sample_ms": 0.0,
+      "total_ms": 95.482
+    }
+  },
+  "after": {
+    "JPEG": {
+      "load_ms": 0.352,
+      "preview_ms": 45.992,
+      "access_ms": 31.468,
+      "sample_ms": 14.518,
+      "total_ms": 59.736
+    },
+    "PNG": {
+      "load_ms": 0.847,
+      "preview_ms": 88.002,
+      "access_ms": 74.02,
+      "sample_ms": 13.974,
+      "total_ms": 96.095
+    },
+    "QOI": {
+      "load_ms": 21.318,
+      "preview_ms": 13.512,
+      "access_ms": 0.0,
+      "sample_ms": 13.506,
+      "total_ms": 43.602
+    }
+  }
+}

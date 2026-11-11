@@ -1,0 +1,7 @@
+{
+  "Kadr.exe": "e85494d00ae037a73250550e35ed9cdae6e37aa59a629f43d431d2b941b8f6ad",
+  "src/main.zig": "bc62b4ade917898540db0b870a5468b15235fd3f6693d7f42cfb1067b0755817",
+  "src/ui.zig": "9b78eeea783b9f4c7a39c7dafba3992e71bb6a6bbda0d6a956ef79f17dabbce2",
+  "src/win.zig": "f2e384c8a9468b1922c796a4529a06d38bd843f95dd1ffd2b1bcf6178bb927d0",
+  "build.cmd": "214313f8e60ce9c2b83f1b5f44d48100e3b2d23c323fd9c269eec78e4254946c"
+}

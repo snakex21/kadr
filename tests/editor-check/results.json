@@ -1,0 +1,15 @@
+{
+  "results": [
+    "Cancel: raster, source hash and owner unchanged",
+    "Reset: original dimensions, all corrections neutral; invalid crop rejected",
+    "Apply: crop/rotate/flips/adjustments baked in memory; original file unchanged",
+    "Save As: all pixels match crop/transform/color reference; source unchanged",
+    "Unsaved guards: Close, Next, Drop and Open default to Cancel and preserve edits",
+    "Save: editor-only changes (rotations==0) save in place; No default; dirty clears",
+    "Animation: current frame edit warns; flattened result cannot overwrite original GIF",
+    "Export: edited pixels/dimensions, aspect lock, size measurement and new PNG verified",
+    "Color: right rotation, negative brightness/contrast and positive saturation match every pixel"
+  ],
+  "work": "C:\\Users\\ASRock\\AppData\\Local\\Temp\\kadr-editor-gf0yoj2a",
+  "production_untouched": true
+}

@@ -1,0 +1,19 @@
+# Artefakty budowy
+zig-cache/
+__pycache__/
+*.obj
+*.pdb
+
+# Ustawienia portable zapisywane obok EXE
+/Kadr.ini
+
+# Testowe binarki; w repo zostaje tylko gotowy Kadr.exe
+*.exe
+!Kadr.exe
+tests/codec-check/deps/
+
+# Toolchain i źródła upstream — do samodzielnego pobrania
+tools/zig-windows-x86_64-0.11.0/
+tools/zig-0.11.0.zip
+tools/djvu-extracted/
+tools/djvulibre-3.5.27.tar.gz

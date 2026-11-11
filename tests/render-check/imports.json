@@ -1,0 +1,181 @@
+[
+  {
+    "file": "render-check.exe",
+    "sha256": "cc42a04c59c475cccd927866fd54c33bb6889c115d5a800e1e02ef3da26d193a",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": true,
+    "imports": {
+      "kernel32.dll": [
+        "ExitProcess",
+        "GetCurrentProcess",
+        "GetEnvironmentVariableW",
+        "GetProcessHandleCount",
+        "GetStdHandle",
+        "QueryPerformanceCounter",
+        "QueryPerformanceFrequency",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipBitmapSetPixel",
+        "GdipCreateBitmapFromScan0",
+        "GdipCreateFromHDC",
+        "GdipDeleteGraphics",
+        "GdipDisposeImage",
+        "GdipDrawImageRectRect",
+        "GdipGetImageGraphicsContext",
+        "GdipGetImageHeight",
+        "GdipGetImageType",
+        "GdipGetImageWidth",
+        "GdipImageRotateFlip",
+        "GdipLoadImageFromFile",
+        "GdipSetClipRect",
+        "GdipSetInterpolationMode",
+        "GdipSetPageUnit",
+        "GdipSetPixelOffsetMode",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "FillRect",
+        "GetGuiResources"
+      ],
+      "gdi32.dll": [
+        "BitBlt",
+        "CreateBitmap",
+        "CreateCompatibleDC",
+        "CreateDIBSection",
+        "DeleteDC",
+        "DeleteObject",
+        "GdiFlush",
+        "GetClipBox",
+        "GetDCBrushColor",
+        "GetStockObject",
+        "GetStretchBltMode",
+        "IntersectClipRect",
+        "RestoreDC",
+        "SaveDC",
+        "SelectObject",
+        "SetDCBrushColor",
+        "SetStretchBltMode",
+        "StretchBlt"
+      ],
+      "psapi.dll": [
+        "GetProcessMemoryInfo"
+      ]
+    }
+  },
+  {
+    "file": "render-check-safe.exe",
+    "sha256": "e99ba8ba76dc0ead0b6e639b930a29e0502f0595e9004cc168111ce891943322",
+    "machine": "x86",
+    "os": [
+      5,
+      1
+    ],
+    "subsystem": [
+      5,
+      1
+    ],
+    "no_crt": true,
+    "xp_import_candidate": false,
+    "imports": {
+      "kernel32.dll": [
+        "AddVectoredExceptionHandler",
+        "CreateToolhelp32Snapshot",
+        "ExitProcess",
+        "GetConsoleMode",
+        "GetConsoleScreenBufferInfo",
+        "GetCurrentProcess",
+        "GetEnvironmentVariableW",
+        "GetFileSizeEx",
+        "GetLastError",
+        "GetProcessHandleCount",
+        "GetStdHandle",
+        "K32GetModuleFileNameExW",
+        "Module32First",
+        "Module32Next",
+        "QueryPerformanceCounter",
+        "QueryPerformanceFrequency",
+        "ReadFile",
+        "RtlCaptureStackBackTrace",
+        "SetConsoleTextAttribute",
+        "SetFilePointerEx",
+        "Sleep",
+        "VirtualAlloc",
+        "VirtualFree",
+        "WriteFile"
+      ],
+      "gdiplus.dll": [
+        "GdipBitmapGetPixel",
+        "GdipBitmapSetPixel",
+        "GdipCreateBitmapFromScan0",
+        "GdipCreateFromHDC",
+        "GdipDeleteGraphics",
+        "GdipDisposeImage",
+        "GdipDrawImageRectRect",
+        "GdipGetImageGraphicsContext",
+        "GdipGetImageHeight",
+        "GdipGetImageType",
+        "GdipGetImageWidth",
+        "GdipImageRotateFlip",
+        "GdipLoadImageFromFile",
+        "GdipSetClipRect",
+        "GdipSetInterpolationMode",
+        "GdipSetPageUnit",
+        "GdipSetPixelOffsetMode",
+        "GdiplusShutdown",
+        "GdiplusStartup"
+      ],
+      "user32.dll": [
+        "FillRect",
+        "GetGuiResources"
+      ],
+      "gdi32.dll": [
+        "BitBlt",
+        "CreateBitmap",
+        "CreateCompatibleDC",
+        "CreateDIBSection",
+        "DeleteDC",
+        "DeleteObject",
+        "GdiFlush",
+        "GetClipBox",
+        "GetDCBrushColor",
+        "GetStockObject",
+        "GetStretchBltMode",
+        "IntersectClipRect",
+        "RestoreDC",
+        "SaveDC",
+        "SelectObject",
+        "SetDCBrushColor",
+        "SetStretchBltMode",
+        "StretchBlt"
+      ],
+      "psapi.dll": [
+        "GetProcessMemoryInfo"
+      ],
+      "ntdll.dll": [
+        "NtClose",
+        "NtCreateFile",
+        "NtCreateSection",
+        "NtLockFile",
+        "NtMapViewOfSection",
+        "NtQueryInformationFile",
+        "NtQueryVolumeInformationFile",
+        "NtUnmapViewOfSection",
+        "RtlEqualUnicodeString",
+        "RtlGetFullPathName_U",
+        "RtlUpcaseUnicodeChar"
+      ]
+    }
+  }
+]

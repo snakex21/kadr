@@ -1,0 +1,17 @@
+{
+  "clipboard": {
+    "size": [
+      500,
+      800
+    ],
+    "bits": 32
+  },
+  "save_as": "PASS: rotated pixels; source unchanged",
+  "save_rotation": "PASS: rotated dimensions and exact PNG pixels",
+  "rename": "PASS: disk file, title, image pixels",
+  "folder": "PASS: Explorer shows kadr-fbccc4f8-plt_bfg2",
+  "recycle": "PASS: file in Recycle Bin; navigated to kadr-fbccc4f8-export.png — Kadr",
+  "toolbar": "PASS: no overlap at 800px; screenshots saved",
+  "fixtures": "PASS: fixture original unchanged",
+  "work": "C:\\Users\\ASRock\\AppData\\Local\\Temp\\kadr-fbccc4f8-plt_bfg2"
+}
