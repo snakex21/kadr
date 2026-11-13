@@ -13,6 +13,8 @@ pub const Controls = struct {
     zoom_edit: c.HWND,
     status: c.HWND,
     page_label: c.HWND,
+    /// Line height of the zoom field's font (TEXTMETRIC.tmHeight).
+    zoom_text_height: i32 = 19,
 };
 
 const Geometry = struct {
@@ -37,7 +39,7 @@ fn advance(x: *i32, y: i32, width: i32, gap: i32) c.RECT {
 pub const labelled = [_]usize{ 0, 3, 18, 9 };
 /// Not on the toolbar (reachable from the "Więcej" menu and shortcuts).
 pub const menu_only = [_]usize{ 4, 14 };
-fn geometry(client: c.RECT, canvas: c.RECT) Geometry {
+fn geometry(client: c.RECT, canvas: c.RECT, zoom_text_height: i32) Geometry {
     var g: Geometry = undefined;
     const width = client.right - client.left;
     g.compact = width < 1000;
@@ -54,7 +56,11 @@ fn geometry(client: c.RECT, canvas: c.RECT) Geometry {
     // Refresh may show this label again; zero width keeps it out of the row.
     g.zoom_name = rect(x, y, 0, 36);
     g.zoom_frame = rect(x, y + 2, 78, 32);
-    g.zoom_edit = rect(x + 4, y + 5, 70, 26);
+    // A single-line EDIT draws its text at the top of the control and ignores
+    // vertical alignment, so the control is exactly one line tall and centred
+    // in the rounded frame instead.
+    const edit_height = std.math.clamp(zoom_text_height, 12, 28);
+    g.zoom_edit = rect(x + 4, g.zoom_frame.top + @divTrunc(32 - edit_height + 1, 2), 70, edit_height);
     x += 82;
     g.buttons[16] = advance(&x, y, 28, 4);
     g.buttons[6] = advance(&x, y, 32, 12);
@@ -84,7 +90,7 @@ fn move(hwnd: c.HWND, r: c.RECT) void {
 }
 // Placement only: visibility, state, refresh and invalidation belong to main.
 pub fn place(client: c.RECT, canvas: c.RECT, controls: Controls) c.RECT {
-    const g = geometry(client, canvas);
+    const g = geometry(client, canvas, controls.zoom_text_height);
     std.debug.assert(controls.buttons.len >= g.buttons.len);
     for (g.buttons, 0..) |r, index| {
         const compact = if (index == 15) false else if (std.mem.indexOfScalar(usize, &labelled, index) != null) g.compact else true;
@@ -102,7 +108,7 @@ test "single row fits minimum client width and label breakpoint without overlaps
     for ([_]i32{ 784, 800, 999, 1000, 1024, 1280 }) |width| {
         const client = rect(0, 0, width, 600);
         const canvas = rect(16, height, width - 32, 600 - height - status_height);
-        const g = geometry(client, canvas);
+        const g = geometry(client, canvas, 19);
         const row = [_]c.RECT{
             g.buttons[0],  g.buttons[1],  g.buttons[2],  g.counter,
             g.buttons[3],  g.buttons[5],  g.zoom_frame,  g.buttons[16],
@@ -126,17 +132,34 @@ test "single row fits minimum client width and label breakpoint without overlaps
         try std.testing.expectEqual(g.zoom_name.left, g.zoom_name.right);
         try std.testing.expectEqual(@as(i32, 78), g.zoom_frame.right - g.zoom_frame.left);
         try std.testing.expectEqual(@as(i32, 70), g.zoom_edit.right - g.zoom_edit.left);
-        try std.testing.expectEqual(@as(i32, 19), g.zoom_edit.top);
-        try std.testing.expectEqual(@as(i32, 26), g.zoom_edit.bottom - g.zoom_edit.top);
+        try std.testing.expectEqual(@as(i32, 23), g.zoom_edit.top);
+        try std.testing.expectEqual(@as(i32, 19), g.zoom_edit.bottom - g.zoom_edit.top);
         try std.testing.expect(g.zoom_edit.left > g.zoom_frame.left and g.zoom_edit.right < g.zoom_frame.right);
         try std.testing.expect(g.zoom_edit.top > g.zoom_frame.top and g.zoom_edit.bottom < g.zoom_frame.bottom);
+    }
+}
+
+test "zoom field text line is vertically centred in its frame for any font height" {
+    const client = rect(0, 0, 1120, 800);
+    const canvas = rect(16, height, 1088, 800 - height - status_height);
+    for ([_]i32{ 12, 15, 16, 17, 19, 20, 22, 24, 25, 28, 40 }) |text_height| {
+        const g = geometry(client, canvas, text_height);
+        const above = g.zoom_edit.top - g.zoom_frame.top;
+        const below = g.zoom_frame.bottom - g.zoom_edit.bottom;
+        try std.testing.expect(above >= 1 and below >= 1);
+        try std.testing.expect(above - below == 0 or above - below == 1);
+        try std.testing.expectEqual(std.math.clamp(text_height, 12, 28), g.zoom_edit.bottom - g.zoom_edit.top);
+        // Same centre as the toolbar buttons and the counter.
+        const centre2 = g.zoom_edit.top + g.zoom_edit.bottom;
+        const delta = centre2 - (g.counter.top + g.counter.bottom);
+        try std.testing.expect(delta >= -1 and delta <= 1);
     }
 }
 
 test "footer and empty-view button keep their own space" {
     const client = rect(0, 0, 784, 600);
     const canvas = rect(16, height, 752, 600 - height - status_height);
-    const g = geometry(client, canvas);
+    const g = geometry(client, canvas, 19);
     try std.testing.expectEqual(@as(i32, 16), g.status.left);
     try std.testing.expectEqual(client.bottom - 42, g.status.top);
     try std.testing.expectEqual(@as(i32, 32), g.status.bottom - g.status.top);

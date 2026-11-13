@@ -1355,6 +1355,12 @@ fn windowProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
             _ = c.InvalidateRect(hwnd, null, 1);
             return 0;
         },
+        c.WM_NCPAINT, c.WM_NCACTIVATE => {
+            // Hidden frame edge sampled by DPI scaling (theme.paintFrameEdge).
+            const result = c.DefWindowProcW(hwnd, msg, wp, lp);
+            theme.paintFrameEdge(hwnd, theme.colors.shell);
+            return result;
+        },
         c.WM_GETMINMAXINFO => {
             const info: *c.MINMAXINFO = @ptrFromInt(@as(usize, @bitCast(lp)));
             info.ptMinTrackSize.x = 1000;

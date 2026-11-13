@@ -1302,9 +1302,21 @@ fn resize() void {
         .zoom_edit = zoom_label,
         .status = status,
         .page_label = page_label,
+        .zoom_text_height = zoom_text_height,
     });
     refresh();
     invalidate();
+}
+/// Line height of the zoom field font; the field is sized to it so the
+/// text sits in the middle of its frame (see toolbar.geometry).
+var zoom_text_height: i32 = 19;
+fn measureZoomText() void {
+    const dc = c.GetDC(window) orelse return;
+    defer _ = c.ReleaseDC(window, dc);
+    const old = c.SelectObject(dc, ui.font);
+    defer _ = c.SelectObject(dc, old);
+    var metrics: c.TEXTMETRICW = undefined;
+    if (c.GetTextMetricsW(dc, &metrics) != 0 and metrics.tmHeight > 0) zoom_text_height = metrics.tmHeight;
 }
 fn fill(dc: c.HDC, rect: *const c.RECT, color: u32) void {
     const brush = c.CreateSolidBrush(color);
@@ -1401,6 +1413,7 @@ fn createControls(hwnd: c.HWND) void {
     _ = c.SendMessageW(zoom_label, c.EM_SETLIMITTEXT, 64, 0);
     _ = c.SendMessageW(zoom_label, c.EM_SETMARGINS, c.EC_LEFTMARGIN | c.EC_RIGHTMARGIN, 4 | (4 << 16));
     zoom_setting = false;
+    measureZoomText();
     controls[16] = ui.button(hwnd, L("Ustaw zoom"), L("Zatwierdź wpisany zoom (Enter); Esc przywraca bieżącą wartość"), ID.zoom_apply, .check, false);
     controls[17] = ui.button(hwnd, L("Zapisz"), L("Zapisz obrót w bieżącym pliku (Ctrl+S)"), ID.save_rotation, .save, false);
     controls[18] = ui.button(hwnd, L("Edytuj"), L("Kadrowanie, pisak, zakreślacz, kształty i tekst (Ctrl+E)"), ID.edit, .edit, false);
@@ -1452,6 +1465,13 @@ fn wndProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.Stdc
         c.WM_PAINT => {
             paint();
             return 0;
+        },
+        c.WM_NCPAINT, c.WM_NCACTIVATE => {
+            // DefWindowProc may repaint the hidden legacy frame white; keep
+            // the edge the scaler samples in the toolbar colour (theme.zig).
+            const result = c.DefWindowProcW(hwnd, msg, wp, lp);
+            if (!fullscreen) theme.paintFrameEdge(hwnd, ui.shell);
+            return result;
         },
         c.WM_SETTINGCHANGE => {
             // Automatic theme: Windows "app mode" switched (Settings > Colours).

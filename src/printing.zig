@@ -396,6 +396,12 @@ fn windowProc(hwnd: c.HWND, message: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callcon
             paint(state);
             return 0;
         },
+        c.WM_NCPAINT, c.WM_NCACTIVATE => {
+            // Hidden frame edge sampled by DPI scaling (theme.paintFrameEdge).
+            const result = c.DefWindowProcW(hwnd, message, wp, lp);
+            theme.paintFrameEdge(hwnd, theme.colors.shell);
+            return result;
+        },
         c.WM_COMMAND => {
             var id = wp & 0xffff;
             const event = (wp >> 16) & 0xffff;

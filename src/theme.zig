@@ -338,6 +338,58 @@ pub fn applyWindow(hwnd: c.HWND) void {
     _ = c.RedrawWindow(hwnd, null, null, c.RDW_INVALIDATE | c.RDW_ERASE | c.RDW_FRAME | c.RDW_ALLCHILDREN);
 }
 
+const DwmIsCompositionEnabled = *const fn (*i32) callconv(.Stdcall) i32;
+var dwm_composition: ?DwmIsCompositionEnabled = null;
+var dwm_composition_loaded = false;
+
+fn compositionEnabled() bool {
+    if (!dwm_composition_loaded) {
+        dwm_composition_loaded = true;
+        if (c.LoadLibraryW(w.L("dwmapi.dll"))) |dwm| {
+            if (procAddress(dwm, "DwmIsCompositionEnabled")) |p| dwm_composition = @ptrCast(p);
+        }
+    }
+    const query = dwm_composition orelse return false;
+    var enabled: i32 = 0;
+    return query(&enabled) == 0 and enabled != 0;
+}
+
+/// Rectangle of the hidden ring just outside the client area, in window
+/// coordinates (the client rectangle grown by `ring` on every side).
+pub fn frameEdgeRing(window: c.RECT, client_origin: c.POINT, client_size: c.POINT, ring: i32) struct { outer: c.RECT, client: c.RECT } {
+    const left = client_origin.x - window.left;
+    const top = client_origin.y - window.top;
+    const inner = c.RECT{ .left = left, .top = top, .right = left + client_size.x, .bottom = top + client_size.y };
+    return .{
+        .outer = .{ .left = @max(0, inner.left - ring), .top = @max(0, inner.top - ring), .right = @min(window.right - window.left, inner.right + ring), .bottom = @min(window.bottom - window.top, inner.bottom + ring) },
+        .client = inner,
+    };
+}
+
+/// WM_NCPAINT helper (call after DefWindowProc). With DWM the frame is drawn
+/// by the compositor and the window's own non-client pixels are never shown,
+/// but when Windows scales a DPI-unaware window (125 %, 150 %, ...) its
+/// bilinear filter blends the pixels just outside the client area - white
+/// by default - into the first client row and column. In dark mode that is a
+/// light line under the title bar and along the right edge. Painting that
+/// hidden ring in the client background colour removes it. No-op without
+/// DWM composition (XP, classic theme), where the frame is really visible.
+pub fn paintFrameEdge(hwnd: c.HWND, color: u32) void {
+    if (hwnd == null or !compositionEnabled()) return;
+    var window: c.RECT = undefined;
+    var client: c.RECT = undefined;
+    if (c.GetWindowRect(hwnd, &window) == 0 or c.GetClientRect(hwnd, &client) == 0) return;
+    var origin = c.POINT{ .x = 0, .y = 0 };
+    if (c.ClientToScreen(hwnd, &origin) == 0) return;
+    const ring = frameEdgeRing(window, origin, .{ .x = client.right, .y = client.bottom }, 3);
+    const dc = c.GetWindowDC(hwnd) orelse return;
+    defer _ = c.ReleaseDC(hwnd, dc);
+    _ = c.ExcludeClipRect(dc, ring.client.left, ring.client.top, ring.client.right, ring.client.bottom);
+    const brush = c.CreateSolidBrush(color) orelse return;
+    defer _ = c.DeleteObject(brush);
+    _ = c.FillRect(dc, &ring.outer, brush);
+}
+
 /// Tooltip popups are top-level windows of their own.
 pub fn applyTooltip(hwnd: c.HWND) void {
     if (hwnd == null) return;
