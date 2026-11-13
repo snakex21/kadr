@@ -411,6 +411,89 @@ pub const Outcome = struct { image: ?Image, then: Then };
 const Step = union(enum) { draw: Op, base: Image };
 
 const palette = [_]u32{ 0xff000000, 0xffffffff, 0xffe53935, 0xfffb8c00, 0xffffeb3b, 0xff43a047, 0xff1e88e5, 0xff3949ab, 0xff8e24aa, 0xff9e9e9e };
+/// Custom colour (ChooseColor): the last one picked, shown as an extra
+/// swatch, and the dialog's 16 custom slots. Kept for the session and in
+/// Kadr.ini ([Editor] CustomColor=RRGGBB, CustomColors=RRGGBB,... x16).
+var custom_color: ?u32 = null;
+var custom_slots = [_]c.COLORREF{0xffffff} ** 16;
+var custom_loaded = false;
+
+/// ARGB (0xffRRGGBB) -> "RRGGBB".
+pub fn formatColor(buffer: *[6]u8, color: u32) []const u8 {
+    return std.fmt.bufPrint(buffer, "{X:0>6}", .{color & 0xffffff}) catch unreachable;
+}
+/// "RRGGBB" (optionally "#RRGGBB", any case) -> opaque ARGB.
+pub fn parseColor(text: []const u8) ?u32 {
+    const trimmed = std.mem.trim(u8, text, " \t");
+    const hex = if (trimmed.len > 0 and trimmed[0] == '#') trimmed[1..] else trimmed;
+    if (hex.len != 6) return null;
+    const value = std.fmt.parseInt(u32, hex, 16) catch return null;
+    return 0xff000000 | value;
+}
+/// The 16 dialog slots as comma-separated RRGGBB.
+pub fn formatSlots(buffer: *[16 * 7]u8, slots: [16]c.COLORREF) []const u8 {
+    var n: usize = 0;
+    for (slots, 0..) |slot, i| {
+        if (i > 0) {
+            buffer[n] = ',';
+            n += 1;
+        }
+        var part: [6]u8 = undefined;
+        @memcpy(buffer[n .. n + 6], formatColor(&part, fromColorRef(slot)));
+        n += 6;
+    }
+    return buffer[0..n];
+}
+/// Fills the slots that parse; a short or damaged list keeps the rest.
+pub fn parseSlots(text: []const u8, slots: *[16]c.COLORREF) void {
+    var parts = std.mem.splitScalar(u8, text, ',');
+    var i: usize = 0;
+    while (parts.next()) |part| : (i += 1) {
+        if (i >= slots.len) break;
+        if (parseColor(part)) |color| slots[i] = toColorRef(color);
+    }
+}
+pub fn toColorRef(color: u32) c.COLORREF {
+    return ((color >> 16) & 0xff) | (color & 0xff00) | ((color & 0xff) << 16);
+}
+pub fn fromColorRef(value: c.COLORREF) u32 {
+    return 0xff000000 | ((value & 0xff) << 16) | (value & 0xff00) | ((value >> 16) & 0xff);
+}
+fn readSetting(key: [*:0]const u16, buffer: []u8) ?[]const u8 {
+    var wide: [16 * 7 + 8]u16 = undefined;
+    const n = c.GetPrivateProfileStringW(w.L("Editor"), key, w.L(""), &wide, wide.len, i18n.settingsPath().ptr);
+    if (n == 0) return null;
+    var len: usize = 0;
+    for (wide[0..n]) |ch| {
+        if (ch > 0x7f or len >= buffer.len) return null;
+        buffer[len] = @intCast(ch);
+        len += 1;
+    }
+    return buffer[0..len];
+}
+fn writeSetting(key: [*:0]const u16, value: []const u8) void {
+    var wide: [16 * 7 + 1]u16 = undefined;
+    for (value, 0..) |ch, i| wide[i] = ch;
+    wide[value.len] = 0;
+    _ = c.WritePrivateProfileStringW(w.L("Editor"), key, @ptrCast(&wide), i18n.settingsPath().ptr);
+}
+fn loadCustomColors() void {
+    if (custom_loaded) return;
+    custom_loaded = true;
+    var buffer: [16 * 7 + 8]u8 = undefined;
+    if (readSetting(w.L("CustomColor"), &buffer)) |text| custom_color = parseColor(text);
+    if (readSetting(w.L("CustomColors"), &buffer)) |text| parseSlots(text, &custom_slots);
+}
+fn saveCustomColors() void {
+    if (custom_color) |color| {
+        var one: [6]u8 = undefined;
+        writeSetting(w.L("CustomColor"), formatColor(&one, color));
+    }
+    var all: [16 * 7]u8 = undefined;
+    writeSetting(w.L("CustomColors"), formatSlots(&all, custom_slots));
+    _ = c.WritePrivateProfileStringW(null, null, null, i18n.settingsPath().ptr);
+}
+
 const tools = [_]Tool{ .crop, .pen, .highlighter, .eraser, .line, .arrow, .rect, .text };
 const aspects = [_]?f64{ null, 1, 4.0 / 3.0, 3.0 / 4.0, 3.0 / 2.0, 2.0 / 3.0, 16.0 / 9.0, 210.0 / 297.0, 297.0 / 210.0 };
 
@@ -760,6 +843,28 @@ const State = struct {
     fn toolColor(self: *State) u32 {
         return if (self.tool == .highlighter) self.marker_color else self.color;
     }
+    /// A palette or custom swatch was chosen: like a palette click, it is
+    /// not an undo step.
+    fn pickColor(self: *State, chosen: u32) void {
+        if (self.tool == .highlighter) self.marker_color = chosen else self.color = chosen;
+        if (self.tool == .eraser or self.tool == .crop) self.setTool(.pen);
+        _ = c.InvalidateRect(self.get(ID.palette), null, 0);
+        if (self.text_edit) |edit| _ = c.InvalidateRect(edit, null, 1);
+    }
+    /// The standard Windows colour dialog (comdlg32, also on XP).
+    fn chooseCustomColor(self: *State) void {
+        var dialog = std.mem.zeroes(c.CHOOSECOLORW);
+        dialog.lStructSize = @sizeOf(c.CHOOSECOLORW);
+        dialog.hwndOwner = self.hwnd;
+        dialog.rgbResult = toColorRef(self.toolColor());
+        dialog.lpCustColors = &custom_slots;
+        dialog.Flags = c.CC_FULLOPEN | c.CC_RGBINIT;
+        const chosen = c.ChooseColorW(&dialog) != 0;
+        if (chosen) custom_color = fromColorRef(dialog.rgbResult);
+        // The dialog edits the custom slots even when it is cancelled.
+        saveCustomColors();
+        if (chosen) self.pickColor(custom_color.?);
+    }
     fn setTool(self: *State, tool: Tool) void {
         self.finishText(true);
         self.tool = tool;
@@ -879,10 +984,10 @@ const State = struct {
             self.place(ID.crop_h, lx + half + 8, oy + 138, half, 22);
         } else {
             self.heading(lx, oy, L("Kolor"));
-            self.place(ID.palette, lx, oy + 22, left_width, 62);
-            self.heading(lx, oy + 92, L("Grubość"));
-            self.place(ID.thickness, lx - 4, oy + 112, left_width - 34, 30);
-            self.place(ID.thickness_value, lx + left_width - 32, oy + 116, 32, 20);
+            self.place(ID.palette, lx, oy + 22, left_width, 94);
+            self.heading(lx, oy + 124, L("Grubość"));
+            self.place(ID.thickness, lx - 4, oy + 144, left_width - 34, 30);
+            self.place(ID.thickness_value, lx + left_width - 32, oy + 148, 32, 20);
         }
         // Right: image operations and colour adjustments.
         const rx = cw - margin - right_width;
@@ -1318,6 +1423,19 @@ fn paletteProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.
                 if (selected) ui.rounded(dc, .{ .left = x - 2, .top = y - 2, .right = x + size + 2, .bottom = y + size + 2 }, 7, ui.accent, null);
                 ui.rounded(dc, .{ .left = x, .top = y, .right = x + size, .bottom = y + size }, 6, w.rgb(@truncate(color >> 16), @truncate(color >> 8), @truncate(color)), theme.colors.swatch_border);
             }
+            // Third row: the last custom colour, then "Custom colour...".
+            const y = 2 * (size + gap) + 2;
+            const swatch = c.RECT{ .left = 2, .top = y, .right = 2 + size, .bottom = y + size };
+            if (custom_color) |color| {
+                if ((color & 0xffffff) == (s.toolColor() & 0xffffff)) ui.rounded(dc, .{ .left = 0, .top = y - 2, .right = size + 4, .bottom = y + size + 2 }, 7, ui.accent, null);
+                ui.rounded(dc, swatch, 6, w.rgb(@truncate(color >> 16), @truncate(color >> 8), @truncate(color)), theme.colors.swatch_border);
+            } else {
+                // Empty slot until a custom colour is picked.
+                ui.rounded(dc, swatch, 6, ui.shell, theme.colors.swatch_border);
+            }
+            const field = c.RECT{ .left = size + gap + 2, .top = y, .right = rect.right - 2, .bottom = y + size };
+            ui.rounded(dc, field, 6, ui.shell, ui.line_color);
+            ui.text(dc, .{ .left = field.left + 8, .top = field.top, .right = field.right - 6, .bottom = field.bottom }, L("Własny kolor…"), guiFont(), ui.ink, c.DT_SINGLELINE | c.DT_VCENTER | c.DT_END_ELLIPSIS);
             return 0;
         },
         c.WM_LBUTTONDOWN => {
@@ -1325,11 +1443,11 @@ fn paletteProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.
             const col = @divTrunc(m.x - 2, size + gap);
             const row = @divTrunc(m.y - 2, size + gap);
             if (col >= 0 and col < 5 and row >= 0 and row < 2) {
-                const chosen = palette[@intCast(row * 5 + col)];
-                if (s.tool == .highlighter) s.marker_color = chosen else s.color = chosen;
-                if (s.tool == .eraser or s.tool == .crop) s.setTool(.pen);
-                _ = c.InvalidateRect(hwnd, null, 0);
-                if (s.text_edit) |edit| _ = c.InvalidateRect(edit, null, 1);
+                s.pickColor(palette[@intCast(row * 5 + col)]);
+            } else if (row == 2 and m.x >= 0) {
+                // The custom swatch reuses the last colour; the field (or the
+                // still-empty swatch) opens the colour dialog.
+                if (col == 0 and custom_color != null) s.pickColor(custom_color.?) else s.chooseCustomColor();
             }
             return 0;
         },
@@ -1534,6 +1652,7 @@ fn shortcut(s: *State, msg: *const c.MSG) bool {
 
 pub fn show(owner: c.HWND, source: *const Image) ?Outcome {
     if (source.handle == null) return null;
+    loadCustomColors();
     var s = State{ .source = source, .original = output.snapshot(source) orelse return null };
     defer s.deinit();
     const instance = c.GetModuleHandleW(null);
@@ -1601,6 +1720,38 @@ pub fn show(owner: c.HWND, source: *const Image) ?Outcome {
 }
 
 // ---------------------------------------------------------------- tests
+
+test "custom colours round-trip through the Kadr.ini text" {
+    var one: [6]u8 = undefined;
+    try std.testing.expectEqualStrings("1E88E5", formatColor(&one, 0xff1e88e5));
+    try std.testing.expectEqual(@as(?u32, 0xff1e88e5), parseColor("1E88E5"));
+    try std.testing.expectEqual(@as(?u32, 0xffabcdef), parseColor(" #abcdef "));
+    try std.testing.expectEqual(@as(?u32, null), parseColor("12345"));
+    try std.testing.expectEqual(@as(?u32, null), parseColor("GG0000"));
+    try std.testing.expectEqual(@as(c.COLORREF, 0x00e5881e), toColorRef(0xff1e88e5));
+    try std.testing.expectEqual(@as(u32, 0xff1e88e5), fromColorRef(0x00e5881e));
+
+    var slots = [_]c.COLORREF{0xffffff} ** 16;
+    slots[0] = 0x000000ff; // red as COLORREF
+    slots[15] = 0x00123456;
+    var text: [16 * 7]u8 = undefined;
+    const line = formatSlots(&text, slots);
+    try std.testing.expectEqual(@as(usize, 16 * 7 - 1), line.len);
+    try std.testing.expect(std.mem.startsWith(u8, line, "FF0000,FFFFFF,"));
+    try std.testing.expect(std.mem.endsWith(u8, line, ",563412"));
+    var back = [_]c.COLORREF{0} ** 16;
+    parseSlots(line, &back);
+    try std.testing.expectEqualSlices(c.COLORREF, &slots, &back);
+
+    // Damaged or short lists keep the slots they cannot read.
+    var partial = [_]c.COLORREF{0x00aaaaaa} ** 16;
+    parseSlots("00FF00,bad,,0000FF", &partial);
+    try std.testing.expectEqual(@as(c.COLORREF, 0x0000ff00), partial[0]);
+    try std.testing.expectEqual(@as(c.COLORREF, 0x00aaaaaa), partial[1]);
+    try std.testing.expectEqual(@as(c.COLORREF, 0x00aaaaaa), partial[2]);
+    try std.testing.expectEqual(@as(c.COLORREF, 0x00ff0000), partial[3]);
+    try std.testing.expectEqual(@as(c.COLORREF, 0x00aaaaaa), partial[4]);
+}
 
 test "neutral adjustments preserve straight alpha exactly" {
     try std.testing.expectEqual([4]u8{ 17, 125, 230, 31 }, adjusted(.{ 17, 125, 230, 31 }, .{}));
