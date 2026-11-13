@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | **日本語** | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | **日本語** | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr は [Zig](https://ziglang.org/) で書かれたネイティブな Win32/GDI+ アプリケーションです。インストーラーも .NET も Electron も Node.js も不要で、`Kadr.exe` を好きな場所にコピーして実行するだけです。設定はプログラムと同じ場所の `Kadr.ini` に保存されます（ポータブル — レジストリや AppData には何も書き込みません）。
 
-![Kadr のメインウィンドウ（ライトテーマ）](docs/screenshots/main-light.png)
+![Kadr のメインウィンドウ（ライトテーマ）](../docs/screenshots/main-light.png)
 
 ## 目次
 
@@ -40,19 +40,19 @@ Kadr は [Zig](https://ziglang.org/) で書かれたネイティブな Win32/GDI
 
 | ライトテーマ | ダークテーマ |
 |---|---|
-| ![メインウィンドウ（ライトテーマ）](docs/screenshots/main-light.png) | ![メインウィンドウ（ダークテーマ）](docs/screenshots/main-dark.png) |
+| ![メインウィンドウ（ライトテーマ）](../docs/screenshots/main-light.png) | ![メインウィンドウ（ダークテーマ）](../docs/screenshots/main-dark.png) |
 
 **エディター** — 3:2 プリセットのトリミング枠、ペン、蛍光ペン、矢印、四角形、テキスト:
 
-![トリミング枠と描画を表示したエディター](docs/screenshots/editor-crop.png)
+![トリミング枠と描画を表示したエディター](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)*（ページ全体に引き伸ばし）モードの**印刷プレビュー**:
 
-![印刷プレビュー（Stretch モード）](docs/screenshots/print-stretch.png)
+![印刷プレビュー（Stretch モード）](../docs/screenshots/print-stretch.png)
 
 *テーマ* サブメニューを開いた**「その他」(…) メニュー**:
 
-![テーマ サブメニューを開いた「その他」メニュー](docs/screenshots/more-menu.png)
+![テーマ サブメニューを開いた「その他」メニュー](../docs/screenshots/more-menu.png)
 
 ## ダウンロード / インストール
 
@@ -213,11 +213,11 @@ Kadr がリンクするのは Windows XP に存在するライブラリだけで
 
 ## ライセンス
 
-**GPL-3.0-or-later** — 全文は [`LICENSE`](LICENSE) にあります。
+**GPL-3.0-or-later** — 全文は [`LICENSE`](../LICENSE) にあります。
 
-サードパーティ製コンポーネントとそのライセンス（DjVuLibre、VC100/GDI+、Zig）: [`THIRD-PARTY.txt`](THIRD-PARTY.txt)。DjVuLibre 用の GNU GPL v2 の全文: [`COPYING.txt`](COPYING.txt)。
+サードパーティ製コンポーネントとそのライセンス（DjVuLibre、VC100/GDI+、Zig）: [`THIRD-PARTY.txt`](../THIRD-PARTY.txt)。DjVuLibre 用の GNU GPL v2 の全文: [`COPYING.txt`](../COPYING.txt)。
 
-これは翻訳です。英語版 ([README.md](README.md)) が正式な文書です。
+これは翻訳です。英語版 ([README.md](../README.md)) が正式な文書です。
 
 ## クレジット
 

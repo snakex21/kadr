@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | **Ελληνικά** | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | **Ελληνικά** | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Το Kadr είναι μια εγγενής εφαρμογή Win32/GDI+ γραμμένη σε [Zig](https://ziglang.org/). Χωρίς πρόγραμμα εγκατάστασης, χωρίς .NET, χωρίς Electron, χωρίς Node.js: αντιγράψτε το `Kadr.exe` οπουδήποτε και εκτελέστε το. Οι ρυθμίσεις αποθηκεύονται στο `Kadr.ini` δίπλα στο πρόγραμμα (φορητό — τίποτα δεν γράφεται στο μητρώο ή στο AppData).
 
-![Κύριο παράθυρο του Kadr, φωτεινό θέμα](docs/screenshots/main-light.png)
+![Κύριο παράθυρο του Kadr, φωτεινό θέμα](../docs/screenshots/main-light.png)
 
 ## Περιεχόμενα
 
@@ -40,19 +40,19 @@
 
 | Φωτεινό θέμα | Σκοτεινό θέμα |
 |---|---|
-| ![Κύριο παράθυρο, φωτεινό θέμα](docs/screenshots/main-light.png) | ![Κύριο παράθυρο, σκοτεινό θέμα](docs/screenshots/main-dark.png) |
+| ![Κύριο παράθυρο, φωτεινό θέμα](../docs/screenshots/main-light.png) | ![Κύριο παράθυρο, σκοτεινό θέμα](../docs/screenshots/main-dark.png) |
 
 **Επεξεργαστής** — πλαίσιο περικοπής με προεπιλογή 3:2, στυλό, μαρκαδόρος επισήμανσης, βέλος, ορθογώνιο και κείμενο:
 
-![Επεξεργαστής με πλαίσιο περικοπής και σχέδια](docs/screenshots/editor-crop.png)
+![Επεξεργαστής με πλαίσιο περικοπής και σχέδια](../docs/screenshots/editor-crop.png)
 
 **Προεπισκόπηση εκτύπωσης** στη λειτουργία *Stretch (whole page)* (τέντωμα σε ολόκληρη τη σελίδα):
 
-![Προεπισκόπηση εκτύπωσης, λειτουργία Stretch](docs/screenshots/print-stretch.png)
+![Προεπισκόπηση εκτύπωσης, λειτουργία Stretch](../docs/screenshots/print-stretch.png)
 
 **Το μενού «Περισσότερα» (…)** με το υπομενού *Θέμα*:
 
-![Μενού Περισσότερα με το υπομενού Θέμα](docs/screenshots/more-menu.png)
+![Μενού Περισσότερα με το υπομενού Θέμα](../docs/screenshots/more-menu.png)
 
 ## Λήψη / Εγκατάσταση
 
@@ -213,11 +213,11 @@ build.cmd
 
 ## Άδεια χρήσης
 
-**GPL-3.0-or-later** — πλήρες κείμενο στο [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — πλήρες κείμενο στο [`LICENSE`](../LICENSE).
 
-Στοιχεία τρίτων και οι άδειές τους (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Κείμενο της GNU GPL v2 για το DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Στοιχεία τρίτων και οι άδειές τους (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Κείμενο της GNU GPL v2 για το DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Αυτή είναι μετάφραση· έγκυρη είναι η αγγλική έκδοση ([README.md](README.md)).
+Αυτή είναι μετάφραση· έγκυρη είναι η αγγλική έκδοση ([README.md](../README.md)).
 
 ## Ευχαριστίες
 

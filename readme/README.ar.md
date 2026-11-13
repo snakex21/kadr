@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | **العربية** | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | **العربية** | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 <div dir="rtl">
 
@@ -8,7 +8,7 @@
 
 Kadr تطبيق Win32/GDI+ أصلي مكتوب بلغة [Zig](https://ziglang.org/). لا مثبّت، ولا .NET، ولا Electron، ولا Node.js: انسخ `Kadr.exe` إلى أي مكان وشغّله. تُحفظ الإعدادات في `Kadr.ini` بجوار البرنامج (محمول — لا يُكتب شيء في السجل ولا في AppData).
 
-![النافذة الرئيسية لـ Kadr، السمة الفاتحة](docs/screenshots/main-light.png)
+![النافذة الرئيسية لـ Kadr، السمة الفاتحة](../docs/screenshots/main-light.png)
 
 ## المحتويات
 
@@ -42,19 +42,19 @@ Kadr تطبيق Win32/GDI+ أصلي مكتوب بلغة [Zig](https://ziglang.or
 
 | السمة الفاتحة | السمة الداكنة |
 |---|---|
-| ![النافذة الرئيسية، السمة الفاتحة](docs/screenshots/main-light.png) | ![النافذة الرئيسية، السمة الداكنة](docs/screenshots/main-dark.png) |
+| ![النافذة الرئيسية، السمة الفاتحة](../docs/screenshots/main-light.png) | ![النافذة الرئيسية، السمة الداكنة](../docs/screenshots/main-dark.png) |
 
 **المحرر** — إطار اقتصاص بنسبة 3:2، وقلم، وقلم تمييز، وسهم، ومستطيل، ونص:
 
-![المحرر مع إطار الاقتصاص والرسوم](docs/screenshots/editor-crop.png)
+![المحرر مع إطار الاقتصاص والرسوم](../docs/screenshots/editor-crop.png)
 
 **معاينة الطباعة** في وضع *Stretch (whole page)* (تمديد على الصفحة كاملة):
 
-![معاينة الطباعة، وضع Stretch](docs/screenshots/print-stretch.png)
+![معاينة الطباعة، وضع Stretch](../docs/screenshots/print-stretch.png)
 
 **قائمة «المزيد» (…)** مع القائمة الفرعية *السمة*:
 
-![قائمة المزيد مع القائمة الفرعية السمة](docs/screenshots/more-menu.png)
+![قائمة المزيد مع القائمة الفرعية السمة](../docs/screenshots/more-menu.png)
 
 ## التنزيل / التثبيت
 
@@ -223,11 +223,11 @@ build.cmd
 
 ## الترخيص
 
-**GPL-3.0-or-later** — النص الكامل في [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — النص الكامل في [`LICENSE`](../LICENSE).
 
-مكونات الجهات الخارجية وتراخيصها (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). نص GNU GPL v2 الخاص بـ DjVuLibre: [`COPYING.txt`](COPYING.txt).
+مكونات الجهات الخارجية وتراخيصها (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). نص GNU GPL v2 الخاص بـ DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-هذه ترجمة؛ والنسخة الإنجليزية ([README.md](README.md)) هي المعتمدة.
+هذه ترجمة؛ والنسخة الإنجليزية ([README.md](../README.md)) هي المعتمدة.
 
 ## شكر وتقدير
 

@@ -1,4 +1,4 @@
-[English](README.md) | **Polski** | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | **Polski** | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr to natywna aplikacja Win32/GDI+ napisana w [Zigu](https://ziglang.org/). Bez instalatora, bez .NET, Electrona i Node.js: skopiuj `Kadr.exe` gdziekolwiek i uruchom. Ustawienia trafiają do `Kadr.ini` obok programu (wersja przenośna — nic nie jest zapisywane w rejestrze ani w AppData).
 
-![Główne okno Kadra, motyw jasny](docs/screenshots/main-light-pl.png)
+![Główne okno Kadra, motyw jasny](../docs/screenshots/main-light-pl.png)
 
 ## Spis treści
 
@@ -40,19 +40,19 @@ Kadr to natywna aplikacja Win32/GDI+ napisana w [Zigu](https://ziglang.org/). Be
 
 | Motyw jasny | Motyw ciemny |
 |---|---|
-| ![Główne okno, motyw jasny](docs/screenshots/main-light-pl.png) | ![Główne okno, motyw ciemny](docs/screenshots/main-dark-pl.png) |
+| ![Główne okno, motyw jasny](../docs/screenshots/main-light-pl.png) | ![Główne okno, motyw ciemny](../docs/screenshots/main-dark-pl.png) |
 
 **Edytor** — ramka kadrowania z proporcjami 3:2, pisak, zakreślacz, strzałka, prostokąt i tekst:
 
-![Edytor z ramką kadrowania i rysunkami](docs/screenshots/editor-crop-pl.png)
+![Edytor z ramką kadrowania i rysunkami](../docs/screenshots/editor-crop-pl.png)
 
 **Podgląd wydruku** w trybie *Rozciągnij (cała strona)*:
 
-![Podgląd wydruku, tryb Rozciągnij](docs/screenshots/print-stretch-pl.png)
+![Podgląd wydruku, tryb Rozciągnij](../docs/screenshots/print-stretch-pl.png)
 
 **Menu „Więcej” (…)** z podmenu *Motyw*:
 
-![Menu Więcej z podmenu Motyw](docs/screenshots/more-menu-pl.png)
+![Menu Więcej z podmenu Motyw](../docs/screenshots/more-menu-pl.png)
 
 ## Pobieranie / instalacja
 
@@ -213,9 +213,9 @@ Kadr linkuje tylko biblioteki dostępne w Windows XP. Nowsze funkcje (ciemne pas
 
 ## Licencja
 
-**GPL-3.0-or-later** — pełny tekst w pliku [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — pełny tekst w pliku [`LICENSE`](../LICENSE).
 
-Komponenty zewnętrzne i ich licencje (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Tekst GNU GPL v2 dla DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Komponenty zewnętrzne i ich licencje (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Tekst GNU GPL v2 dla DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
 ## Podziękowania
 

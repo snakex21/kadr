@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | **Nederlands** | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | **Nederlands** | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr is een native Win32/GDI+-toepassing, geschreven in [Zig](https://ziglang.org/). Geen installatieprogramma, geen .NET, geen Electron, geen Node.js: kopieer `Kadr.exe` naar een willekeurige plek en start het. De instellingen worden opgeslagen in `Kadr.ini` naast het programma (draagbaar — er wordt niets naar het register of AppData geschreven).
 
-![Hoofdvenster van Kadr, licht thema](docs/screenshots/main-light.png)
+![Hoofdvenster van Kadr, licht thema](../docs/screenshots/main-light.png)
 
 ## Inhoudsopgave
 
@@ -40,19 +40,19 @@ Kadr is een native Win32/GDI+-toepassing, geschreven in [Zig](https://ziglang.or
 
 | Licht thema | Donker thema |
 |---|---|
-| ![Hoofdvenster, licht thema](docs/screenshots/main-light.png) | ![Hoofdvenster, donker thema](docs/screenshots/main-dark.png) |
+| ![Hoofdvenster, licht thema](../docs/screenshots/main-light.png) | ![Hoofdvenster, donker thema](../docs/screenshots/main-dark.png) |
 
 **Editor** — bijsnijkader met de verhouding 3:2, pen, markeerstift, pijl, rechthoek en tekst:
 
-![Editor met bijsnijkader en tekeningen](docs/screenshots/editor-crop.png)
+![Editor met bijsnijkader en tekeningen](../docs/screenshots/editor-crop.png)
 
 **Afdrukvoorbeeld** in de modus *Stretch (whole page)* (uitrekken: hele pagina):
 
-![Afdrukvoorbeeld, Stretch-modus](docs/screenshots/print-stretch.png)
+![Afdrukvoorbeeld, Stretch-modus](../docs/screenshots/print-stretch.png)
 
 **Het menu "Meer" (…)** met het submenu *Thema*:
 
-![Menu Meer met het submenu Thema](docs/screenshots/more-menu.png)
+![Menu Meer met het submenu Thema](../docs/screenshots/more-menu.png)
 
 ## Downloaden / Installatie
 
@@ -213,11 +213,11 @@ Kadr linkt alleen naar bibliotheken die op Windows XP aanwezig zijn. Nieuwere fu
 
 ## Licentie
 
-**GPL-3.0-or-later** — volledige tekst in [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — volledige tekst in [`LICENSE`](../LICENSE).
 
-Componenten van derden en hun licenties (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Tekst van de GNU GPL v2 voor DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Componenten van derden en hun licenties (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Tekst van de GNU GPL v2 voor DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Dit is een vertaling; de Engelse versie ([README.md](README.md)) is leidend.
+Dit is een vertaling; de Engelse versie ([README.md](../README.md)) is leidend.
 
 ## Credits
 

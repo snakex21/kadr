@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | **Magyar** | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | **Magyar** | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 A Kadr natív Win32/GDI+ alkalmazás, [Zig](https://ziglang.org/) nyelven írva. Nincs telepítő, nincs .NET, nincs Electron, nincs Node.js: másolja a `Kadr.exe` fájlt bárhová, és indítsa el. A beállítások a program mellett, a `Kadr.ini` fájlban tárolódnak (hordozható — semmi sem kerül a rendszerleíró adatbázisba vagy az AppData mappába).
 
-![A Kadr főablaka, világos téma](docs/screenshots/main-light.png)
+![A Kadr főablaka, világos téma](../docs/screenshots/main-light.png)
 
 ## Tartalomjegyzék
 
@@ -40,19 +40,19 @@ A Kadr natív Win32/GDI+ alkalmazás, [Zig](https://ziglang.org/) nyelven írva.
 
 | Világos téma | Sötét téma |
 |---|---|
-| ![Főablak, világos téma](docs/screenshots/main-light.png) | ![Főablak, sötét téma](docs/screenshots/main-dark.png) |
+| ![Főablak, világos téma](../docs/screenshots/main-light.png) | ![Főablak, sötét téma](../docs/screenshots/main-dark.png) |
 
 **Szerkesztő** — vágókeret 3:2 képaránnyal, toll, kiemelő, nyíl, téglalap és szöveg:
 
-![Szerkesztő vágókerettel és rajzokkal](docs/screenshots/editor-crop.png)
+![Szerkesztő vágókerettel és rajzokkal](../docs/screenshots/editor-crop.png)
 
 **Nyomtatási kép** *Stretch (whole page)* (nyújtás a teljes oldalra) módban:
 
-![Nyomtatási kép, Stretch mód](docs/screenshots/print-stretch.png)
+![Nyomtatási kép, Stretch mód](../docs/screenshots/print-stretch.png)
 
 **A „Továbbiak” (…) menü** a *Téma* almenüvel:
 
-![A Továbbiak menü a Téma almenüvel](docs/screenshots/more-menu.png)
+![A Továbbiak menü a Téma almenüvel](../docs/screenshots/more-menu.png)
 
 ## Letöltés / telepítés
 
@@ -213,11 +213,11 @@ A Kadr csak olyan könyvtárakhoz linkel, amelyek Windows XP-n is megvannak. Az 
 
 ## Licenc
 
-**GPL-3.0-or-later** — a teljes szöveg: [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — a teljes szöveg: [`LICENSE`](../LICENSE).
 
-Külső összetevők és licencük (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). A GNU GPL v2 szövege a DjVuLibre-hez: [`COPYING.txt`](COPYING.txt).
+Külső összetevők és licencük (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). A GNU GPL v2 szövege a DjVuLibre-hez: [`COPYING.txt`](../COPYING.txt).
 
-Ez egy fordítás; az angol nyelvű változat ([README.md](README.md)) a mérvadó.
+Ez egy fordítás; az angol nyelvű változat ([README.md](../README.md)) a mérvadó.
 
 ## Köszönetnyilvánítás
 

@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | **Čeština** | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | **Čeština** | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr je nativní aplikace Win32/GDI+ napsaná v jazyce [Zig](https://ziglang.org/). Žádný instalátor, žádné .NET, žádný Electron, žádný Node.js: zkopírujte `Kadr.exe` kamkoli a spusťte ho. Nastavení se ukládá do `Kadr.ini` vedle programu (přenosně — nic se nezapisuje do registru ani do AppData).
 
-![Hlavní okno Kadru, světlý motiv](docs/screenshots/main-light.png)
+![Hlavní okno Kadru, světlý motiv](../docs/screenshots/main-light.png)
 
 ## Obsah
 
@@ -40,19 +40,19 @@ Kadr je nativní aplikace Win32/GDI+ napsaná v jazyce [Zig](https://ziglang.org
 
 | Světlý motiv | Tmavý motiv |
 |---|---|
-| ![Hlavní okno, světlý motiv](docs/screenshots/main-light.png) | ![Hlavní okno, tmavý motiv](docs/screenshots/main-dark.png) |
+| ![Hlavní okno, světlý motiv](../docs/screenshots/main-light.png) | ![Hlavní okno, tmavý motiv](../docs/screenshots/main-dark.png) |
 
 **Editor** — rámeček ořezu s předvolbou 3:2, pero, zvýrazňovač, šipka, obdélník a text:
 
-![Editor s rámečkem ořezu a kresbami](docs/screenshots/editor-crop.png)
+![Editor s rámečkem ořezu a kresbami](../docs/screenshots/editor-crop.png)
 
 **Náhled tisku** v režimu *Stretch (whole page)* (roztáhnout na celou stránku):
 
-![Náhled tisku, režim Stretch](docs/screenshots/print-stretch.png)
+![Náhled tisku, režim Stretch](../docs/screenshots/print-stretch.png)
 
 **Nabídka „Více“ (…)** s podnabídkou *Motiv*:
 
-![Nabídka Více s podnabídkou Motiv](docs/screenshots/more-menu.png)
+![Nabídka Více s podnabídkou Motiv](../docs/screenshots/more-menu.png)
 
 ## Stažení / instalace
 
@@ -213,11 +213,11 @@ Kadr se linkuje jen proti knihovnám, které existují ve Windows XP. Novější
 
 ## Licence
 
-**GPL-3.0-or-later** — úplný text v [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — úplný text v [`LICENSE`](../LICENSE).
 
-Komponenty třetích stran a jejich licence (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Text GNU GPL v2 pro DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Komponenty třetích stran a jejich licence (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Text GNU GPL v2 pro DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Toto je překlad; závazná je anglická verze ([README.md](README.md)).
+Toto je překlad; závazná je anglická verze ([README.md](../README.md)).
 
 ## Poděkování
 

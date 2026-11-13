@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | **עברית** | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | **עברית** | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 <div dir="rtl">
 
@@ -8,7 +8,7 @@
 
 Kadr הוא יישום Win32/GDI+ מקורי שנכתב ב-[Zig](https://ziglang.org/). בלי תוכנת התקנה, בלי .NET, בלי Electron, בלי Node.js: מעתיקים את `Kadr.exe` לכל מקום ומפעילים. ההגדרות נשמרות בקובץ `Kadr.ini` לצד התוכנה (נייד — שום דבר לא נכתב לרישום או ל-AppData).
 
-![החלון הראשי של Kadr, ערכת נושא בהירה](docs/screenshots/main-light.png)
+![החלון הראשי של Kadr, ערכת נושא בהירה](../docs/screenshots/main-light.png)
 
 ## תוכן עניינים
 
@@ -42,19 +42,19 @@ Kadr הוא יישום Win32/GDI+ מקורי שנכתב ב-[Zig](https://ziglang
 
 | ערכת נושא בהירה | ערכת נושא כהה |
 |---|---|
-| ![החלון הראשי, ערכת נושא בהירה](docs/screenshots/main-light.png) | ![החלון הראשי, ערכת נושא כהה](docs/screenshots/main-dark.png) |
+| ![החלון הראשי, ערכת נושא בהירה](../docs/screenshots/main-light.png) | ![החלון הראשי, ערכת נושא כהה](../docs/screenshots/main-dark.png) |
 
 **עורך** — מסגרת חיתוך ביחס 3:2, עט, מרקר הדגשה, חץ, מלבן וטקסט:
 
-![העורך עם מסגרת חיתוך וציורים](docs/screenshots/editor-crop.png)
+![העורך עם מסגרת חיתוך וציורים](../docs/screenshots/editor-crop.png)
 
 **תצוגה מקדימה להדפסה** במצב *Stretch (whole page)* (מתיחה על פני העמוד כולו):
 
-![תצוגה מקדימה להדפסה, מצב Stretch](docs/screenshots/print-stretch.png)
+![תצוגה מקדימה להדפסה, מצב Stretch](../docs/screenshots/print-stretch.png)
 
 **התפריט "עוד" (…)** עם תפריט המשנה *ערכת נושא*:
 
-![תפריט "עוד" עם תפריט המשנה "ערכת נושא"](docs/screenshots/more-menu.png)
+![תפריט "עוד" עם תפריט המשנה "ערכת נושא"](../docs/screenshots/more-menu.png)
 
 ## הורדה / התקנה
 
@@ -223,11 +223,11 @@ Kadr מקושר רק לספריות שקיימות ב-Windows XP. תכונות �
 
 ## רישיון
 
-**GPL-3.0-or-later** — הנוסח המלא ב-[`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — הנוסח המלא ב-[`LICENSE`](../LICENSE).
 
-רכיבי צד שלישי והרישיונות שלהם (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). נוסח GNU GPL v2 עבור DjVuLibre: [`COPYING.txt`](COPYING.txt).
+רכיבי צד שלישי והרישיונות שלהם (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). נוסח GNU GPL v2 עבור DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-זהו תרגום; הגרסה האנגלית ([README.md](README.md)) היא הקובעת.
+זהו תרגום; הגרסה האנגלית ([README.md](../README.md)) היא הקובעת.
 
 ## קרדיטים
 

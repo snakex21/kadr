@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | **Italiano** | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | **Italiano** | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr è un’applicazione nativa Win32/GDI+ scritta in [Zig](https://ziglang.org/). Niente installer, niente .NET, niente Electron, niente Node.js: copia `Kadr.exe` dove vuoi e avvialo. Le impostazioni vengono salvate in `Kadr.ini` accanto al programma (portatile — non viene scritto nulla nel registro né in AppData).
 
-![Finestra principale di Kadr, tema chiaro](docs/screenshots/main-light.png)
+![Finestra principale di Kadr, tema chiaro](../docs/screenshots/main-light.png)
 
 ## Indice
 
@@ -40,19 +40,19 @@ Kadr è un’applicazione nativa Win32/GDI+ scritta in [Zig](https://ziglang.org
 
 | Tema chiaro | Tema scuro |
 |---|---|
-| ![Finestra principale, tema chiaro](docs/screenshots/main-light.png) | ![Finestra principale, tema scuro](docs/screenshots/main-dark.png) |
+| ![Finestra principale, tema chiaro](../docs/screenshots/main-light.png) | ![Finestra principale, tema scuro](../docs/screenshots/main-dark.png) |
 
 **Editor** — cornice di ritaglio con proporzione 3:2, penna, evidenziatore, freccia, rettangolo e testo:
 
-![Editor con cornice di ritaglio e disegni](docs/screenshots/editor-crop.png)
+![Editor con cornice di ritaglio e disegni](../docs/screenshots/editor-crop.png)
 
 **Anteprima di stampa** in modalità *Stretch (whole page)* (Estendi: pagina intera):
 
-![Anteprima di stampa, modalità Estendi](docs/screenshots/print-stretch.png)
+![Anteprima di stampa, modalità Estendi](../docs/screenshots/print-stretch.png)
 
 **Il menu «Altro» (…)** con il sottomenu *Tema*:
 
-![Menu Altro con il sottomenu Tema](docs/screenshots/more-menu.png)
+![Menu Altro con il sottomenu Tema](../docs/screenshots/more-menu.png)
 
 ## Download / Installazione
 
@@ -213,11 +213,11 @@ Kadr si collega solo a librerie presenti in Windows XP. Le funzioni più recenti
 
 ## Licenza
 
-**GPL-3.0-or-later** — testo completo in [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — testo completo in [`LICENSE`](../LICENSE).
 
-Componenti di terze parti e relative licenze (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Testo della GNU GPL v2 per DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Componenti di terze parti e relative licenze (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Testo della GNU GPL v2 per DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Questa è una traduzione; fa fede la versione inglese ([README.md](README.md)).
+Questa è una traduzione; fa fede la versione inglese ([README.md](../README.md)).
 
 ## Ringraziamenti
 

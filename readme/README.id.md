@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | **Bahasa Indonesia** | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | **Bahasa Indonesia** | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr adalah aplikasi Win32/GDI+ native yang ditulis dalam [Zig](https://ziglang.org/). Tanpa installer, tanpa .NET, tanpa Electron, tanpa Node.js: salin `Kadr.exe` ke mana saja lalu jalankan. Pengaturan disimpan di `Kadr.ini` di samping program (portabel — tidak ada yang ditulis ke registry atau AppData).
 
-![Jendela utama Kadr, tema terang](docs/screenshots/main-light.png)
+![Jendela utama Kadr, tema terang](../docs/screenshots/main-light.png)
 
 ## Daftar isi
 
@@ -40,19 +40,19 @@ Kadr adalah aplikasi Win32/GDI+ native yang ditulis dalam [Zig](https://ziglang.
 
 | Tema terang | Tema gelap |
 |---|---|
-| ![Jendela utama, tema terang](docs/screenshots/main-light.png) | ![Jendela utama, tema gelap](docs/screenshots/main-dark.png) |
+| ![Jendela utama, tema terang](../docs/screenshots/main-light.png) | ![Jendela utama, tema gelap](../docs/screenshots/main-dark.png) |
 
 **Editor** — bingkai pangkas dengan rasio 3:2, pena, stabilo, panah, persegi panjang, dan teks:
 
-![Editor dengan bingkai pangkas dan gambar coretan](docs/screenshots/editor-crop.png)
+![Editor dengan bingkai pangkas dan gambar coretan](../docs/screenshots/editor-crop.png)
 
 **Pratinjau cetak** dalam mode *Stretch (whole page)* (rentangkan: seluruh halaman):
 
-![Pratinjau cetak, mode Stretch](docs/screenshots/print-stretch.png)
+![Pratinjau cetak, mode Stretch](../docs/screenshots/print-stretch.png)
 
 **Menu "Lainnya" (…)** dengan submenu *Tema*:
 
-![Menu Lainnya dengan submenu Tema](docs/screenshots/more-menu.png)
+![Menu Lainnya dengan submenu Tema](../docs/screenshots/more-menu.png)
 
 ## Unduh / Instalasi
 
@@ -213,11 +213,11 @@ Kadr hanya ditautkan ke pustaka yang tersedia di Windows XP. Fitur yang lebih ba
 
 ## Lisensi
 
-**GPL-3.0-or-later** — teks lengkap di [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — teks lengkap di [`LICENSE`](../LICENSE).
 
-Komponen pihak ketiga dan lisensinya (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Teks GNU GPL v2 untuk DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Komponen pihak ketiga dan lisensinya (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Teks GNU GPL v2 untuk DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Ini adalah terjemahan; versi bahasa Inggris ([README.md](README.md)) yang berlaku.
+Ini adalah terjemahan; versi bahasa Inggris ([README.md](../README.md)) yang berlaku.
 
 ## Kredit
 

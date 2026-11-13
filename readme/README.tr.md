@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | **Türkçe** | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | **Türkçe** | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr, [Zig](https://ziglang.org/) ile yazılmış yerel bir Win32/GDI+ uygulamasıdır. Kurulum programı yok, .NET yok, Electron yok, Node.js yok: `Kadr.exe` dosyasını istediğiniz yere kopyalayın ve çalıştırın. Ayarlar programın yanındaki `Kadr.ini` dosyasında saklanır (taşınabilir — kayıt defterine veya AppData klasörüne hiçbir şey yazılmaz).
 
-![Kadr ana penceresi, açık tema](docs/screenshots/main-light.png)
+![Kadr ana penceresi, açık tema](../docs/screenshots/main-light.png)
 
 ## İçindekiler
 
@@ -40,19 +40,19 @@ Kadr, [Zig](https://ziglang.org/) ile yazılmış yerel bir Win32/GDI+ uygulamas
 
 | Açık tema | Koyu tema |
 |---|---|
-| ![Ana pencere, açık tema](docs/screenshots/main-light.png) | ![Ana pencere, koyu tema](docs/screenshots/main-dark.png) |
+| ![Ana pencere, açık tema](../docs/screenshots/main-light.png) | ![Ana pencere, koyu tema](../docs/screenshots/main-dark.png) |
 
 **Düzenleyici** — 3:2 oranlı kırpma çerçevesi, kalem, vurgulayıcı, ok, dikdörtgen ve metin:
 
-![Kırpma çerçevesi ve çizimlerle düzenleyici](docs/screenshots/editor-crop.png)
+![Kırpma çerçevesi ve çizimlerle düzenleyici](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)* (Uzat: tüm sayfa) modunda **baskı önizleme**:
 
-![Baskı önizleme, Stretch modu](docs/screenshots/print-stretch.png)
+![Baskı önizleme, Stretch modu](../docs/screenshots/print-stretch.png)
 
 *Tema* alt menüsüyle birlikte **"Daha fazla" (…) menüsü**:
 
-![Tema alt menüsüyle Daha fazla menüsü](docs/screenshots/more-menu.png)
+![Tema alt menüsüyle Daha fazla menüsü](../docs/screenshots/more-menu.png)
 
 ## Kadr’ı indirme / Kurulum
 
@@ -213,11 +213,11 @@ Kadr yalnızca Windows XP'de bulunan kitaplıklara bağlanır. Daha yeni özelli
 
 ## Lisans
 
-**GPL-3.0-or-later** — tam metin [`LICENSE`](LICENSE) dosyasındadır.
+**GPL-3.0-or-later** — tam metin [`LICENSE`](../LICENSE) dosyasındadır.
 
-Üçüncü taraf bileşenler ve lisansları (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). DjVuLibre için GNU GPL v2 metni: [`COPYING.txt`](COPYING.txt).
+Üçüncü taraf bileşenler ve lisansları (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). DjVuLibre için GNU GPL v2 metni: [`COPYING.txt`](../COPYING.txt).
 
-Bu bir çeviridir; esas alınan metin İngilizce sürümdür ([README.md](README.md)).
+Bu bir çeviridir; esas alınan metin İngilizce sürümdür ([README.md](../README.md)).
 
 ## Emeği geçenler
 

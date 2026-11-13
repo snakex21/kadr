@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | **فارسی** | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | **فارسی** | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 <div dir="rtl">
 
@@ -8,7 +8,7 @@
 
 Kadr یک برنامهٔ بومی Win32/GDI+ است که با [Zig](https://ziglang.org/) نوشته شده است. بدون نصب‌کننده، بدون .NET، بدون Electron، بدون Node.js: کافی است `Kadr.exe` را به هر جایی کپی و اجرا کنید. تنظیمات در `Kadr.ini` کنار خود برنامه ذخیره می‌شوند (قابل‌حمل — هیچ چیزی در رجیستری یا AppData نوشته نمی‌شود).
 
-![پنجرهٔ اصلی Kadr، پوستهٔ روشن](docs/screenshots/main-light.png)
+![پنجرهٔ اصلی Kadr، پوستهٔ روشن](../docs/screenshots/main-light.png)
 
 ## فهرست مطالب
 
@@ -42,19 +42,19 @@ Kadr یک برنامهٔ بومی Win32/GDI+ است که با [Zig](https://zigl
 
 | پوستهٔ روشن | پوستهٔ تیره |
 |---|---|
-| ![پنجرهٔ اصلی، پوستهٔ روشن](docs/screenshots/main-light.png) | ![پنجرهٔ اصلی، پوستهٔ تیره](docs/screenshots/main-dark.png) |
+| ![پنجرهٔ اصلی، پوستهٔ روشن](../docs/screenshots/main-light.png) | ![پنجرهٔ اصلی، پوستهٔ تیره](../docs/screenshots/main-dark.png) |
 
 **ویرایشگر** — کادر برش با نسبت 3:2، قلم، ماژیک هایلایت، پیکان، مستطیل و متن:
 
-![ویرایشگر با کادر برش و طرح‌ها](docs/screenshots/editor-crop.png)
+![ویرایشگر با کادر برش و طرح‌ها](../docs/screenshots/editor-crop.png)
 
 **پیش‌نمایش چاپ** در حالت *Stretch (whole page)* (کشیدن: کل صفحه):
 
-![پیش‌نمایش چاپ، حالت Stretch](docs/screenshots/print-stretch.png)
+![پیش‌نمایش چاپ، حالت Stretch](../docs/screenshots/print-stretch.png)
 
 **منوی «بیشتر» (…)** با زیرمنوی *پوسته*:
 
-![منوی بیشتر با زیرمنوی پوسته](docs/screenshots/more-menu.png)
+![منوی بیشتر با زیرمنوی پوسته](../docs/screenshots/more-menu.png)
 
 ## دانلود / نصب
 
@@ -223,11 +223,11 @@ Kadr فقط به کتابخانه‌هایی پیوند می‌خورد که د�
 
 ## مجوز
 
-**GPL-3.0-or-later** — متن کامل در [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — متن کامل در [`LICENSE`](../LICENSE).
 
-اجزای شخص ثالث و مجوزهای آن‌ها (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). متن GNU GPL v2 برای DjVuLibre: [`COPYING.txt`](COPYING.txt).
+اجزای شخص ثالث و مجوزهای آن‌ها (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). متن GNU GPL v2 برای DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-این یک ترجمه است؛ نسخهٔ انگلیسی ([README.md](README.md)) معتبر است.
+این یک ترجمه است؛ نسخهٔ انگلیسی ([README.md](../README.md)) معتبر است.
 
 ## سپاسگزاری
 

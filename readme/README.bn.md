@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | **বাংলা** | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | **বাংলা** | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr হলো [Zig](https://ziglang.org/)-এ লেখা একটি নেটিভ Win32/GDI+ অ্যাপ্লিকেশন। কোনো ইনস্টলার নেই, .NET নেই, Electron নেই, Node.js নেই: `Kadr.exe` যেকোনো জায়গায় কপি করে চালান। সেটিংস প্রোগ্রামের পাশে `Kadr.ini` ফাইলে রাখা হয় (পোর্টেবল — রেজিস্ট্রি বা AppData-তে কিছুই লেখা হয় না)।
 
-![Kadr-এর প্রধান উইন্ডো, হালকা থিম](docs/screenshots/main-light.png)
+![Kadr-এর প্রধান উইন্ডো, হালকা থিম](../docs/screenshots/main-light.png)
 
 ## সূচিপত্র
 
@@ -40,19 +40,19 @@ Kadr হলো [Zig](https://ziglang.org/)-এ লেখা একটি নে�
 
 | হালকা থিম | গাঢ় থিম |
 |---|---|
-| ![প্রধান উইন্ডো, হালকা থিম](docs/screenshots/main-light.png) | ![প্রধান উইন্ডো, গাঢ় থিম](docs/screenshots/main-dark.png) |
+| ![প্রধান উইন্ডো, হালকা থিম](../docs/screenshots/main-light.png) | ![প্রধান উইন্ডো, গাঢ় থিম](../docs/screenshots/main-dark.png) |
 
 **সম্পাদক** — 3:2 অনুপাতের ক্রপ ফ্রেম, কলম, হাইলাইটার, তীর, আয়তক্ষেত্র ও লেখা:
 
-![ক্রপ ফ্রেম ও আঁকাসহ সম্পাদক](docs/screenshots/editor-crop.png)
+![ক্রপ ফ্রেম ও আঁকাসহ সম্পাদক](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)* (প্রসারিত: পুরো পৃষ্ঠা) মোডে **প্রিন্ট প্রিভিউ**:
 
-![প্রিন্ট প্রিভিউ, প্রসারিত মোড](docs/screenshots/print-stretch.png)
+![প্রিন্ট প্রিভিউ, প্রসারিত মোড](../docs/screenshots/print-stretch.png)
 
 *থিম* সাবমেনুসহ **"আরও" (…) মেনু**:
 
-![থিম সাবমেনুসহ আরও মেনু](docs/screenshots/more-menu.png)
+![থিম সাবমেনুসহ আরও মেনু](../docs/screenshots/more-menu.png)
 
 ## ডাউনলোড / ইনস্টলেশন
 
@@ -213,11 +213,11 @@ Kadr শুধু সেই লাইব্রেরিগুলোর সঙ্
 
 ## লাইসেন্স
 
-**GPL-3.0-or-later** — পূর্ণ পাঠ [`LICENSE`](LICENSE)-এ।
+**GPL-3.0-or-later** — পূর্ণ পাঠ [`LICENSE`](../LICENSE)-এ।
 
-তৃতীয় পক্ষের উপাদান ও তাদের লাইসেন্স (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt)। DjVuLibre-এর জন্য GNU GPL v2-এর পাঠ: [`COPYING.txt`](COPYING.txt)।
+তৃতীয় পক্ষের উপাদান ও তাদের লাইসেন্স (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt)। DjVuLibre-এর জন্য GNU GPL v2-এর পাঠ: [`COPYING.txt`](../COPYING.txt)।
 
-এটি একটি অনুবাদ; ইংরেজি সংস্করণটিই ([README.md](README.md)) প্রামাণিক।
+এটি একটি অনুবাদ; ইংরেজি সংস্করণটিই ([README.md](../README.md)) প্রামাণিক।
 
 ## কৃতজ্ঞতা
 

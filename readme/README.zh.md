@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | **中文** | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | **中文** | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr 是用 [Zig](https://ziglang.org/) 编写的原生 Win32/GDI+ 应用程序。无需安装程序，不依赖 .NET、Electron 或 Node.js：把 `Kadr.exe` 复制到任意位置即可运行。设置保存在程序旁边的 `Kadr.ini` 中（便携——不会向注册表或 AppData 写入任何内容）。
 
-![Kadr 主窗口，浅色主题](docs/screenshots/main-light.png)
+![Kadr 主窗口，浅色主题](../docs/screenshots/main-light.png)
 
 ## 目录
 
@@ -40,19 +40,19 @@ Kadr 是用 [Zig](https://ziglang.org/) 编写的原生 Win32/GDI+ 应用程序�
 
 | 浅色主题 | 深色主题 |
 |---|---|
-| ![主窗口，浅色主题](docs/screenshots/main-light.png) | ![主窗口，深色主题](docs/screenshots/main-dark.png) |
+| ![主窗口，浅色主题](../docs/screenshots/main-light.png) | ![主窗口，深色主题](../docs/screenshots/main-dark.png) |
 
 **编辑器**——使用 3:2 预设的裁剪框，以及画笔、荧光笔、箭头、矩形和文字：
 
-![带裁剪框和绘图的编辑器](docs/screenshots/editor-crop.png)
+![带裁剪框和绘图的编辑器](../docs/screenshots/editor-crop.png)
 
 **打印预览**，*Stretch (whole page)*（拉伸：整页）模式：
 
-![打印预览，Stretch 模式](docs/screenshots/print-stretch.png)
+![打印预览，Stretch 模式](../docs/screenshots/print-stretch.png)
 
 **“更多” (…) 菜单**及其 *主题* 子菜单：
 
-![更多菜单及主题子菜单](docs/screenshots/more-menu.png)
+![更多菜单及主题子菜单](../docs/screenshots/more-menu.png)
 
 ## 下载 / 安装
 
@@ -213,11 +213,11 @@ Kadr 只链接 Windows XP 上已有的库。较新的功能（深色标题栏、
 
 ## 许可证
 
-**GPL-3.0-or-later**——完整文本见 [`LICENSE`](LICENSE)。
+**GPL-3.0-or-later**——完整文本见 [`LICENSE`](../LICENSE)。
 
-第三方组件及其许可证（DjVuLibre、VC100/GDI+、Zig）：[`THIRD-PARTY.txt`](THIRD-PARTY.txt)。DjVuLibre 适用的 GNU GPL v2 文本：[`COPYING.txt`](COPYING.txt)。
+第三方组件及其许可证（DjVuLibre、VC100/GDI+、Zig）：[`THIRD-PARTY.txt`](../THIRD-PARTY.txt)。DjVuLibre 适用的 GNU GPL v2 文本：[`COPYING.txt`](../COPYING.txt)。
 
-本文为译文；以英文版本 ([README.md](README.md)) 为准。
+本文为译文；以英文版本 ([README.md](../README.md)) 为准。
 
 ## 致谢
 

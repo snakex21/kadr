@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | **తెలుగు** | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | **తెలుగు** | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr అనేది [Zig](https://ziglang.org/)లో రాసిన స్థానిక (native) Win32/GDI+ అప్లికేషన్. ఇన్‌స్టాలర్ లేదు, .NET లేదు, Electron లేదు, Node.js లేదు: `Kadr.exe`ని ఎక్కడికైనా కాపీ చేసి నడపండి. సెట్టింగ్‌లు ప్రోగ్రామ్ పక్కనే ఉండే `Kadr.ini`లో భద్రపరచబడతాయి (పోర్టబుల్ — రిజిస్ట్రీలో గానీ AppDataలో గానీ ఏమీ రాయబడదు).
 
-![Kadr ప్రధాన విండో, లైట్ థీమ్](docs/screenshots/main-light.png)
+![Kadr ప్రధాన విండో, లైట్ థీమ్](../docs/screenshots/main-light.png)
 
 ## విషయ సూచిక
 
@@ -40,19 +40,19 @@ Kadr అనేది [Zig](https://ziglang.org/)లో రాసిన స్థ
 
 | లైట్ థీమ్ | డార్క్ థీమ్ |
 |---|---|
-| ![ప్రధాన విండో, లైట్ థీమ్](docs/screenshots/main-light.png) | ![ప్రధాన విండో, డార్క్ థీమ్](docs/screenshots/main-dark.png) |
+| ![ప్రధాన విండో, లైట్ థీమ్](../docs/screenshots/main-light.png) | ![ప్రధాన విండో, డార్క్ థీమ్](../docs/screenshots/main-dark.png) |
 
 **ఎడిటర్** — 3:2 నిష్పత్తితో కత్తిరింపు ఫ్రేమ్, పెన్, హైలైటర్, బాణం, దీర్ఘచతురస్రం మరియు టెక్స్ట్:
 
-![కత్తిరింపు ఫ్రేమ్ మరియు గీతలతో ఎడిటర్](docs/screenshots/editor-crop.png)
+![కత్తిరింపు ఫ్రేమ్ మరియు గీతలతో ఎడిటర్](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)* (పూర్తి పేజీకి సాగదీయి) మోడ్‌లో **ముద్రణ ప్రివ్యూ**:
 
-![ముద్రణ ప్రివ్యూ, Stretch మోడ్](docs/screenshots/print-stretch.png)
+![ముద్రణ ప్రివ్యూ, Stretch మోడ్](../docs/screenshots/print-stretch.png)
 
 *థీమ్* ఉపమెనూతో **"మరిన్ని" (…) మెనూ**:
 
-![థీమ్ ఉపమెనూతో "మరిన్ని" మెనూ](docs/screenshots/more-menu.png)
+![థీమ్ ఉపమెనూతో "మరిన్ని" మెనూ](../docs/screenshots/more-menu.png)
 
 ## డౌన్లోడ్ / ఇన్స్టాలేషన్
 
@@ -213,11 +213,11 @@ Kadr కేవలం Windows XPలో ఉన్న లైబ్రరీలక�
 
 ## లైసెన్స్
 
-**GPL-3.0-or-later** — పూర్తి పాఠం [`LICENSE`](LICENSE)లో.
+**GPL-3.0-or-later** — పూర్తి పాఠం [`LICENSE`](../LICENSE)లో.
 
-మూడవ పక్ష భాగాలు మరియు వాటి లైసెన్స్‌లు (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). DjVuLibre కోసం GNU GPL v2 పాఠం: [`COPYING.txt`](COPYING.txt).
+మూడవ పక్ష భాగాలు మరియు వాటి లైసెన్స్‌లు (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). DjVuLibre కోసం GNU GPL v2 పాఠం: [`COPYING.txt`](../COPYING.txt).
 
-ఇది అనువాదం; ఆంగ్ల సంస్కరణ ([README.md](README.md)) మాత్రమే ప్రామాణికమైనది.
+ఇది అనువాదం; ఆంగ్ల సంస్కరణ ([README.md](../README.md)) మాత్రమే ప్రామాణికమైనది.
 
 ## కృతజ్ఞతలు
 

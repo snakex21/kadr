@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | **हिन्दी** | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | **हिन्दी** | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr एक नेटिव Win32/GDI+ एप्लिकेशन है, जो [Zig](https://ziglang.org/) में लिखा गया है। न इंस्टॉलर, न .NET, न Electron, न Node.js: `Kadr.exe` को कहीं भी कॉपी करें और चलाएँ। सेटिंग्स प्रोग्राम के बगल में `Kadr.ini` में सहेजी जाती हैं (पोर्टेबल — रजिस्ट्री या AppData में कुछ भी नहीं लिखा जाता)।
 
-![Kadr की मुख्य विंडो, हल्की थीम](docs/screenshots/main-light.png)
+![Kadr की मुख्य विंडो, हल्की थीम](../docs/screenshots/main-light.png)
 
 ## विषय-सूची
 
@@ -40,19 +40,19 @@ Kadr एक नेटिव Win32/GDI+ एप्लिकेशन है, ज�
 
 | हल्की थीम | गहरी थीम |
 |---|---|
-| ![मुख्य विंडो, हल्की थीम](docs/screenshots/main-light.png) | ![मुख्य विंडो, गहरी थीम](docs/screenshots/main-dark.png) |
+| ![मुख्य विंडो, हल्की थीम](../docs/screenshots/main-light.png) | ![मुख्य विंडो, गहरी थीम](../docs/screenshots/main-dark.png) |
 
 **संपादक** — 3:2 अनुपात वाला क्रॉप फ़्रेम, पेन, हाइलाइटर, तीर, आयत और टेक्स्ट:
 
-![क्रॉप फ़्रेम और ड्रॉइंग के साथ संपादक](docs/screenshots/editor-crop.png)
+![क्रॉप फ़्रेम और ड्रॉइंग के साथ संपादक](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)* (पूरे पृष्ठ पर फैलाएँ) मोड में **प्रिंट पूर्वावलोकन**:
 
-![प्रिंट पूर्वावलोकन, Stretch मोड](docs/screenshots/print-stretch.png)
+![प्रिंट पूर्वावलोकन, Stretch मोड](../docs/screenshots/print-stretch.png)
 
 *थीम* सबमेनू के साथ **"और" (…) मेनू**:
 
-![थीम सबमेनू के साथ "और" मेनू](docs/screenshots/more-menu.png)
+![थीम सबमेनू के साथ "और" मेनू](../docs/screenshots/more-menu.png)
 
 ## डाउनलोड / इंस्टॉलेशन
 
@@ -213,11 +213,11 @@ Kadr केवल उन्हीं लाइब्रेरियों से
 
 ## लाइसेंस
 
-**GPL-3.0-or-later** — पूरा पाठ [`LICENSE`](LICENSE) में।
+**GPL-3.0-or-later** — पूरा पाठ [`LICENSE`](../LICENSE) में।
 
-तृतीय-पक्ष घटक और उनके लाइसेंस (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt)। DjVuLibre के लिए GNU GPL v2 का पाठ: [`COPYING.txt`](COPYING.txt)।
+तृतीय-पक्ष घटक और उनके लाइसेंस (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt)। DjVuLibre के लिए GNU GPL v2 का पाठ: [`COPYING.txt`](../COPYING.txt)।
 
-यह एक अनुवाद है; अंग्रेज़ी संस्करण ([README.md](README.md)) ही प्रामाणिक है।
+यह एक अनुवाद है; अंग्रेज़ी संस्करण ([README.md](../README.md)) ही प्रामाणिक है।
 
 ## आभार
 

@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | **தமிழ்** | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | **தமிழ்** | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr என்பது [Zig](https://ziglang.org/) மொழியில் எழுதப்பட்ட ஒரு சொந்த Win32/GDI+ பயன்பாடு. நிறுவி இல்லை, .NET இல்லை, Electron இல்லை, Node.js இல்லை: `Kadr.exe`-ஐ எங்கு வேண்டுமானாலும் நகலெடுத்து இயக்குங்கள். அமைப்புகள் நிரலுக்கு அருகிலுள்ள `Kadr.ini`-இல் சேமிக்கப்படும் (கையடக்கம் — பதிவகத்திலோ AppData-விலோ எதுவும் எழுதப்படுவதில்லை).
 
-![Kadr முதன்மைச் சாளரம், ஒளி தீம்](docs/screenshots/main-light.png)
+![Kadr முதன்மைச் சாளரம், ஒளி தீம்](../docs/screenshots/main-light.png)
 
 ## உள்ளடக்கம்
 
@@ -40,19 +40,19 @@ Kadr என்பது [Zig](https://ziglang.org/) மொழியில் எ
 
 | ஒளி தீம் | இருள் தீம் |
 |---|---|
-| ![முதன்மைச் சாளரம், ஒளி தீம்](docs/screenshots/main-light.png) | ![முதன்மைச் சாளரம், இருள் தீம்](docs/screenshots/main-dark.png) |
+| ![முதன்மைச் சாளரம், ஒளி தீம்](../docs/screenshots/main-light.png) | ![முதன்மைச் சாளரம், இருள் தீம்](../docs/screenshots/main-dark.png) |
 
 **திருத்தி** — 3:2 முன்னமைவுடன் செதுக்கும் சட்டகம், பேனா, ஹைலைட்டர், அம்பு, செவ்வகம் மற்றும் உரை:
 
-![செதுக்கும் சட்டகமும் வரைபடங்களும் கொண்ட திருத்தி](docs/screenshots/editor-crop.png)
+![செதுக்கும் சட்டகமும் வரைபடங்களும் கொண்ட திருத்தி](../docs/screenshots/editor-crop.png)
 
 **அச்சு முன்னோட்டம்** *Stretch (whole page)* (நீட்டு: முழுப் பக்கம்) பயன்முறையில்:
 
-![அச்சு முன்னோட்டம், Stretch பயன்முறை](docs/screenshots/print-stretch.png)
+![அச்சு முன்னோட்டம், Stretch பயன்முறை](../docs/screenshots/print-stretch.png)
 
 *தீம்* துணைப்பட்டியுடன் **"மேலும்" (…) பட்டி**:
 
-![தீம் துணைப்பட்டியுடன் மேலும் பட்டி](docs/screenshots/more-menu.png)
+![தீம் துணைப்பட்டியுடன் மேலும் பட்டி](../docs/screenshots/more-menu.png)
 
 ## பதிவிறக்கம் / நிறுவல்
 
@@ -213,11 +213,11 @@ Windows XP-இல் உள்ள நூலகங்களுடன் மட்
 
 ## உரிமம்
 
-**GPL-3.0-or-later** — முழு உரை [`LICENSE`](LICENSE)-இல்.
+**GPL-3.0-or-later** — முழு உரை [`LICENSE`](../LICENSE)-இல்.
 
-மூன்றாம் தரப்புக் கூறுகளும் அவற்றின் உரிமங்களும் (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). DjVuLibre-க்கான GNU GPL v2 உரை: [`COPYING.txt`](COPYING.txt).
+மூன்றாம் தரப்புக் கூறுகளும் அவற்றின் உரிமங்களும் (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). DjVuLibre-க்கான GNU GPL v2 உரை: [`COPYING.txt`](../COPYING.txt).
 
-இது ஒரு மொழிபெயர்ப்பு; ஆங்கிலப் பதிப்பே ([README.md](README.md)) அதிகாரப்பூர்வமானது.
+இது ஒரு மொழிபெயர்ப்பு; ஆங்கிலப் பதிப்பே ([README.md](../README.md)) அதிகாரப்பூர்வமானது.
 
 ## நன்றி
 

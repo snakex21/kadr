@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | **Română** | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | **Română** | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr este o aplicație nativă Win32/GDI+ scrisă în [Zig](https://ziglang.org/). Fără program de instalare, fără .NET, fără Electron, fără Node.js: copiază `Kadr.exe` oriunde și rulează-l. Setările sunt păstrate în `Kadr.ini`, lângă program (portabil — nu se scrie nimic în registry sau în AppData).
 
-![Fereastra principală Kadr, temă luminoasă](docs/screenshots/main-light.png)
+![Fereastra principală Kadr, temă luminoasă](../docs/screenshots/main-light.png)
 
 ## Cuprins
 
@@ -40,19 +40,19 @@ Kadr este o aplicație nativă Win32/GDI+ scrisă în [Zig](https://ziglang.org/
 
 | Temă luminoasă | Temă întunecată |
 |---|---|
-| ![Fereastra principală, temă luminoasă](docs/screenshots/main-light.png) | ![Fereastra principală, temă întunecată](docs/screenshots/main-dark.png) |
+| ![Fereastra principală, temă luminoasă](../docs/screenshots/main-light.png) | ![Fereastra principală, temă întunecată](../docs/screenshots/main-dark.png) |
 
 **Editor** — cadru de decupare cu proporția 3:2, creion, marker, săgeată, dreptunghi și text:
 
-![Editor cu cadru de decupare și desene](docs/screenshots/editor-crop.png)
+![Editor cu cadru de decupare și desene](../docs/screenshots/editor-crop.png)
 
 **Previzualizarea imprimării** în modul *Stretch (whole page)* (Întinde: toată pagina):
 
-![Previzualizare imprimare, modul Întinde](docs/screenshots/print-stretch.png)
+![Previzualizare imprimare, modul Întinde](../docs/screenshots/print-stretch.png)
 
 **Meniul „Mai multe” (…)** cu submeniul *Temă*:
 
-![Meniul Mai multe cu submeniul Temă](docs/screenshots/more-menu.png)
+![Meniul Mai multe cu submeniul Temă](../docs/screenshots/more-menu.png)
 
 ## Descărcare / Instalare
 
@@ -213,11 +213,11 @@ Kadr se leagă doar de biblioteci care există în Windows XP. Funcțiile mai no
 
 ## Licență
 
-**GPL-3.0-or-later** — textul complet în [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — textul complet în [`LICENSE`](../LICENSE).
 
-Componente terțe și licențele lor (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Textul GNU GPL v2 pentru DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Componente terțe și licențele lor (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Textul GNU GPL v2 pentru DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Aceasta este o traducere; versiunea în engleză ([README.md](README.md)) este cea de referință.
+Aceasta este o traducere; versiunea în engleză ([README.md](../README.md)) este cea de referință.
 
 ## Mulțumiri
 

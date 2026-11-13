@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | **Tiếng Việt** | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | **Tiếng Việt** | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://ziglang.org/). Không cần trình cài đặt, không .NET, không Electron, không Node.js: chỉ cần chép `Kadr.exe` vào bất kỳ đâu và chạy. Cài đặt được lưu trong `Kadr.ini` cạnh chương trình (di động — không ghi gì vào registry hay AppData).
 
-![Cửa sổ chính của Kadr, chủ đề sáng](docs/screenshots/main-light.png)
+![Cửa sổ chính của Kadr, chủ đề sáng](../docs/screenshots/main-light.png)
 
 ## Mục lục
 
@@ -40,19 +40,19 @@ Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://zigl
 
 | Chủ đề sáng | Chủ đề tối |
 |---|---|
-| ![Cửa sổ chính, chủ đề sáng](docs/screenshots/main-light.png) | ![Cửa sổ chính, chủ đề tối](docs/screenshots/main-dark.png) |
+| ![Cửa sổ chính, chủ đề sáng](../docs/screenshots/main-light.png) | ![Cửa sổ chính, chủ đề tối](../docs/screenshots/main-dark.png) |
 
 **Trình chỉnh sửa** — khung cắt với tỷ lệ 3:2, bút, bút đánh dấu, mũi tên, hình chữ nhật và chữ:
 
-![Trình chỉnh sửa với khung cắt và hình vẽ](docs/screenshots/editor-crop.png)
+![Trình chỉnh sửa với khung cắt và hình vẽ](../docs/screenshots/editor-crop.png)
 
 **Xem trước khi in** ở chế độ *Stretch (whole page)* (Kéo giãn: cả trang):
 
-![Xem trước khi in, chế độ Kéo giãn](docs/screenshots/print-stretch.png)
+![Xem trước khi in, chế độ Kéo giãn](../docs/screenshots/print-stretch.png)
 
 **Menu "Thêm" (…)** với menu con *Chủ đề*:
 
-![Menu Thêm với menu con Chủ đề](docs/screenshots/more-menu.png)
+![Menu Thêm với menu con Chủ đề](../docs/screenshots/more-menu.png)
 
 ## Tải về / Cài đặt
 
@@ -213,11 +213,11 @@ Kadr chỉ liên kết với các thư viện có sẵn trên Windows XP. Các t
 
 ## Giấy phép
 
-**GPL-3.0-or-later** — toàn văn trong [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — toàn văn trong [`LICENSE`](../LICENSE).
 
-Các thành phần bên thứ ba và giấy phép của chúng (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Văn bản GNU GPL v2 cho DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Các thành phần bên thứ ba và giấy phép của chúng (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Văn bản GNU GPL v2 cho DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Đây là bản dịch; phiên bản tiếng Anh ([README.md](README.md)) là bản chính thức.
+Đây là bản dịch; phiên bản tiếng Anh ([README.md](../README.md)) là bản chính thức.
 
 ## Ghi công
 

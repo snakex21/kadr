@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | **한국어** | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | **한국어** | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr는 [Zig](https://ziglang.org/)로 작성된 네이티브 Win32/GDI+ 애플리케이션입니다. 설치 프로그램도, .NET도, Electron도, Node.js도 필요 없습니다. `Kadr.exe`를 아무 곳에나 복사해서 실행하면 됩니다. 설정은 프로그램 옆의 `Kadr.ini`에 저장됩니다(포터블 — 레지스트리나 AppData에는 아무것도 기록하지 않습니다).
 
-![Kadr 메인 창, 밝은 테마](docs/screenshots/main-light.png)
+![Kadr 메인 창, 밝은 테마](../docs/screenshots/main-light.png)
 
 ## 목차
 
@@ -40,19 +40,19 @@ Kadr는 [Zig](https://ziglang.org/)로 작성된 네이티브 Win32/GDI+ 애플�
 
 | 밝은 테마 | 어두운 테마 |
 |---|---|
-| ![메인 창, 밝은 테마](docs/screenshots/main-light.png) | ![메인 창, 어두운 테마](docs/screenshots/main-dark.png) |
+| ![메인 창, 밝은 테마](../docs/screenshots/main-light.png) | ![메인 창, 어두운 테마](../docs/screenshots/main-dark.png) |
 
 **편집기** — 3:2 프리셋 자르기 프레임, 펜, 형광펜, 화살표, 사각형, 텍스트:
 
-![자르기 프레임과 그림이 있는 편집기](docs/screenshots/editor-crop.png)
+![자르기 프레임과 그림이 있는 편집기](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)*(늘이기: 페이지 전체) 모드의 **인쇄 미리 보기**:
 
-![인쇄 미리 보기, 늘이기 모드](docs/screenshots/print-stretch.png)
+![인쇄 미리 보기, 늘이기 모드](../docs/screenshots/print-stretch.png)
 
 *테마* 하위 메뉴가 열린 **"더 보기"(…) 메뉴**:
 
-![테마 하위 메뉴가 열린 더 보기 메뉴](docs/screenshots/more-menu.png)
+![테마 하위 메뉴가 열린 더 보기 메뉴](../docs/screenshots/more-menu.png)
 
 ## 다운로드 / 설치
 
@@ -213,11 +213,11 @@ Kadr는 Windows XP에 있는 라이브러리에만 링크합니다. 새로운 �
 
 ## 라이선스
 
-**GPL-3.0-or-later** — 전문은 [`LICENSE`](LICENSE)에 있습니다.
+**GPL-3.0-or-later** — 전문은 [`LICENSE`](../LICENSE)에 있습니다.
 
-서드파티 구성 요소와 그 라이선스(DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). DjVuLibre용 GNU GPL v2 전문: [`COPYING.txt`](COPYING.txt).
+서드파티 구성 요소와 그 라이선스(DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). DjVuLibre용 GNU GPL v2 전문: [`COPYING.txt`](../COPYING.txt).
 
-이 문서는 번역본이며, 영어판([README.md](README.md))이 기준입니다.
+이 문서는 번역본이며, 영어판([README.md](../README.md))이 기준입니다.
 
 ## 감사의 말
 

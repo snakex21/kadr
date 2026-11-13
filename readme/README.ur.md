@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | **اردو** | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | **اردو** | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 <div dir="rtl">
 
@@ -8,7 +8,7 @@
 
 Kadr ایک نیٹو Win32/GDI+ ایپلیکیشن ہے جو [Zig](https://ziglang.org/) میں لکھی گئی ہے۔ نہ انسٹالر، نہ .NET، نہ Electron، نہ Node.js: `Kadr.exe` کو کہیں بھی کاپی کریں اور چلا دیں۔ ترتیبات پروگرام کے ساتھ `Kadr.ini` میں محفوظ ہوتی ہیں (پورٹیبل — رجسٹری یا AppData میں کچھ نہیں لکھا جاتا)۔
 
-![Kadr کی مرکزی ونڈو، ہلکی تھیم](docs/screenshots/main-light.png)
+![Kadr کی مرکزی ونڈو، ہلکی تھیم](../docs/screenshots/main-light.png)
 
 ## فہرست مضامین
 
@@ -42,19 +42,19 @@ Kadr ایک نیٹو Win32/GDI+ ایپلیکیشن ہے جو [Zig](https://zigla
 
 | ہلکی تھیم | گہری تھیم |
 |---|---|
-| ![مرکزی ونڈو، ہلکی تھیم](docs/screenshots/main-light.png) | ![مرکزی ونڈو، گہری تھیم](docs/screenshots/main-dark.png) |
+| ![مرکزی ونڈو، ہلکی تھیم](../docs/screenshots/main-light.png) | ![مرکزی ونڈو، گہری تھیم](../docs/screenshots/main-dark.png) |
 
 **ایڈیٹر** — 3:2 تناسب والا تراشنے کا فریم، قلم، ہائی لائٹر، تیر، مستطیل اور متن:
 
-![تراشنے کے فریم اور ڈرائنگ کے ساتھ ایڈیٹر](docs/screenshots/editor-crop.png)
+![تراشنے کے فریم اور ڈرائنگ کے ساتھ ایڈیٹر](../docs/screenshots/editor-crop.png)
 
 *Stretch (whole page)* (پھیلائیں: پورا صفحہ) موڈ میں **پرنٹ پیش نظارہ**:
 
-![پرنٹ پیش نظارہ، پھیلائیں موڈ](docs/screenshots/print-stretch.png)
+![پرنٹ پیش نظارہ، پھیلائیں موڈ](../docs/screenshots/print-stretch.png)
 
 *تھیم* ذیلی مینو کے ساتھ **"مزید" (…) مینو**:
 
-![تھیم ذیلی مینو کے ساتھ مزید مینو](docs/screenshots/more-menu.png)
+![تھیم ذیلی مینو کے ساتھ مزید مینو](../docs/screenshots/more-menu.png)
 
 ## ڈاؤن لوڈ / انسٹالیشن
 
@@ -223,11 +223,11 @@ Kadr صرف انہی لائبریریوں سے لنک کرتا ہے جو Windows
 
 ## لائسنس
 
-**GPL-3.0-or-later** — مکمل متن [`LICENSE`](LICENSE) میں۔
+**GPL-3.0-or-later** — مکمل متن [`LICENSE`](../LICENSE) میں۔
 
-تیسرے فریق کے اجزاء اور ان کے لائسنس (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt)۔ DjVuLibre کے لیے GNU GPL v2 کا متن: [`COPYING.txt`](COPYING.txt)۔
+تیسرے فریق کے اجزاء اور ان کے لائسنس (DjVuLibre، VC100/GDI+، Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt)۔ DjVuLibre کے لیے GNU GPL v2 کا متن: [`COPYING.txt`](../COPYING.txt)۔
 
-یہ ایک ترجمہ ہے؛ مستند انگریزی نسخہ ([README.md](README.md)) ہے۔
+یہ ایک ترجمہ ہے؛ مستند انگریزی نسخہ ([README.md](../README.md)) ہے۔
 
 ## اعترافات
 

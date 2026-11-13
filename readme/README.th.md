@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | **ไทย** | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | **ไทย** | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr เป็นแอปพลิเคชัน Win32/GDI+ แบบเนทีฟที่เขียนด้วย [Zig](https://ziglang.org/) ไม่มีตัวติดตั้ง ไม่ต้องใช้ .NET, Electron หรือ Node.js: เพียงคัดลอก `Kadr.exe` ไปไว้ที่ใดก็ได้แล้วเปิดใช้งาน การตั้งค่าจะเก็บไว้ใน `Kadr.ini` ข้างตัวโปรแกรม (พกพาได้ — ไม่มีการเขียนข้อมูลใด ๆ ลงในรีจิสทรีหรือ AppData)
 
-![หน้าต่างหลักของ Kadr ธีมสว่าง](docs/screenshots/main-light.png)
+![หน้าต่างหลักของ Kadr ธีมสว่าง](../docs/screenshots/main-light.png)
 
 ## สารบัญ
 
@@ -40,19 +40,19 @@ Kadr เป็นแอปพลิเคชัน Win32/GDI+ แบบเนท
 
 | ธีมสว่าง | ธีมมืด |
 |---|---|
-| ![หน้าต่างหลัก ธีมสว่าง](docs/screenshots/main-light.png) | ![หน้าต่างหลัก ธีมมืด](docs/screenshots/main-dark.png) |
+| ![หน้าต่างหลัก ธีมสว่าง](../docs/screenshots/main-light.png) | ![หน้าต่างหลัก ธีมมืด](../docs/screenshots/main-dark.png) |
 
 **ตัวแก้ไข** — กรอบครอบตัดสัดส่วน 3:2 ปากกา ปากกาเน้นข้อความ ลูกศร สี่เหลี่ยม และข้อความ:
 
-![ตัวแก้ไขพร้อมกรอบครอบตัดและภาพวาด](docs/screenshots/editor-crop.png)
+![ตัวแก้ไขพร้อมกรอบครอบตัดและภาพวาด](../docs/screenshots/editor-crop.png)
 
 **ตัวอย่างก่อนพิมพ์** ในโหมด *Stretch (whole page)* (ยืดเต็มหน้า):
 
-![ตัวอย่างก่อนพิมพ์ โหมด Stretch](docs/screenshots/print-stretch.png)
+![ตัวอย่างก่อนพิมพ์ โหมด Stretch](../docs/screenshots/print-stretch.png)
 
 **เมนู "เพิ่มเติม" (…)** พร้อมเมนูย่อย *ธีม*:
 
-![เมนูเพิ่มเติมพร้อมเมนูย่อยธีม](docs/screenshots/more-menu.png)
+![เมนูเพิ่มเติมพร้อมเมนูย่อยธีม](../docs/screenshots/more-menu.png)
 
 ## ดาวน์โหลด / ติดตั้ง
 
@@ -213,11 +213,11 @@ Kadr ลิงก์เฉพาะไลบรารีที่มีอยู
 
 ## สัญญาอนุญาต
 
-**GPL-3.0-or-later** — ข้อความฉบับเต็มอยู่ใน [`LICENSE`](LICENSE)
+**GPL-3.0-or-later** — ข้อความฉบับเต็มอยู่ใน [`LICENSE`](../LICENSE)
 
-ส่วนประกอบจากภายนอกและสัญญาอนุญาตของส่วนประกอบเหล่านั้น (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt) ข้อความ GNU GPL v2 สำหรับ DjVuLibre: [`COPYING.txt`](COPYING.txt)
+ส่วนประกอบจากภายนอกและสัญญาอนุญาตของส่วนประกอบเหล่านั้น (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt) ข้อความ GNU GPL v2 สำหรับ DjVuLibre: [`COPYING.txt`](../COPYING.txt)
 
-นี่คือฉบับแปล ฉบับภาษาอังกฤษ ([README.md](README.md)) เป็นฉบับที่ใช้อ้างอิงหลัก
+นี่คือฉบับแปล ฉบับภาษาอังกฤษ ([README.md](../README.md)) เป็นฉบับที่ใช้อ้างอิงหลัก
 
 ## เครดิต
 

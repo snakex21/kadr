@@ -1,4 +1,4 @@
-[English](README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | **Українська** | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
+[English](../README.md) | [Polski](README.pl.md) | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | **Українська** | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -6,7 +6,7 @@
 
 Kadr — нативна програма Win32/GDI+, написана мовою [Zig](https://ziglang.org/). Без інсталятора, без .NET, без Electron, без Node.js: скопіюйте `Kadr.exe` куди завгодно й запустіть. Налаштування зберігаються у файлі `Kadr.ini` поруч із програмою (портативно — нічого не записується ні до реєстру, ні до AppData).
 
-![Головне вікно Kadr, світла тема](docs/screenshots/main-light.png)
+![Головне вікно Kadr, світла тема](../docs/screenshots/main-light.png)
 
 ## Зміст
 
@@ -40,19 +40,19 @@ Kadr — нативна програма Win32/GDI+, написана мовою
 
 | Світла тема | Темна тема |
 |---|---|
-| ![Головне вікно, світла тема](docs/screenshots/main-light.png) | ![Головне вікно, темна тема](docs/screenshots/main-dark.png) |
+| ![Головне вікно, світла тема](../docs/screenshots/main-light.png) | ![Головне вікно, темна тема](../docs/screenshots/main-dark.png) |
 
 **Редактор** — рамка обрізання з пропорцією 3:2, пензель, маркер, стрілка, прямокутник і текст:
 
-![Редактор із рамкою обрізання та малюнками](docs/screenshots/editor-crop.png)
+![Редактор із рамкою обрізання та малюнками](../docs/screenshots/editor-crop.png)
 
 **Попередній перегляд друку** в режимі *Stretch (whole page)* (розтягнути на всю сторінку):
 
-![Попередній перегляд друку, режим Stretch](docs/screenshots/print-stretch.png)
+![Попередній перегляд друку, режим Stretch](../docs/screenshots/print-stretch.png)
 
 **Меню «Більше» (…)** з підменю *Тема*:
 
-![Меню «Більше» з підменю «Тема»](docs/screenshots/more-menu.png)
+![Меню «Більше» з підменю «Тема»](../docs/screenshots/more-menu.png)
 
 ## Завантаження / встановлення
 
@@ -213,11 +213,11 @@ Kadr компонується лише з бібліотеками, які є у
 
 ## Ліцензія
 
-**GPL-3.0-or-later** — повний текст у [`LICENSE`](LICENSE).
+**GPL-3.0-or-later** — повний текст у [`LICENSE`](../LICENSE).
 
-Сторонні компоненти та їхні ліцензії (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](THIRD-PARTY.txt). Текст GNU GPL v2 для DjVuLibre: [`COPYING.txt`](COPYING.txt).
+Сторонні компоненти та їхні ліцензії (DjVuLibre, VC100/GDI+, Zig): [`THIRD-PARTY.txt`](../THIRD-PARTY.txt). Текст GNU GPL v2 для DjVuLibre: [`COPYING.txt`](../COPYING.txt).
 
-Це переклад; чинною є англійська версія ([README.md](README.md)).
+Це переклад; чинною є англійська версія ([README.md](../README.md)).
 
 ## Подяки
 
