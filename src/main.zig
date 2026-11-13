@@ -19,7 +19,10 @@ const file_tools = @import("file_tools.zig");
 const toolbar = @import("toolbar.zig");
 const navigation = @import("navigation.zig");
 const i18n = @import("i18n.zig");
+const theme = @import("theme.zig");
 const L = i18n.L;
+/// "Check for updates" only opens this page in the default browser.
+const releases_url = "https://github.com/snakex21/kadr/releases";
 const ID = struct {
     const open = 100;
     const previous = 101;
@@ -52,6 +55,10 @@ const ID = struct {
     const wallpaper = 128;
     const edit = 129;
     const rotate_left = 130;
+    const theme_light = 131;
+    const theme_dark = 132;
+    const theme_auto = 133;
+    const updates = 134;
 };
 const timer_gif = 1;
 const timer_slide = 2;
@@ -996,7 +1003,22 @@ fn showMenu(position: c.POINT) void {
     _ = c.AppendMenuW(menu, if (ready) enabled else disabled, ID.print, L("Drukuj…\tCtrl+P"));
     _ = c.AppendMenuW(menu, enabled | (if (fullscreen) @as(u32, c.MF_CHECKED) else 0), ID.fullscreen, L("Pełny ekran\tF11"));
     _ = c.AppendMenuW(menu, enabled, ID.help, L("Pomoc i skróty\tF1"));
+    _ = c.AppendMenuW(menu, enabled, ID.updates, L("Sprawdź aktualizacje…"));
     _ = c.AppendMenuW(menu, c.MF_SEPARATOR, 0, null);
+    const themes = c.CreatePopupMenu();
+    if (themes != null) {
+        _ = c.AppendMenuW(themes, enabled, ID.theme_light, L("Jasny"));
+        _ = c.AppendMenuW(themes, enabled, ID.theme_dark, L("Ciemny"));
+        _ = c.AppendMenuW(themes, enabled, ID.theme_auto, L("Automatyczny"));
+        const current: c.UINT = switch (theme.mode) {
+            .light => ID.theme_light,
+            .dark => ID.theme_dark,
+            .auto => ID.theme_auto,
+        };
+        _ = c.CheckMenuRadioItem(themes, ID.theme_light, ID.theme_auto, current, c.MF_BYCOMMAND);
+        // The submenu is destroyed together with its parent menu.
+        _ = c.AppendMenuW(menu, c.MF_POPUP, @intFromPtr(themes), L("Motyw"));
+    }
     _ = c.AppendMenuW(menu, enabled, ID.language, L("Język / Language…"));
     beginModal();
     const selected = c.TrackPopupMenu(menu, c.TPM_RETURNCMD | c.TPM_RIGHTBUTTON, position.x, position.y, 0, window, null);
@@ -1043,6 +1065,9 @@ fn navigate(direction: i32) void {
     _ = requestNavigation(next, direction);
 }
 
+test {
+    _ = @import("theme.zig");
+}
 test "folder navigation stops at both ends and handles empty or single-image lists" {
     try std.testing.expect(nextFile(0, &.{}, 1) == null);
     try std.testing.expect(nextFile(0, &.{false}, -1) == null);
@@ -1145,6 +1170,20 @@ fn toggleFullscreen() void {
 fn help() void {
     message(L("Skróty Kadra"));
 }
+fn openReleases() void {
+    const result = c.ShellExecuteW(window, L("open"), w.L(releases_url), null, null, c.SW_SHOWNORMAL);
+    if (@intFromPtr(result) <= 32) message(L("Nie można otworzyć strony w przeglądarce."));
+}
+fn chooseTheme(selected: theme.Mode) void {
+    theme.mode = selected;
+    if (!theme.save(i18n.settingsPath(), selected)) message(L("Nie można zapisać ustawień obok pliku EXE. Sprawdź uprawnienia do folderu programu."));
+    theme.update();
+}
+/// Recolour after a theme change (sent to every window by theme.update()).
+fn themeChanged() void {
+    renderer.invalidate();
+    _ = c.InvalidateRect(window, null, c.FALSE);
+}
 fn command(id: usize) void {
     const keyboard_focus = if (ui.keyboard_activation) c.GetFocus() else null;
     defer {
@@ -1234,6 +1273,10 @@ fn command(id: usize) void {
         },
         ID.fullscreen => toggleFullscreen(),
         ID.help => help(),
+        ID.updates => openReleases(),
+        ID.theme_light => chooseTheme(.light),
+        ID.theme_dark => chooseTheme(.dark),
+        ID.theme_auto => chooseTheme(.auto),
         ID.page_prev => changePage(-1),
         ID.page_next => changePage(1),
         ID.slide => {
@@ -1284,13 +1327,13 @@ fn paint() void {
         ui.fill(dc, client, ui.shell);
         if (!fullscreen) {
             ui.chrome(dc, client, fileName(std.mem.sliceTo(&file_path, 0)), std.mem.sliceTo(&file_path, 0), image.handle != null);
-            ui.rounded(dc, zoom_frame, 6, ui.shell, if (zoom_invalid) w.rgb(180, 55, 45) else if (zoom_editing) ui.accent else ui.line_color);
+            ui.rounded(dc, zoom_frame, 6, ui.shell, if (zoom_invalid) theme.colors.danger else if (zoom_editing) ui.accent else ui.line_color);
         }
     }
     var canvas = canvasRect();
     var intersection: c.RECT = undefined;
     if (resized or draw_chrome or c.IntersectRect(&intersection, &canvas, &ps.rcPaint) != 0) {
-        ui.rounded(dc, canvas, if (fullscreen) 0 else 12, if (image.handle != null) ui.canvas_dark else w.rgb(237, 242, 235), null);
+        ui.rounded(dc, canvas, if (fullscreen) 0 else 12, if (image.handle != null) ui.canvas_dark else theme.colors.empty, null);
         if (image.handle) |handle| {
             const z = actualZoom();
             const dw = @as(f32, @floatFromInt(image.width)) * z;
@@ -1410,6 +1453,18 @@ fn wndProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.Stdc
             paint();
             return 0;
         },
+        c.WM_SETTINGCHANGE => {
+            // Automatic theme: Windows "app mode" switched (Settings > Colours).
+            if (theme.mode == .auto and lp != 0) {
+                const name: [*:0]const u16 = @ptrFromInt(@as(usize, @bitCast(lp)));
+                if (theme.isColorSetChange(name)) theme.update();
+            }
+            return c.DefWindowProcW(hwnd, msg, wp, lp);
+        },
+        theme.changed_message => {
+            themeChanged();
+            return 0;
+        },
         c.WM_ENTERSIZEMOVE => {
             live_resize = true;
             interactive = true;
@@ -1433,7 +1488,7 @@ fn wndProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.Stdc
         c.WM_CTLCOLOREDIT => {
             const dc: c.HDC = @ptrFromInt(wp);
             _ = c.SetBkColor(dc, ui.shell);
-            _ = c.SetTextColor(dc, if (zoom_invalid) w.rgb(180, 55, 45) else ui.ink);
+            _ = c.SetTextColor(dc, if (zoom_invalid) theme.colors.danger else ui.ink);
             return @bitCast(@intFromPtr(ui.background_brush));
         },
         c.WM_CTLCOLORSTATIC => {
@@ -1655,6 +1710,9 @@ comptime {
 }
 pub fn wWinMainCRTStartup() callconv(.C) noreturn {
     i18n.init();
+    theme.on_change = ui.applyTheme;
+    i18n.dialog_theme = .{ .apply = theme.applyWindow, .color = theme.dialogColor, .row = theme.fillListRow };
+    theme.init(i18n.settingsPath());
     var token: usize = 0;
     const input = w.StartupInput{};
     if (w.GdiplusStartup(&token, &input, null) != 0) {
@@ -1685,6 +1743,7 @@ pub fn wWinMainCRTStartup() callconv(.C) noreturn {
         w.GdiplusShutdown(token);
         c.ExitProcess(3);
     }
+    theme.applyWindow(window);
     _ = c.ShowWindow(window, c.SW_SHOWNORMAL);
     _ = c.UpdateWindow(window);
     if (i18n.hasSettingsError()) message(L("Nie można zapisać ustawień obok pliku EXE. Sprawdź uprawnienia do folderu programu."));
@@ -1715,6 +1774,7 @@ pub fn wWinMainCRTStartup() callconv(.C) noreturn {
         _ = c.DispatchMessageW(&msg);
     }
     ui.deinit();
+    theme.deinit();
     w.GdiplusShutdown(token);
     c.ExitProcess(0);
 }

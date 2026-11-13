@@ -3,6 +3,7 @@ const std = @import("std");
 const w = @import("win.zig");
 const c = w.c;
 const L = @import("i18n.zig").L;
+const theme = @import("theme.zig");
 const edit_id = 2001;
 const State = struct { original: [*:0]const u16, buffer: []u16 };
 const Template = extern struct { dialog: c.DLGTEMPLATE, menu: u16 = 0, class: u16 = 0, title: u16 = 0 };
@@ -49,7 +50,12 @@ fn proc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.Stdcall
         if (stem == 0) stem = name.len;
         _ = c.SetFocus(edit);
         _ = c.SendMessageW(edit, c.EM_SETSEL, 0, @intCast(stem));
+        theme.applyWindow(hwnd);
         return 0;
+    }
+    switch (msg) {
+        c.WM_CTLCOLORDLG, c.WM_CTLCOLORSTATIC, c.WM_CTLCOLORBTN, c.WM_CTLCOLOREDIT => if (theme.dialogColor(msg, wp)) |brush| return brush,
+        else => {},
     }
     if (msg == c.WM_CLOSE or (msg == c.WM_COMMAND and (wp & 0xffff) == c.IDCANCEL)) {
         _ = c.EndDialog(hwnd, c.IDCANCEL);

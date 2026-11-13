@@ -412,7 +412,23 @@ const additions = [_]Entry{
     .{ .source = "Zastosuj zmiany i przejdź do podglądu wydruku", .text = english("Zastosuj zmiany i przejdź do podglądu wydruku", "Apply changes and open the print preview") },
     .{ .source = "Zastosuj zmiany i wróć do przeglądarki", .text = english("Zastosuj zmiany i wróć do przeglądarki", "Apply changes and return to the viewer") },
 };
-pub const entries = common ++ aliases ++ additions;
+/// Theme and update-check strings (2026-11), translated for all 30 languages.
+/// Order: pl en es fr de pt ru uk it nl cs hu ro tr el ar he hi bn ur zh ja ko id vi th fa ta te mr.
+fn all(comptime text: [count][]const u8) Entry {
+    return .{ .source = text[0], .text = text };
+}
+const theme_entries = [_]Entry{
+    // Editor crop tool label; previously skipped by the coverage check
+    // (it starts with "Kadr"), so every language showed the Polish word.
+    all(.{ "Kadruj", "Crop", "Recortar", "Rogner", "Zuschneiden", "Recortar", "Обрезка", "Обрізати", "Ritaglia", "Bijsnijden", "Oříznout", "Vágás", "Decupare", "Kırp", "Περικοπή", "قص", "חיתוך", "क्रॉप", "ক্রপ", "تراشیں", "裁剪", "トリミング", "자르기", "Pangkas", "Cắt", "ครอบตัด", "برش", "செதுக்கு", "కత్తిరించు", "क्रॉप" }),
+    all(.{ "Motyw","Theme", "Tema", "Thème", "Design", "Tema", "Тема", "Тема", "Tema", "Thema", "Motiv", "Téma", "Temă", "Tema", "Θέμα", "السمة", "ערכת נושא", "थीम", "থিম", "تھیم", "主题", "テーマ", "테마", "Tema", "Chủ đề", "ธีม", "پوسته", "தீம்", "థీమ్", "थीम" }),
+    all(.{ "Jasny", "Light", "Claro", "Clair", "Hell", "Claro", "Светлая", "Світла", "Chiaro", "Licht", "Světlý", "Világos", "Luminoasă", "Açık", "Φωτεινό", "فاتح", "בהיר", "हल्की", "হালকা", "ہلکا", "浅色", "ライト", "밝게", "Terang", "Sáng", "สว่าง", "روشن", "ஒளி", "లైట్", "फिकट" }),
+    all(.{ "Ciemny", "Dark", "Oscuro", "Sombre", "Dunkel", "Escuro", "Тёмная", "Темна", "Scuro", "Donker", "Tmavý", "Sötét", "Întunecată", "Koyu", "Σκοτεινό", "داكن", "כהה", "गहरी", "গাঢ়", "گہرا", "深色", "ダーク", "어둡게", "Gelap", "Tối", "มืด", "تیره", "இருள்", "డార్క్", "गडद" }),
+    all(.{ "Automatyczny", "Automatic", "Automático", "Automatique", "Automatisch", "Automático", "Автоматически", "Автоматично", "Automatico", "Automatisch", "Automatický", "Automatikus", "Automată", "Otomatik", "Αυτόματο", "تلقائي", "אוטומטי", "स्वचालित", "স্বয়ংক্রিয়", "خودکار", "自动", "自動", "자동", "Otomatis", "Tự động", "อัตโนมัติ", "خودکار", "தானியங்கு", "ఆటోమేటిక్", "स्वयंचलित" }),
+    all(.{ "Sprawdź aktualizacje…", "Check for updates…", "Buscar actualizaciones…", "Rechercher des mises à jour…", "Nach Updates suchen…", "Verificar atualizações…", "Проверить обновления…", "Перевірити оновлення…", "Controlla aggiornamenti…", "Controleren op updates…", "Zkontrolovat aktualizace…", "Frissítések keresése…", "Caută actualizări…", "Güncellemeleri denetle…", "Έλεγχος για ενημερώσεις…", "التحقق من التحديثات…", "בדיקת עדכונים…", "अपडेट जांचें…", "আপডেট দেখুন…", "اپ ڈیٹس چیک کریں…", "检查更新…", "更新を確認…", "업데이트 확인…", "Periksa pembaruan…", "Kiểm tra cập nhật…", "ตรวจหาการอัปเดต…", "بررسی به‌روزرسانی…", "புதுப்பிப்புகளைச் சரிபார்…", "నవీకరణల కోసం తనిఖీ…", "अद्यतने तपासा…" }),
+    all(.{ "Nie można otworzyć strony w przeglądarce.", "Cannot open the page in the web browser.", "No se puede abrir la página en el navegador.", "Impossible d'ouvrir la page dans le navigateur.", "Die Seite kann nicht im Browser geöffnet werden.", "Não é possível abrir a página no navegador.", "Не удаётся открыть страницу в браузере.", "Не вдається відкрити сторінку в браузері.", "Impossibile aprire la pagina nel browser.", "Kan de pagina niet openen in de browser.", "Stránku nelze otevřít v prohlížeči.", "Az oldal nem nyitható meg a böngészőben.", "Pagina nu poate fi deschisă în browser.", "Sayfa tarayıcıda açılamıyor.", "Δεν είναι δυνατό το άνοιγμα της σελίδας στο πρόγραμμα περιήγησης.", "تعذر فتح الصفحة في المتصفح.", "לא ניתן לפתוח את הדף בדפדפן.", "ब्राउज़र में पेज नहीं खोला जा सका।", "ব্রাউজারে পৃষ্ঠাটি খোলা যায়নি।", "براؤزر میں صفحہ نہیں کھل سکا۔", "无法在浏览器中打开页面。", "ブラウザーでページを開けません。", "브라우저에서 페이지를 열 수 없습니다.", "Tidak dapat membuka halaman di peramban.", "Không thể mở trang trong trình duyệt.", "ไม่สามารถเปิดหน้าในเบราว์เซอร์ได้", "نمی‌توان صفحه را در مرورگر باز کرد.", "உலாவியில் பக்கத்தைத் திறக்க முடியவில்லை.", "బ్రౌజర్‌లో పేజీని తెరవడం సాధ్యం కాలేదు.", "ब्राउझरमध्ये पृष्ठ उघडता आले नाही." }),
+};
+pub const entries = common ++ aliases ++ additions ++ theme_entries;
 
 test "source aliases are unique and all languages are present" {
     for (entries, 0..) |entry, i| {

@@ -8,6 +8,7 @@ const i18n = @import("i18n.zig");
 const L = i18n.L;
 const Image = @import("image.zig").Image;
 const output = @import("output.zig");
+const theme = @import("theme.zig");
 const path_capacity = c.MAX_PATH; // GetTempFileNameW's XP contract, including NUL.
 const class_name = L("KadrExportCopyWindow");
 const id_format = 101;
@@ -291,6 +292,9 @@ fn windowProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
     const state: *State = @ptrFromInt(@as(usize, @bitCast(address)));
     switch (msg) {
         c.WM_CREATE => { state.hwnd = hwnd; return if (controls(state)) 0 else -1; },
+        c.WM_ERASEBKGND => if (theme.eraseBackground(hwnd, wp)) return 1 else return c.DefWindowProcW(hwnd, msg, wp, lp),
+        c.WM_CTLCOLORSTATIC, c.WM_CTLCOLORBTN, c.WM_CTLCOLOREDIT, c.WM_CTLCOLORLISTBOX => return theme.dialogColor(msg, wp) orelse c.DefWindowProcW(hwnd, msg, wp, lp),
+        theme.changed_message => { _ = c.InvalidateRect(hwnd, null, c.TRUE); return 0; },
         c.DM_GETDEFID => return (@as(c.LRESULT, c.DC_HASDEFID) << 16) | c.IDOK,
         c.WM_COMMAND => {
             const id: c.INT = @intCast(wp & 0xffff);
@@ -346,6 +350,7 @@ pub fn show(owner: c.HWND, source: *const Image, source_path: [*:0]const u16) bo
         if (c.IsWindow(hwnd) != 0) _ = c.DestroyWindow(hwnd);
         if (disable_owner and c.IsWindow(owner) != 0) { _ = c.EnableWindow(owner, 1); _ = c.SetActiveWindow(owner); }
     }
+    theme.applyWindow(hwnd);
     _ = c.ShowWindow(hwnd, c.SW_SHOW);
     _ = c.SetFocus(c.GetDlgItem(hwnd, id_format));
     var message: c.MSG = undefined;

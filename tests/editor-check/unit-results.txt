@@ -1,8 +1,35 @@
-1/2 test.folder navigation stops at both ends and handles empty or single-image lists... OK
-2/2 test.folder navigation skips unreadable entries without wrapping or retry loops... OK
-All 2 tests passed.
-1/4 test.neutral adjustments preserve straight alpha exactly... OK
-2/4 test.grayscale and zero saturation agree and preserve alpha... OK
-3/4 test.brightness and contrast clamp safely at both extremes... OK
-4/4 test.crop validation rejects empty outside and overflowing bounds... OK
-All 4 tests passed.
+1/10 test_0... OK
+2/10 test.folder navigation stops at both ends and handles empty or single-image lists... OK
+3/10 test.folder navigation skips unreadable entries without wrapping or retry loops... OK
+4/10 test.theme setting parses saved names and rejects unknown values... OK
+5/10 test.automatic theme follows AppsUseLightTheme and falls back to light without the key... OK
+6/10 test.only ImmersiveColorSet setting changes trigger a re-check... OK
+7/10 test.theme persists in an INI file and missing or invalid values mean automatic... OK
+8/10 test.palettes keep readable contrast and distinct dark image background... OK
+9/10 test.dark mode colours native dialog fields; light mode leaves system defaults... OK
+10/10 test.native theming entry points are safe on windows without dark mode support... OK
+All 10 tests passed.
+1/23 test.neutral adjustments preserve straight alpha exactly... OK
+2/23 test.grayscale and zero saturation agree and preserve alpha... OK
+3/23 test.brightness and contrast clamp safely at both extremes... OK
+4/23 test.crop validation rejects empty outside and overflowing bounds... OK
+5/23 test.aspect presets give the largest centred box... OK
+6/23 test.crop handles resize from the opposite anchor, stay in bounds and keep aspect... OK
+7/23 test.pen, highlighter, shapes and text are composited; eraser removes only drawings... OK
+8/23 test.editor window entry point and its whole UI path compile... OK
+9/23 test.rotateLeft is a counter-clockwise quarter turn and undoes rotate... OK
+10/23 test.output suffixes are ASCII case-insensitive and must terminate the path... OK
+11/23 test.empty image paths are safe without GDI+ or clipboard initialization... OK
+12/23 test.snapshot detaches rotated pixels and DIB is bottom-up opaque white... OK
+13/23 test.all encoders save independently; PNG alpha and JPEG white survive reload... OK
+14/23 test.source aliases are unique and all languages are present... OK
+15/23 test.all 30 language packs have 100 nonempty UTF-8 phrases... OK
+16/23 test.editor phrases cover all 30 languages with valid UTF-8... OK
+17/23 test.theme setting parses saved names and rejects unknown values... OK
+18/23 test.automatic theme follows AppsUseLightTheme and falls back to light without the key... OK
+19/23 test.only ImmersiveColorSet setting changes trigger a re-check... OK
+20/23 test.theme persists in an INI file and missing or invalid values mean automatic... OK
+21/23 test.palettes keep readable contrast and distinct dark image background... OK
+22/23 test.dark mode colours native dialog fields; light mode leaves system defaults... OK
+23/23 test.native theming entry points are safe on windows without dark mode support... OK
+All 23 tests passed.

@@ -13,7 +13,7 @@ words = (ROOT / 'src/locale_words.zig').read_text(encoding='utf-8')
 polish = words.split('// pl\n', 1)[1].split('// en\n', 1)[0]
 known = {decode(m.group(1)) for m in re.finditer(STRING, polish)}
 aliases = (ROOT / 'src/locale_aliases.zig').read_text(encoding='utf-8')
-for pattern in [r'\b(?:a|d|e|fixed)\(' + STRING, r'\.source\s*=\s*' + STRING]:
+for pattern in [r'\b(?:a|d|e|fixed)\(' + STRING, r'\.source\s*=\s*' + STRING, r'\ball\(\.\{\s*' + STRING]:
     known.update(decode(m.group(1)) for m in re.finditer(pattern, aliases))
 
 

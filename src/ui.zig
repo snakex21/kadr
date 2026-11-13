@@ -4,13 +4,15 @@ const w = @import("win.zig");
 const c = w.c;
 const i18n = @import("i18n.zig");
 const L = i18n.L;
-pub const shell = w.rgb(248, 249, 246);
-pub const paper = w.rgb(255, 255, 253);
-pub const line_color = w.rgb(222, 227, 219);
-pub const ink = w.rgb(35, 48, 43);
-pub const muted = w.rgb(111, 125, 116);
-pub const accent = w.rgb(20, 125, 102);
-pub const canvas_dark = w.rgb(25, 30, 35);
+const theme = @import("theme.zig");
+// Current palette (light by default); see theme.zig and applyTheme().
+pub var shell: u32 = theme.light_palette.shell;
+pub var paper: u32 = theme.light_palette.paper;
+pub var line_color: u32 = theme.light_palette.line;
+pub var ink: u32 = theme.light_palette.ink;
+pub var muted: u32 = theme.light_palette.muted;
+pub var accent: u32 = theme.light_palette.accent;
+pub var canvas_dark: u32 = theme.light_palette.canvas;
 pub var font: c.HFONT = null;
 pub var small_font: c.HFONT = null;
 pub var title_font: c.HFONT = null;
@@ -112,7 +114,24 @@ pub fn text(dc: c.HDC, r: c.RECT, value: [*c]const u16, selected_font: c.HFONT, 
 fn makeFont(height: i32, weight: i32) c.HFONT {
     return c.CreateFontW(-height, 0, 0, 0, weight, 0, 0, 0, c.DEFAULT_CHARSET, c.OUT_DEFAULT_PRECIS, c.CLIP_DEFAULT_PRECIS, c.CLEARTYPE_QUALITY, c.DEFAULT_PITCH, i18n.fontFace().ptr);
 }
+/// Copy the active theme palette and rebuild the shared background brush.
+pub fn applyTheme() void {
+    const p = &theme.colors;
+    shell = p.shell;
+    paper = p.paper;
+    line_color = p.line;
+    ink = p.ink;
+    muted = p.muted;
+    accent = p.accent;
+    canvas_dark = p.canvas;
+    if (background_brush != null) {
+        _ = c.DeleteObject(background_brush);
+        background_brush = c.CreateSolidBrush(shell);
+    }
+    if (tips != null) theme.applyTooltip(tips);
+}
 pub fn init(parent: c.HWND) void {
+    applyTheme();
     background_brush = c.CreateSolidBrush(shell);
     font = makeFont(14, c.FW_NORMAL);
     small_font = makeFont(12, c.FW_NORMAL);
@@ -123,6 +142,7 @@ pub fn init(parent: c.HWND) void {
     tips = c.CreateWindowExW(c.WS_EX_TOPMOST, L("tooltips_class32"), null, c.WS_POPUP | c.TTS_ALWAYSTIP | c.TTS_NOPREFIX, c.CW_USEDEFAULT, c.CW_USEDEFAULT, c.CW_USEDEFAULT, c.CW_USEDEFAULT, parent, null, null, null);
     _ = c.SendMessageW(tips, c.TTM_SETMAXTIPWIDTH, 0, 300);
     _ = c.SendMessageW(tips, c.TTM_SETDELAYTIME, c.TTDT_INITIAL, 450);
+    theme.applyTooltip(tips);
 }
 pub fn deinit() void {
     if (background_brush != null) _ = c.DeleteObject(background_brush);
@@ -211,10 +231,11 @@ pub fn drawButton(item: *const c.DRAWITEMSTRUCT) bool {
     const disabled = (item.itemState & c.ODS_DISABLED) != 0;
     const pressed = (item.itemState & c.ODS_SELECTED) != 0;
     const focus = (item.itemState & c.ODS_FOCUS) != 0;
+    const p = &theme.colors;
     fill(dc, r, shell);
-    const bg = if (disabled) shell else if (b.primary) (if (pressed) w.rgb(10, 91, 75) else if (b.hover) w.rgb(13, 110, 89) else accent) else if (pressed) w.rgb(211, 228, 216) else if (b.selected) w.rgb(225, 240, 230) else if (b.hover) w.rgb(233, 237, 229) else shell;
-    const fg = if (disabled) w.rgb(170, 179, 171) else if (b.primary) w.rgb(255, 255, 252) else if (b.selected) accent else ink;
-    rounded(dc, r, 8, bg, if (focus) accent else if (b.selected) w.rgb(179, 213, 192) else null);
+    const bg = if (disabled) shell else if (b.primary) (if (pressed) p.primary_pressed else if (b.hover) p.primary_hover else p.primary) else if (pressed) p.pressed else if (b.selected) p.selected else if (b.hover) p.hover else shell;
+    const fg = if (disabled) p.disabled else if (b.primary) p.on_primary else if (b.selected) accent else ink;
+    rounded(dc, r, 8, bg, if (focus) accent else if (b.selected) p.selected_border else null);
     var label: [128]u16 = undefined;
     const n = c.GetWindowTextW(item.hwndItem, &label, label.len);
     const has_label = !b.compact and r.right - r.left > 58 and n > 0;
@@ -412,7 +433,7 @@ pub fn drawIcon(dc: c.HDC, icon: Icon, x: f32, y: f32, size: f32, color: u32) vo
     }
 }
 pub fn logo(dc: c.HDC, x: i32, y: i32, size: i32) void {
-    rounded(dc, .{ .left = x, .top = y, .right = x + size, .bottom = y + size }, @as(f32, @floatFromInt(size)) * 0.25, accent, null);
+    rounded(dc, .{ .left = x, .top = y, .right = x + size, .bottom = y + size }, @as(f32, @floatFromInt(size)) * 0.25, theme.colors.primary, null);
     drawIcon(dc, .photo, @as(f32, @floatFromInt(x)) + @as(f32, @floatFromInt(size)) * 0.18, @as(f32, @floatFromInt(y)) + @as(f32, @floatFromInt(size)) * 0.18, @as(f32, @floatFromInt(size)) * 0.64, w.rgb(248, 252, 240));
 }
 pub fn chrome(dc: c.HDC, client: c.RECT, name: []const u16, path: []const u16, loaded: bool) void {
@@ -435,7 +456,7 @@ pub fn empty(dc: c.HDC, canvas: c.RECT) void {
     const names = [_][:0]const u16{ L("JPG"), L("PNG"), L("GIF"), L("TIFF"), L("TGA"), L("DJVU") };
     var x = cx - 177;
     for (names) |name| {
-        rounded(dc, .{ .left = x, .top = cy + 118, .right = x + 54, .bottom = cy + 144 }, 6, w.rgb(239, 244, 234), null);
+        rounded(dc, .{ .left = x, .top = cy + 118, .right = x + 54, .bottom = cy + 144 }, 6, theme.colors.chip, null);
         text(dc, .{ .left = x, .top = cy + 118, .right = x + 54, .bottom = cy + 144 }, name, small_font, accent, c.DT_CENTER | c.DT_VCENTER | c.DT_SINGLELINE);
         x += 60;
     }

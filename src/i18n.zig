@@ -6,6 +6,16 @@ const c = w.c;
 const languages = @import("languages.zig");
 const translations = @import("translations.zig");
 
+/// Optional dark-theme hooks for the language dialog, installed by the viewer
+/// (theme.zig). Kept as pointers so this module has no theme/registry imports.
+pub const DialogTheme = struct {
+    apply: *const fn (c.HWND) void,
+    color: *const fn (c.UINT, c.WPARAM) ?c.LRESULT,
+    /// Paints an unselected list row; false keeps the system colours.
+    row: *const fn (c.HDC, *const c.RECT) bool,
+};
+pub var dialog_theme: ?DialogTheme = null;
+
 comptime {
     if (translations.count != languages.count) @compileError("translation/language index count mismatch");
 }
@@ -146,8 +156,11 @@ fn drawLanguage(state: *Selector, item: *const c.DRAWITEMSTRUCT) void {
     if (item.itemID >= languages.count) return;
     const index: usize = item.itemID;
     const selected = (item.itemState & c.ODS_SELECTED) != 0;
-    _ = c.FillRect(item.hDC, &item.rcItem, c.GetSysColorBrush(if (selected) c.COLOR_HIGHLIGHT else c.COLOR_WINDOW));
-    _ = c.SetTextColor(item.hDC, c.GetSysColor(if (selected) c.COLOR_HIGHLIGHTTEXT else c.COLOR_WINDOWTEXT));
+    const themed = !selected and if (dialog_theme) |t| t.row(item.hDC, &item.rcItem) else false;
+    if (!themed) {
+        _ = c.FillRect(item.hDC, &item.rcItem, c.GetSysColorBrush(if (selected) c.COLOR_HIGHLIGHT else c.COLOR_WINDOW));
+        _ = c.SetTextColor(item.hDC, c.GetSysColor(if (selected) c.COLOR_HIGHLIGHTTEXT else c.COLOR_WINDOWTEXT));
+    }
     _ = c.SetBkMode(item.hDC, c.TRANSPARENT);
     const font = state.row_fonts[index] orelse state.font;
     const old_font = if (font != null) c.SelectObject(item.hDC, font) else null;
@@ -182,7 +195,14 @@ fn selectorProc(hwnd: c.HWND, message: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callc
         _ = control(hwnd, "BUTTON", L("Zapisz"), c.WS_TABSTOP | c.BS_DEFPUSHBUTTON, c.IDOK, 92, 198, 70, 18, state.font);
         _ = control(hwnd, "BUTTON", L("Anuluj"), c.WS_TABSTOP | c.BS_PUSHBUTTON, c.IDCANCEL, 170, 198, 70, 18, state.font);
         _ = c.SendMessageW(hwnd, c.DM_SETDEFID, c.IDOK, 0);
+        if (dialog_theme) |t| t.apply(hwnd);
         return c.TRUE;
+    }
+    switch (message) {
+        c.WM_CTLCOLORDLG, c.WM_CTLCOLORSTATIC, c.WM_CTLCOLORBTN, c.WM_CTLCOLORLISTBOX => if (dialog_theme) |t| {
+            if (t.color(message, wp)) |brush| return brush;
+        },
+        else => {},
     }
     const data = c.GetWindowLongPtrW(hwnd, c.GWLP_USERDATA);
     if (data == 0) return c.FALSE;

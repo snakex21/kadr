@@ -7,6 +7,7 @@ const L = @import("i18n.zig").L;
 const Image = @import("image.zig").Image;
 const output = @import("output.zig");
 const export_dialog = @import("export_dialog.zig");
+const theme = @import("theme.zig");
 
 /// Copies the full, unquoted Unicode path, including the terminating NUL.
 /// Requires a real owner window. Ownership transfers only on SetClipboardData
@@ -230,6 +231,9 @@ fn wallpaperProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv
             return 0;
         },
         c.DM_GETDEFID => return (@as(c.LRESULT, c.DC_HASDEFID) << 16) | c.IDOK,
+        c.WM_ERASEBKGND => if (theme.eraseBackground(hwnd, wp)) return 1 else return c.DefWindowProcW(hwnd, msg, wp, lp),
+        c.WM_CTLCOLORSTATIC, c.WM_CTLCOLORBTN, c.WM_CTLCOLOREDIT, c.WM_CTLCOLORLISTBOX => return theme.dialogColor(msg, wp) orelse c.DefWindowProcW(hwnd, msg, wp, lp),
+        theme.changed_message => { _ = c.InvalidateRect(hwnd, null, c.TRUE); return 0; },
         c.WM_COMMAND => {
             const id = wp & 0xffff;
             if (id == c.IDCANCEL) { _ = c.DestroyWindow(hwnd); return 0; }
@@ -274,6 +278,7 @@ pub fn wallpaper(owner: c.HWND, source: *const Image) bool {
         if (c.IsWindow(hwnd) != 0) _ = c.DestroyWindow(hwnd);
         if (disable_owner and c.IsWindow(owner) != 0) { _ = c.EnableWindow(owner, 1); _ = c.SetActiveWindow(owner); }
     }
+    theme.applyWindow(hwnd);
     _ = c.ShowWindow(hwnd, c.SW_SHOW);
     _ = c.SetFocus(c.GetDlgItem(hwnd, 101));
     var message: c.MSG = undefined;

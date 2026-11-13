@@ -9,6 +9,7 @@ const i18n = @import("i18n.zig");
 const L = i18n.L;
 const layout = @import("layout.zig");
 const ui = @import("ui.zig");
+const theme = @import("theme.zig");
 
 pub const Source = struct { image: *w.GpImage, width: u32, height: u32 };
 
@@ -147,6 +148,7 @@ pub fn show(owner: c.HWND, source: Source) void {
         state.owner = owner;
     }
     defer restoreOwner(&state);
+    theme.applyWindow(hwnd);
     _ = c.ShowWindow(hwnd, c.SW_SHOW);
     _ = c.UpdateWindow(hwnd);
     _ = c.SetFocus(state.get(.setup));
@@ -300,6 +302,7 @@ fn createControls(state: *State) bool {
     addTip(state, .y, L("Od lewego górnego rogu fizycznego arkusza, nie od marginesów. Zakres ±10000 mm."));
     addTip(state, .color, L("Dotyczy tylko podglądu i wydruku. Obraz źródłowy pozostaje bez zmian."));
     addTip(state, .details, L("Arkusz / obraz. Szara linia: granica drukarki. Zielona: marginesy."));
+    theme.applyTooltip(state.tooltip);
     state.initializing = false;
     showAdvanced(state);
     return true;
@@ -365,6 +368,16 @@ fn windowProc(hwnd: c.HWND, message: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callcon
             _ = c.SetTextColor(dc, if (control == @intFromPtr(state.get(.status))) ui.accent else if (control == @intFromPtr(state.get(.details))) ui.muted else ui.ink);
             const brush = state.background_brush orelse c.GetSysColorBrush(c.COLOR_BTNFACE);
             return @bitCast(@intFromPtr(brush));
+        },
+        c.WM_CTLCOLOREDIT, c.WM_CTLCOLORLISTBOX => {
+            if (theme.dialogColor(message, wp)) |brush| return brush;
+        },
+        theme.changed_message => {
+            if (state.background_brush != null) _ = c.DeleteObject(state.background_brush);
+            state.background_brush = c.CreateSolidBrush(ui.shell);
+            theme.applyTooltip(state.tooltip);
+            _ = c.InvalidateRect(hwnd, null, c.FALSE);
+            return 0;
         },
         c.WM_GETMINMAXINFO => {
             const info: *c.MINMAXINFO = @ptrFromInt(@as(usize, @bitCast(lp)));
@@ -1142,7 +1155,7 @@ fn paintCanvas(state: *State, dc: c.HDC, client: c.RECT) void {
         L("Podgląd wydruku"), ui.title_font orelse formFont(), ui.accent, c.DT_SINGLELINE | c.DT_VCENTER);
     var canvas = canvasRect(client);
     // Neutral desk-like backdrop, as in common print previews.
-    fill(dc, &canvas, desk_color);
+    fill(dc, &canvas, theme.colors.desk);
     const transform = previewTransform(state.page, client);
     const sheet = transform.rect(.{ .x = 0, .y = 0, .width = state.page.width, .height = state.page.height });
     paperShadow(dc, sheet);
@@ -1163,14 +1176,13 @@ fn paintCanvas(state: *State, dc: c.HDC, client: c.RECT) void {
     ui.text(dc, legend, text, formFont(), ui.muted, c.DT_WORDBREAK);
 }
 
-const desk_color = w.rgb(128, 132, 136);
-
 fn paperShadow(dc: c.HDC, sheet: layout.Rect) void {
     // Three soft layers offset down-right; cheap GDI, fine on XP.
+    const shadow = theme.colors.shadow;
     const layers = [_]struct { offset: f64, color: c.COLORREF }{
-        .{ .offset = 6, .color = w.rgb(112, 116, 120) },
-        .{ .offset = 4, .color = w.rgb(96, 100, 104) },
-        .{ .offset = 2, .color = w.rgb(80, 84, 88) },
+        .{ .offset = 6, .color = shadow[0] },
+        .{ .offset = 4, .color = shadow[1] },
+        .{ .offset = 2, .color = shadow[2] },
     };
     for (layers) |layer| {
         var r = integerRect(.{ .x = sheet.x + layer.offset, .y = sheet.y + layer.offset, .width = sheet.width, .height = sheet.height });

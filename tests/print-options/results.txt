@@ -1,55 +1,68 @@
-1/33 test.automatic orientation follows pixels and custom media but preserves manual choice... OK
-2/33 test.strict numeric scale, physical and position fields accept comma/dot but reject incomplete input... OK
-3/33 test.all DEVMODE media/orientations use exact standard codes or safe tenths-mm custom sizes... OK
-4/33 test.shared grayscale preview/print renderer produces equal RGB over white without editing source... OK
-5/33 test.native Advanced, percent, invalid edits, drag and Center share one placement without any job... OK
-6/33 test.driver mono acceptance changes preview while gray remains guaranteed on a color driver... OK
-7/33 test.entry point and its entire window/printing path compile without opening UI... OK
-8/33 test.Polish numeric margins, blanks and invalid input... OK
-9/33 test.preview controls have a safe uninitialized theme fallback and owned brush lifetime... OK
-10/33 test.preview non-client creation preserves the native window caption... OK
-11/33 test.all papers and both orientations have physical dimensions... OK
-12/33 test.best fit uses pixel aspect independent of resolution and baked rotation... OK
-13/33 test.best fit normalizes swapped custom media and preserves numerical ties... OK
-14/33 test.best fit compares usable FIT scale with asymmetric margins... OK
-15/33 test.best fit selects the remaining usable orientation when margins exhaust only one... OK
-16/33 test.best fit preserves preference for invalid dimensions and invalid or exhausted margins... OK
-17/33 test.fit preserves aspect and centers within margins... OK
-18/33 test.fill covers content and crops centered overflow... OK
-19/33 test.landscape fit and fill use the same oriented page... OK
-20/33 test.100 percent is 96 DPI, with or without centering... OK
-21/33 test.asymmetric margins and top left placement... OK
-22/33 test.actual caps include physical offsets and non-square DPI... OK
-23/33 test.margins are intersected with hardware limits, never added to them... OK
-24/33 test.invalid or exhausted margins and empty images produce no placement... OK
-25/33 test.bad printer caps are rejected and overreported printable area is clamped... OK
-26/33 test.custom media bounds, orientation and metric versus inch photos... OK
-27/33 test.own percent is relative to 96 DPI and physical dimensions lock aspect... OK
-28/33 test.absolute physical position overrides center, clips edges and rejects no intersection... OK
-29/33 test.drag delta uses page transform and retains a recoverable grab area... OK
-30/33 test.preview and DC transformations preserve the same physical arrangement... OK
-31/33 test.source aliases are unique and all languages are present... OK
-32/33 test.all 30 language packs have 100 nonempty UTF-8 phrases... OK
-33/33 test.editor phrases cover all 30 languages with valid UTF-8... OK
-All 33 tests passed.
-1/20 test.all papers and both orientations have physical dimensions... OK
-2/20 test.best fit uses pixel aspect independent of resolution and baked rotation... OK
-3/20 test.best fit normalizes swapped custom media and preserves numerical ties... OK
-4/20 test.best fit compares usable FIT scale with asymmetric margins... OK
-5/20 test.best fit selects the remaining usable orientation when margins exhaust only one... OK
-6/20 test.best fit preserves preference for invalid dimensions and invalid or exhausted margins... OK
-7/20 test.fit preserves aspect and centers within margins... OK
-8/20 test.fill covers content and crops centered overflow... OK
-9/20 test.landscape fit and fill use the same oriented page... OK
-10/20 test.100 percent is 96 DPI, with or without centering... OK
-11/20 test.asymmetric margins and top left placement... OK
-12/20 test.actual caps include physical offsets and non-square DPI... OK
-13/20 test.margins are intersected with hardware limits, never added to them... OK
-14/20 test.invalid or exhausted margins and empty images produce no placement... OK
-15/20 test.bad printer caps are rejected and overreported printable area is clamped... OK
-16/20 test.custom media bounds, orientation and metric versus inch photos... OK
-17/20 test.own percent is relative to 96 DPI and physical dimensions lock aspect... OK
-18/20 test.absolute physical position overrides center, clips edges and rejects no intersection... OK
-19/20 test.drag delta uses page transform and retains a recoverable grab area... OK
-20/20 test.preview and DC transformations preserve the same physical arrangement... OK
-All 20 tests passed.
+1/45 test.automatic orientation follows pixels and custom media but preserves manual choice... OK
+2/45 test.strict numeric scale, physical and position fields accept comma/dot but reject incomplete input... OK
+3/45 test.all DEVMODE media/orientations use exact standard codes or safe tenths-mm custom sizes... OK
+4/45 test.shared grayscale preview/print renderer produces equal RGB over white without editing source... OK
+5/45 test.native Advanced, percent, invalid edits, drag and Center share one placement without any job... OK
+6/45 test.scale names round-trip for the saved setting... OK
+7/45 test.raster size is bounded by 300 DPI and a pixel budget, never upscaled... OK
+8/45 test.printed page: whole image fits the printable area of a simulated A4 printer (portrait and landscape)... OK
+9/45 test.driver mono acceptance changes preview while gray remains guaranteed on a color driver... OK
+10/45 test.entry point and its entire window/printing path compile without opening UI... OK
+11/45 test.Polish numeric margins, blanks and invalid input... OK
+12/45 test.preview controls have a safe uninitialized theme fallback and owned brush lifetime... OK
+13/45 test.preview non-client creation preserves the native window caption... OK
+14/45 test.stretch prints ink on the whole printable area (no white bars) and cannot be dragged... OK
+15/45 test.all papers and both orientations have physical dimensions... OK
+16/45 test.best fit uses pixel aspect independent of resolution and baked rotation... OK
+17/45 test.best fit normalizes swapped custom media and preserves numerical ties... OK
+18/45 test.best fit compares usable FIT scale with asymmetric margins... OK
+19/45 test.best fit selects the remaining usable orientation when margins exhaust only one... OK
+20/45 test.best fit preserves preference for invalid dimensions and invalid or exhausted margins... OK
+21/45 test.fit preserves aspect and centers within margins... OK
+22/45 test.fill covers content and crops centered overflow... OK
+23/45 test.landscape fit and fill use the same oriented page... OK
+24/45 test.100 percent is 96 DPI, with or without centering... OK
+25/45 test.asymmetric margins and top left placement... OK
+26/45 test.actual caps include physical offsets and non-square DPI... OK
+27/45 test.margins are intersected with hardware limits, never added to them... OK
+28/45 test.invalid or exhausted margins and empty images produce no placement... OK
+29/45 test.bad printer caps are rejected and overreported printable area is clamped... OK
+30/45 test.custom media bounds, orientation and metric versus inch photos... OK
+31/45 test.own percent is relative to 96 DPI and physical dimensions lock aspect... OK
+32/45 test.absolute physical position overrides center, clips edges and rejects no intersection... OK
+33/45 test.drag delta uses page transform and retains a recoverable grab area... OK
+34/45 test.preview and DC transformations preserve the same physical arrangement... OK
+35/45 test.stretch covers exactly the printable area, portrait, landscape and odd media... OK
+36/45 test.theme setting parses saved names and rejects unknown values... OK
+37/45 test.automatic theme follows AppsUseLightTheme and falls back to light without the key... OK
+38/45 test.only ImmersiveColorSet setting changes trigger a re-check... OK
+39/45 test.theme persists in an INI file and missing or invalid values mean automatic... OK
+40/45 test.palettes keep readable contrast and distinct dark image background... OK
+41/45 test.dark mode colours native dialog fields; light mode leaves system defaults... OK
+42/45 test.native theming entry points are safe on windows without dark mode support... OK
+43/45 test.source aliases are unique and all languages are present... OK
+44/45 test.all 30 language packs have 100 nonempty UTF-8 phrases... OK
+45/45 test.editor phrases cover all 30 languages with valid UTF-8... OK
+All 45 tests passed.
+1/21 test.all papers and both orientations have physical dimensions... OK
+2/21 test.best fit uses pixel aspect independent of resolution and baked rotation... OK
+3/21 test.best fit normalizes swapped custom media and preserves numerical ties... OK
+4/21 test.best fit compares usable FIT scale with asymmetric margins... OK
+5/21 test.best fit selects the remaining usable orientation when margins exhaust only one... OK
+6/21 test.best fit preserves preference for invalid dimensions and invalid or exhausted margins... OK
+7/21 test.fit preserves aspect and centers within margins... OK
+8/21 test.fill covers content and crops centered overflow... OK
+9/21 test.landscape fit and fill use the same oriented page... OK
+10/21 test.100 percent is 96 DPI, with or without centering... OK
+11/21 test.asymmetric margins and top left placement... OK
+12/21 test.actual caps include physical offsets and non-square DPI... OK
+13/21 test.margins are intersected with hardware limits, never added to them... OK
+14/21 test.invalid or exhausted margins and empty images produce no placement... OK
+15/21 test.bad printer caps are rejected and overreported printable area is clamped... OK
+16/21 test.custom media bounds, orientation and metric versus inch photos... OK
+17/21 test.own percent is relative to 96 DPI and physical dimensions lock aspect... OK
+18/21 test.absolute physical position overrides center, clips edges and rejects no intersection... OK
+19/21 test.drag delta uses page transform and retains a recoverable grab area... OK
+20/21 test.preview and DC transformations preserve the same physical arrangement... OK
+21/21 test.stretch covers exactly the printable area, portrait, landscape and odd media... OK
+All 21 tests passed.

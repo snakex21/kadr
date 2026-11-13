@@ -8,6 +8,7 @@ const c = w.c;
 const Image = @import("image.zig").Image;
 const output = @import("output.zig");
 const ui = @import("ui.zig");
+const theme = @import("theme.zig");
 const i18n = @import("i18n.zig");
 const L = i18n.L;
 const class_name = L("KadrEditorWindow");
@@ -1117,7 +1118,7 @@ fn paintCanvas(s: *State, dc: c.HDC, width: i32, height: i32) void {
         var wide: [48]u16 = undefined;
         const text = std.fmt.bufPrint(&ascii, "{d} × {d} px", .{ crop.width, crop.height }) catch return;
         const label_rect = c.RECT{ .left = r.left + 6, .top = r.top + 6, .right = r.left + 160, .bottom = r.top + 28 };
-        ui.fill(dc, label_rect, w.rgb(20, 125, 102));
+        ui.fill(dc, label_rect, theme.colors.primary);
         ui.text(dc, label_rect, w.utf16(&wide, text).ptr, guiFont(), w.rgb(255, 255, 255), c.DT_CENTER | c.DT_VCENTER | c.DT_SINGLELINE);
     }
 }
@@ -1301,7 +1302,7 @@ fn paletteProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.
                 const y = @divTrunc(i, 5) * (size + gap) + 2;
                 const selected = (color & 0xffffff) == (s.toolColor() & 0xffffff);
                 if (selected) ui.rounded(dc, .{ .left = x - 2, .top = y - 2, .right = x + size + 2, .bottom = y + size + 2 }, 7, ui.accent, null);
-                ui.rounded(dc, .{ .left = x, .top = y, .right = x + size, .bottom = y + size }, 6, w.rgb(@truncate(color >> 16), @truncate(color >> 8), @truncate(color)), w.rgb(160, 168, 160));
+                ui.rounded(dc, .{ .left = x, .top = y, .right = x + size, .bottom = y + size }, 6, w.rgb(@truncate(color >> 16), @truncate(color >> 8), @truncate(color)), theme.colors.swatch_border);
             }
             return 0;
         },
@@ -1377,6 +1378,14 @@ fn windowProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
             const control: usize = @bitCast(lp);
             _ = c.SetTextColor(dc, if (control == @intFromPtr(s.get(ID.hint)) or control == @intFromPtr(s.get(ID.status))) ui.muted else ui.ink);
             return @bitCast(@intFromPtr(ui.background_brush orelse c.GetSysColorBrush(c.COLOR_BTNFACE)));
+        },
+        c.WM_CTLCOLOREDIT, c.WM_CTLCOLORLISTBOX, c.WM_CTLCOLORBTN => {
+            if (theme.dialogColor(msg, wp)) |brush| return brush;
+        },
+        theme.changed_message => {
+            _ = c.InvalidateRect(hwnd, null, c.TRUE);
+            _ = c.InvalidateRect(s.canvas, null, c.FALSE);
+            return 0;
         },
         c.DM_GETDEFID => return (@as(c.LRESULT, c.DC_HASDEFID) << 16) | c.IDOK,
         c.WM_HSCROLL => {
@@ -1549,6 +1558,7 @@ pub fn show(owner: c.HWND, source: *const Image) ?Outcome {
         return null;
     }
     s.resetCrop();
+    theme.applyWindow(hwnd);
     _ = c.ShowWindow(hwnd, c.SW_SHOW);
     _ = c.SetFocus(s.canvas);
     var message: c.MSG = undefined;
