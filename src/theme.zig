@@ -318,8 +318,93 @@ fn themeControl(hwnd: c.HWND) void {
 }
 
 fn childCallback(hwnd: c.HWND, _: c.LPARAM) callconv(.Stdcall) c.BOOL {
+    // SetWindowTheme / WM_THEMECHANGED may paint a native control at once in
+    // its default style; with redraw off nothing reaches the screen until the
+    // single composited repaint in applyWindow. Only visible controls are
+    // locked: WM_SETREDRAW TRUE would also show a hidden one.
+    const visible = (@as(u32, @bitCast(c.GetWindowLongW(hwnd, c.GWL_STYLE))) & c.WS_VISIBLE) != 0;
+    if (visible) _ = c.SendMessageW(hwnd, c.WM_SETREDRAW, c.FALSE, 0);
     themeControl(hwnd);
+    if (visible) _ = c.SendMessageW(hwnd, c.WM_SETREDRAW, c.TRUE, 0);
     return c.TRUE;
+}
+
+/// WM_PAINT, or WM_PRINTCLIENT with the whole client area as the dirty
+/// rectangle. Custom-painted windows accept both, so showAtOnce can render
+/// them off-screen.
+pub const Paint = struct {
+    hwnd: c.HWND,
+    ps: c.PAINTSTRUCT,
+    dc: c.HDC,
+    printing: bool,
+
+    pub fn begin(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM) Paint {
+        var p = Paint{ .hwnd = hwnd, .ps = std.mem.zeroes(c.PAINTSTRUCT), .dc = null, .printing = msg == c.WM_PRINTCLIENT };
+        if (p.printing) {
+            p.dc = handle(c.HDC, wp);
+            p.ps.hdc = p.dc;
+            _ = c.GetClientRect(hwnd, &p.ps.rcPaint);
+        } else p.dc = c.BeginPaint(hwnd, &p.ps);
+        return p;
+    }
+    pub fn end(self: *Paint) void {
+        if (!self.printing) _ = c.EndPaint(self.hwnd, &self.ps);
+    }
+};
+
+/// Render every visible descendant of `parent` into `dc`, which maps the
+/// client area of `root`. Each control prints only itself (no PRF_CHILDREN:
+/// DefWindowProc does not handle it everywhere); grandchildren are walked
+/// here, so nested windows (the editor canvas, combo boxes) are covered.
+fn printChildren(root: c.HWND, parent: c.HWND, dc: c.HDC) void {
+    // Top of the z-order first: that is the order in which Windows sends
+    // WM_PAINT to siblings, so where controls without WS_CLIPSIBLINGS
+    // overlap (a label and the rounded corner of a button in the print
+    // preview), the later one wins here as it does on screen.
+    var child = c.GetWindow(parent, c.GW_CHILD);
+    while (child) |hwnd| : (child = c.GetWindow(hwnd, c.GW_HWNDNEXT)) {
+        if (c.IsWindowVisible(hwnd) == 0) continue;
+        var r: c.RECT = undefined;
+        if (c.GetWindowRect(hwnd, &r) == 0) continue;
+        _ = c.MapWindowPoints(null, root, @ptrCast(&r), 2);
+        const saved = c.SaveDC(dc);
+        _ = c.SetViewportOrgEx(dc, r.left, r.top, null);
+        _ = c.IntersectClipRect(dc, 0, 0, r.right - r.left, r.bottom - r.top);
+        _ = c.SendMessageW(hwnd, c.WM_PRINT, @intFromPtr(dc), c.PRF_NONCLIENT | c.PRF_CLIENT | c.PRF_ERASEBKGND);
+        _ = c.RestoreDC(dc, saved);
+        printChildren(root, hwnd, dc);
+    }
+}
+
+/// Show a window's new look in one step. Windows repaints the parent and
+/// then each child with its own WM_PAINT; the owner-drawn toolbar buttons
+/// (GDI+) are slow enough that the screen shows the steps in between: the
+/// new background with old-colour button fields on it, which looks like
+/// outlines around every button. Instead the window and its children are
+/// rendered off-screen (WM_PRINT) and copied to the screen with one BitBlt.
+pub fn showAtOnce(hwnd: c.HWND) void {
+    if (hwnd == null or c.IsWindowVisible(hwnd) == 0 or c.IsIconic(hwnd) != 0) return;
+    var client: c.RECT = undefined;
+    if (c.GetClientRect(hwnd, &client) == 0 or client.right <= 0 or client.bottom <= 0) return;
+    // A cache DC without DCX_CLIPCHILDREN covers the children too.
+    const screen = c.GetDCEx(hwnd, null, c.DCX_CACHE) orelse return;
+    defer _ = c.ReleaseDC(hwnd, screen);
+    const memory = c.CreateCompatibleDC(screen) orelse return;
+    defer _ = c.DeleteDC(memory);
+    const bitmap = c.CreateCompatibleBitmap(screen, client.right, client.bottom) orelse return;
+    defer _ = c.DeleteObject(bitmap);
+    const old = c.SelectObject(memory, bitmap);
+    defer _ = c.SelectObject(memory, old);
+    // Anything that cannot print itself keeps its current pixels.
+    _ = c.BitBlt(memory, 0, 0, client.right, client.bottom, screen, 0, 0, c.SRCCOPY);
+    _ = c.SendMessageW(hwnd, c.WM_PRINTCLIENT, @intFromPtr(memory), c.PRF_CLIENT | c.PRF_ERASEBKGND);
+    printChildren(hwnd, hwnd, memory);
+    _ = c.BitBlt(screen, 0, 0, client.right, client.bottom, memory, 0, 0, c.SRCCOPY);
+    // The screen is now up to date. The repaint applyWindow queued would
+    // only draw the same pixels again, but piecemeal (a parent fill wiping
+    // headings, a label erased before its text), so it is dropped. The
+    // frame edge is repainted by the WM_NCACTIVATE pair in notifyCallback.
+    _ = c.RedrawWindow(hwnd, null, null, c.RDW_VALIDATE | c.RDW_NOERASE | c.RDW_NOFRAME | c.RDW_ALLCHILDREN);
 }
 
 fn setTitleBar(hwnd: c.HWND) void {
@@ -403,6 +488,7 @@ fn notifyCallback(hwnd: c.HWND, _: c.LPARAM) callconv(.Stdcall) c.BOOL {
     } else {
         _ = c.SendMessageW(hwnd, changed_message, 0, 0);
         applyWindow(hwnd);
+        showAtOnce(hwnd);
         // Repaint the caption now; otherwise the title bar keeps its old
         // colour until the window is next activated.
         if (c.IsWindowVisible(hwnd) != 0 and dwm_set != null) {

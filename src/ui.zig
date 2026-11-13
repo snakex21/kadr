@@ -201,6 +201,10 @@ fn buttonProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
         return c.CallWindowProcW(old, hwnd, msg, wp, lp);
     }
     switch (msg) {
+        // The owner-draw BUTTON erases with the WM_CTLCOLORBTN brush (system
+        // grey by default) before WM_DRAWITEM; that grey field could reach
+        // the screen on its own. drawButton covers every pixel.
+        c.WM_ERASEBKGND => return 1,
         c.WM_MOUSEMOVE => {
             if (!b.hover) {
                 b.hover = true;
@@ -226,8 +230,31 @@ fn buttonProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
 }
 pub fn drawButton(item: *const c.DRAWITEMSTRUCT) bool {
     const b = find(item.hwndItem) orelse return false;
-    const dc = item.hDC;
+    // Drawn off-screen and copied in one BitBlt: painted straight onto the
+    // window, the background fill, the GDI+ field and the icon reach the
+    // screen as separate frames (a flash on hover, press and theme changes).
     const r = item.rcItem;
+    const width = r.right - r.left;
+    const height = r.bottom - r.top;
+    if (width <= 0 or height <= 0) return true;
+    const memory = c.CreateCompatibleDC(item.hDC);
+    const bitmap = if (memory != null) c.CreateCompatibleBitmap(item.hDC, width, height) else null;
+    if (bitmap == null) {
+        if (memory != null) _ = c.DeleteDC(memory);
+        paintButton(b, item, item.hDC, r);
+        return true;
+    }
+    defer {
+        _ = c.DeleteObject(bitmap);
+        _ = c.DeleteDC(memory);
+    }
+    const old = c.SelectObject(memory, bitmap);
+    defer _ = c.SelectObject(memory, old);
+    paintButton(b, item, memory, .{ .left = 0, .top = 0, .right = width, .bottom = height });
+    _ = c.BitBlt(item.hDC, r.left, r.top, width, height, memory, 0, 0, c.SRCCOPY);
+    return true;
+}
+fn paintButton(b: *const Button, item: *const c.DRAWITEMSTRUCT, dc: c.HDC, r: c.RECT) void {
     const disabled = (item.itemState & c.ODS_DISABLED) != 0;
     const pressed = (item.itemState & c.ODS_SELECTED) != 0;
     const focus = (item.itemState & c.ODS_FOCUS) != 0;
@@ -251,7 +278,6 @@ pub fn drawButton(item: *const c.DRAWITEMSTRUCT) bool {
         _ = c.InflateRect(&focus_rect, -4, -4);
         _ = c.DrawFocusRect(dc, &focus_rect);
     }
-    return true;
 }
 const IconPainter = struct {
     g: *Graphics,

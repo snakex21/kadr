@@ -1131,10 +1131,10 @@ fn canvasProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
             s.refreshView(true);
             return 0;
         },
-        c.WM_PAINT => {
-            var ps: c.PAINTSTRUCT = undefined;
-            const dc = c.BeginPaint(hwnd, &ps);
-            defer _ = c.EndPaint(hwnd, &ps);
+        c.WM_PAINT, c.WM_PRINTCLIENT => {
+            var painting = theme.Paint.begin(hwnd, msg, wp);
+            defer painting.end();
+            const dc = painting.dc;
             var rect: c.RECT = undefined;
             _ = c.GetClientRect(hwnd, &rect);
             const memory = c.CreateCompatibleDC(dc);
@@ -1289,12 +1289,26 @@ fn paletteProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.
     const size = 26;
     const gap = 6;
     switch (msg) {
-        c.WM_PAINT => {
-            var ps: c.PAINTSTRUCT = undefined;
-            const dc = c.BeginPaint(hwnd, &ps);
-            defer _ = c.EndPaint(hwnd, &ps);
+        c.WM_ERASEBKGND => return 1,
+        c.WM_PAINT, c.WM_PRINTCLIENT => {
+            var painting = theme.Paint.begin(hwnd, msg, wp);
+            defer painting.end();
             var rect: c.RECT = undefined;
             _ = c.GetClientRect(hwnd, &rect);
+            if (rect.right <= 0 or rect.bottom <= 0) return 0;
+            // Off-screen, so the swatches never flash behind the fill.
+            const memory = c.CreateCompatibleDC(painting.dc);
+            defer if (memory != null) {
+                _ = c.DeleteDC(memory);
+            };
+            const bitmap = if (memory != null) c.CreateCompatibleBitmap(painting.dc, rect.right, rect.bottom) else null;
+            const old = if (bitmap != null) c.SelectObject(memory, bitmap) else null;
+            defer if (bitmap != null) {
+                _ = c.BitBlt(painting.dc, 0, 0, rect.right, rect.bottom, memory, 0, 0, c.SRCCOPY);
+                _ = c.SelectObject(memory, old);
+                _ = c.DeleteObject(bitmap);
+            };
+            const dc = if (bitmap != null) memory else painting.dc;
             ui.fill(dc, rect, ui.shell);
             for (palette, 0..) |color, index| {
                 const i: i32 = @intCast(index);
@@ -1326,10 +1340,10 @@ fn paletteProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.
 
 // ---------------------------------------------------------------- window
 
-fn paintWindow(s: *State) void {
-    var ps: c.PAINTSTRUCT = undefined;
-    const dc = c.BeginPaint(s.hwnd, &ps);
-    defer _ = c.EndPaint(s.hwnd, &ps);
+fn paintWindow(s: *State, msg: c.UINT, wp: c.WPARAM) void {
+    var painting = theme.Paint.begin(s.hwnd, msg, wp);
+    defer painting.end();
+    const dc = painting.dc;
     var r: c.RECT = undefined;
     _ = c.GetClientRect(s.hwnd, &r);
     ui.fill(dc, r, ui.shell);
@@ -1368,8 +1382,8 @@ fn windowProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.S
             return 0;
         },
         c.WM_ERASEBKGND => return 1,
-        c.WM_PAINT => {
-            paintWindow(s);
+        c.WM_PAINT, c.WM_PRINTCLIENT => {
+            paintWindow(s, msg, wp);
             return 0;
         },
         c.WM_DRAWITEM => {

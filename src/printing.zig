@@ -392,8 +392,8 @@ fn windowProc(hwnd: c.HWND, message: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callcon
             return 0;
         },
         c.WM_ERASEBKGND => return 1,
-        c.WM_PAINT => {
-            paint(state);
+        c.WM_PAINT, c.WM_PRINTCLIENT => {
+            paint(state, message, wp);
             return 0;
         },
         c.WM_NCPAINT, c.WM_NCACTIVATE => {
@@ -1268,10 +1268,10 @@ fn moveDrag(state: *State, point: c.POINT) void {
     refresh(state);
 }
 
-fn paint(state: *State) void {
-    var ps: c.PAINTSTRUCT = undefined;
-    const dc = c.BeginPaint(state.hwnd, &ps);
-    defer _ = c.EndPaint(state.hwnd, &ps);
+fn paint(state: *State, msg: c.UINT, wp: c.WPARAM) void {
+    var painting = theme.Paint.begin(state.hwnd, msg, wp);
+    defer painting.end();
+    const dc = painting.dc;
     if (dc == null) return;
     var client: c.RECT = undefined;
     _ = c.GetClientRect(state.hwnd, &client);

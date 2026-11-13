@@ -1323,11 +1323,12 @@ fn fill(dc: c.HDC, rect: *const c.RECT, color: u32) void {
     _ = c.FillRect(dc, rect, brush);
     _ = c.DeleteObject(brush);
 }
-fn paint() void {
+fn paint(msg: c.UINT, wp: c.WPARAM) void {
     const paint_started = if (profile_started != 0 or profile_view) counter() else 0;
-    var ps: c.PAINTSTRUCT = undefined;
-    const target = c.BeginPaint(window, &ps);
-    defer _ = c.EndPaint(window, &ps);
+    var painting = theme.Paint.begin(window, msg, wp);
+    defer painting.end();
+    const target = painting.dc;
+    const ps = painting.ps;
     var client: c.RECT = undefined;
     _ = c.GetClientRect(window, &client);
     if (client.right <= 0 or client.bottom <= 0) return;
@@ -1462,8 +1463,8 @@ fn wndProc(hwnd: c.HWND, msg: c.UINT, wp: c.WPARAM, lp: c.LPARAM) callconv(.Stdc
             return 0;
         },
         c.WM_ERASEBKGND => return 1,
-        c.WM_PAINT => {
-            paint();
+        c.WM_PAINT, c.WM_PRINTCLIENT => {
+            paint(msg, wp);
             return 0;
         },
         c.WM_NCPAINT, c.WM_NCACTIVATE => {
