@@ -1,4 +1,4 @@
-[English](README.md) | **Polski**
+[English](README.md) | **Polski** | [Español](README.es.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [Português](README.pt.md) | [Русский](README.ru.md) | [Українська](README.uk.md) | [Italiano](README.it.md) | [Nederlands](README.nl.md) | [Čeština](README.cs.md) | [Magyar](README.hu.md) | [Română](README.ro.md) | [Türkçe](README.tr.md) | [Ελληνικά](README.el.md) | [العربية](README.ar.md) | [עברית](README.he.md) | [हिन्दी](README.hi.md) | [বাংলা](README.bn.md) | [اردو](README.ur.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Bahasa Indonesia](README.id.md) | [Tiếng Việt](README.vi.md) | [ไทย](README.th.md) | [فارسی](README.fa.md) | [தமிழ்](README.ta.md) | [తెలుగు](README.te.md) | [मराठी](README.mr.md)
 
 # Kadr
 
@@ -15,7 +15,7 @@ Kadr to natywna aplikacja Win32/GDI+ napisana w [Zigu](https://ziglang.org/). Be
 - [Pobieranie / instalacja](#pobieranie--instalacja)
 - [Użytkowanie](#użytkowanie)
 - [Skróty klawiszowe](#skróty-klawiszowe)
-- [Edytor](#edytor)
+- [Edytor](#edytor-1)
 - [Drukowanie](#drukowanie)
 - [Motywy](#motywy)
 - [Ustawienia (Kadr.ini)](#ustawienia-kadrini)
