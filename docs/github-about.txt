@@ -1,0 +1,7 @@
+Repository: https://github.com/snakex21/kadr
+
+Description (GitHub "About", <= 350 characters):
+Tiny portable photo viewer & editor for Windows XP to 11 - one Kadr.exe under 1 MB, no installer. Zoom, slideshow, crop with live frame, pen/highlighter/shapes/text, adjustments, print preview (fit/fill/stretch), export, DjVu/TIFF/PSD/QOI and more, light/dark/auto theme, 30 languages. Native Zig + Win32/GDI+, GPL-3.0.
+
+Suggested topics:
+image-viewer, photo-viewer, image-editor, windows, windows-xp, win32, gdiplus, zig, portable, lightweight, retro-computing, djvu, printing, dark-mode, i18n, gpl3
