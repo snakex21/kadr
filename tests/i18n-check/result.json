@@ -13,7 +13,9 @@
         "GetModuleFileNameW",
         "GetModuleHandleW",
         "GetPrivateProfileStringW",
+        "GetProcessHeap",
         "GetUserDefaultUILanguage",
+        "HeapAlloc",
         "WritePrivateProfileStringW"
       ],
       "USER32.dll": [
@@ -54,8 +56,10 @@
         "GetModuleFileNameW",
         "GetModuleHandleW",
         "GetPrivateProfileStringW",
+        "GetProcessHeap",
         "GetStdHandle",
         "GetUserDefaultUILanguage",
+        "HeapAlloc",
         "WriteFile",
         "WritePrivateProfileStringW"
       ],

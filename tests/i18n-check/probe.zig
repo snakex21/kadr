@@ -28,8 +28,7 @@ fn snapshot() void {
     wide("filter", filter);
     print("open_utf8={s}\n", .{i18n.utf8("Otwórz")});
     print("catalog_entries={d}\n", .{translations.entries.len});
-    // Compare selected UTF-16 against runtime conversion only in the test EXE.
-    // Production L uses no conversion or allocation at runtime.
+    // Compare the cached UTF-16 from L against an independent std conversion.
     var converted: [8192]u16 = undefined;
     var valid = true;
     inline for (translations.entries) |entry| {

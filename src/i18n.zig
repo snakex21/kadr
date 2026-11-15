@@ -35,26 +35,239 @@ fn entryIndex(comptime source: []const u8) ?usize {
     return null;
 }
 
-fn wideTexts(comptime index: usize) [languages.count][:0]const u16 {
-    @setEvalBranchQuota(2_000_000);
-    var result: [languages.count][:0]const u16 = undefined;
-    for (translations.entries[index].text, 0..) |text, language| result[language] = w.L(text);
-    return result;
+/// Catalog storage. Every distinct catalog text is stored once (entries share
+/// most texts through the vocabulary) in a compact single-byte form of UTF-16:
+///   0x00–0x7F (except 0x01)  the ASCII character itself (NUL, \t, \n included)
+///   0x80–0xFF                base + (byte − 0x80): a 128-character window of
+///                            the language that first used the text
+///   0x01 lo hi               one literal UTF-16 unit (any other character,
+///                            surrogate halves included)
+/// Most texts cost one byte per character (UTF-8 needs 2–3 bytes outside
+/// ASCII). A u16 text id per entry and language and a u32 start per text
+/// (offset | window language << 27) index the pool. Texts are widened lazily.
+pub const escape: u8 = 0x01;
+/// Per-language window start, chosen to cover the most characters of that
+/// language's texts (tests/i18n-check measures the catalog; any value works).
+pub const window_bases = [languages.count]u16{ 0x00fd, 0x1fa7, 0x0080, 0x0080, 0x0080, 0x0080, 0x03d2, 0x03d8, 0x1fa7, 0x1fa7, 0x00e1, 0x00d2, 0x0084, 0x00e0, 0x034f, 0x05d2, 0x056b, 0x08e5, 0x094e, 0x0609, 0x5392, 0x304a, 0xc726, 0x1fa7, 0x1e78, 0x0dcd, 0x0607, 0x0b4e, 0x0bce, 0x08f3 };
+const offset_bits = 27;
+const offset_mask: u32 = (1 << offset_bits) - 1;
+
+/// Comptime encoder; returns the encoded length written to `out`.
+fn encodeInto(comptime text: []const u8, comptime base: u16, out: []u8) usize {
+    @setEvalBranchQuota(200_000_000);
+    var used: usize = 0;
+    var i: usize = 0;
+    while (i < text.len) {
+        const lead = text[i];
+        if (lead < 0x80) {
+            if (lead == escape) {
+                out[used..][0..3].* = .{ escape, escape, 0 };
+                used += 3;
+            } else {
+                out[used] = lead;
+                used += 1;
+            }
+            i += 1;
+            continue;
+        }
+        // Hand-decoded and checked: far cheaper at comptime than std.unicode.
+        const size: usize = if (lead < 0xe0) 2 else if (lead < 0xf0) 3 else 4;
+        if (lead < 0xc2 or lead > 0xf4 or i + size > text.len) @compileError("catalog text is not valid UTF-8: " ++ text);
+        var cp: u32 = lead & (@as(u8, 0x7f) >> @intCast(size));
+        for (text[i + 1 .. i + size]) |byte| {
+            if (byte & 0xc0 != 0x80) @compileError("catalog text is not valid UTF-8: " ++ text);
+            cp = (cp << 6) | (byte & 0x3f);
+        }
+        i += size;
+        if (cp >= base and cp < @as(u32, base) + 0x80 and cp < 0x10000 and (cp < 0xd800 or cp > 0xdfff)) {
+            out[used] = @intCast(0x80 + (cp - base));
+            used += 1;
+        } else if (cp >= 0x10000) {
+            const high: u16 = @intCast(0xd800 + ((cp - 0x10000) >> 10));
+            const low: u16 = @intCast(0xdc00 + ((cp - 0x10000) & 0x3ff));
+            out[used..][0..6].* = .{ escape, @truncate(high), @intCast(high >> 8), escape, @truncate(low), @intCast(low >> 8) };
+            used += 6;
+        } else {
+            out[used..][0..3].* = .{ escape, @truncate(cp), @intCast(cp >> 8) };
+            used += 3;
+        }
+    }
+    return used;
 }
 
-/// Lookup is comptime; only indexing constant UTF-16 data happens at runtime.
+/// Comptime-encoded form of `text` with a given window (used by tests).
+pub fn encode(comptime text: []const u8, comptime base: u16) []const u8 {
+    return comptime blk: {
+        var buffer: [text.len * 3 / 2 + 3]u8 = undefined;
+        const n = encodeInto(text, base, &buffer);
+        const result = buffer[0..n].*;
+        break :blk &result;
+    };
+}
+
+const Catalog = struct { pool: []const u8, starts: []const u32, ids: []const [languages.count]u16 };
+pub const catalog: Catalog = blk: {
+    @setEvalBranchQuota(200_000_000);
+    const entries = translations.entries;
+    const max_texts = entries.len * languages.count;
+    var table_len: usize = 1;
+    while (table_len < 2 * max_texts) table_len *= 2;
+    if (max_texts >= 0xffff) @compileError("too many catalog texts for u16 ids");
+    var upper: usize = 0;
+    for (entries) |entry| {
+        for (entry.text) |text| upper += text.len * 3 / 2 + 3;
+    }
+    var pool: [upper]u8 = undefined;
+    var starts: [max_texts + 1]u32 = undefined;
+    var texts: [max_texts][]const u8 = undefined;
+    var table = [_]u16{0} ** table_len;
+    var ids: [entries.len][languages.count]u16 = undefined;
+    var count: usize = 0;
+    var used: usize = 0;
+    for (entries, 0..) |entry, entry_index| {
+        for (entry.text, 0..) |text, language| {
+            var hash: u32 = 2166136261;
+            for (text) |byte| hash = (hash ^ byte) *% 16777619;
+            var slot: usize = hash & (table_len - 1);
+            ids[entry_index][language] = while (true) : (slot = (slot + 1) & (table_len - 1)) {
+                const known = table[slot];
+                if (known == 0) {
+                    table[slot] = count + 1;
+                    texts[count] = text;
+                    starts[count] = used | (language << offset_bits);
+                    used += encodeInto(text, window_bases[language], pool[used..]);
+                    count += 1;
+                    break count - 1;
+                }
+                if (std.mem.eql(u8, texts[known - 1], text)) break known - 1;
+            };
+        }
+    }
+    if (used > offset_mask) @compileError("catalog pool too large");
+    starts[count] = used;
+    const pool_final = pool[0..used].*;
+    const starts_final = starts[0 .. count + 1].*;
+    const ids_final = ids;
+    break :blk .{ .pool = &pool_final, .starts = &starts_final, .ids = &ids_final };
+};
+
+pub const Packed = struct { bytes: []const u8, base: u16 };
+
+/// The compact text of one entry in one language.
+pub fn catalogText(entry_index: usize, language: usize) Packed {
+    const id = catalog.ids[entry_index][language];
+    const start = catalog.starts[id];
+    return .{
+        .bytes = catalog.pool[start & offset_mask .. catalog.starts[id + 1] & offset_mask],
+        .base = window_bases[start >> offset_bits],
+    };
+}
+
+/// Number of UTF-16 units in a compact text.
+pub fn wideLength(text: Packed) usize {
+    var n: usize = 0;
+    var i: usize = 0;
+    while (i < text.bytes.len) : (n += 1) i += if (text.bytes[i] == escape) 3 else 1;
+    return n;
+}
+
+/// Decodes a compact text into `out` (wideLength units).
+pub fn decode(text: Packed, out: []u16) void {
+    var n: usize = 0;
+    var i: usize = 0;
+    while (i < text.bytes.len) : (n += 1) {
+        const byte = text.bytes[i];
+        if (byte == escape) {
+            out[n] = @as(u16, text.bytes[i + 1]) | (@as(u16, text.bytes[i + 2]) << 8);
+            i += 3;
+        } else {
+            out[n] = if (byte < 0x80) byte else text.base +% (byte - 0x80);
+            i += 1;
+        }
+    }
+}
+
+/// Decodes to a NUL-terminated UTF-16 copy on the process heap. Embedded NULs
+/// (file filters) are kept and counted in the length. The copy is never freed:
+/// callers may keep the pointer for the life of the process.
+pub fn widen(text: Packed) [:0]const u16 {
+    const n = wideLength(text);
+    const memory = c.HeapAlloc(c.GetProcessHeap(), 0, (n + 1) * 2) orelse return w.L("");
+    const buffer: [*]u16 = @ptrCast(@alignCast(memory));
+    decode(text, buffer[0..n]);
+    buffer[n] = 0;
+    return buffer[0..n :0];
+}
+
+/// UTF-8 heap copy of a UTF-16 text (for i18n.utf8); never freed.
+fn narrow(wide: []const u16) []const u8 {
+    var n: usize = 0;
+    var i: usize = 0;
+    while (i < wide.len) : (i += 1) {
+        const unit = wide[i];
+        n += if (unit < 0x80) @as(usize, 1) else if (unit < 0x800) @as(usize, 2) else if (unit >= 0xd800 and unit < 0xdc00 and i + 1 < wide.len) blk: {
+            i += 1;
+            break :blk 4;
+        } else 3;
+    }
+    const memory = c.HeapAlloc(c.GetProcessHeap(), 0, @max(n, 1)) orelse return "";
+    const buffer: [*]u8 = @ptrCast(memory);
+    const written = std.unicode.utf16leToUtf8(buffer[0..n], wide) catch return "";
+    return buffer[0..written];
+}
+
+const Slot = struct {
+    wide: ?[*:0]const u16 = null,
+    len: usize = 0,
+    language: usize = languages.count,
+    narrow: ?[*]const u8 = null,
+    narrow_len: usize = 0,
+};
+
+/// One conversion cache per catalog entry the program uses, shared by all
+/// call sites of the same source.
+fn Cache(comptime index: usize) type {
+    return struct {
+        const entry = index;
+        var slot: Slot = .{};
+    };
+}
+
+/// Each entry is converted once, on first use. The language is fixed for the
+/// process after init() (a new choice needs a restart), so cached pointers stay
+/// valid forever; a pre-init (English) conversion is simply replaced, never
+/// freed. UI thread only: the loader thread never touches the catalog, and the
+/// EXE is built with -fsingle-threaded.
+fn cached(slot: *Slot, entry_index: usize) [:0]const u16 {
+    if (slot.language == current_language) {
+        if (slot.wide) |wide| return wide[0..slot.len :0];
+    }
+    const wide = widen(catalogText(entry_index, current_language));
+    slot.* = .{ .wide = wide.ptr, .len = wide.len, .language = current_language };
+    return wide;
+}
+
+fn cachedUtf8(slot: *Slot, entry_index: usize) []const u8 {
+    const wide = cached(slot, entry_index);
+    if (slot.narrow) |text| return text[0..slot.narrow_len];
+    const text = narrow(wide);
+    slot.narrow = text.ptr;
+    slot.narrow_len = text.len;
+    return text;
+}
+
+/// Lookup is comptime; the selected text is widened once at runtime.
 /// The unknown-source branch never reads runtime state, so class names can be
 /// used in global constants. Slice lengths include embedded NULs (file filters).
 pub fn L(comptime source: []const u8) [:0]const u16 {
     if (comptime entryIndex(source)) |index| {
-        const wide = comptime wideTexts(index);
-        return wide[current_language];
+        return cached(&Cache(index).slot, index);
     }
     return w.L(source);
 }
 
 pub fn utf8(comptime source: []const u8) []const u8 {
-    if (comptime entryIndex(source)) |index| return translations.entries[index].text[current_language];
+    if (comptime entryIndex(source)) |index| return cachedUtf8(&Cache(index).slot, index);
     return source;
 }
 

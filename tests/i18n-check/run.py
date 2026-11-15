@@ -144,8 +144,9 @@ def audit(path):
     assert (h.MajorSubsystemVersion, h.MinorSubsystemVersion) == (5, 1)
     assert h.DATA_DIRECTORY[9].VirtualAddress == 0, 'TLS unexpectedly added'
     # Deliberately exhaustive for this module, not just a modern-API denylist.
+    # HeapAlloc/GetProcessHeap: L() widens each UTF-8 catalog text once (XP-safe).
     allowed = {
-        'KERNEL32.dll': set('CloseHandle CreateFileW ExitProcess GetCommandLineW GetCurrentProcess GetCurrentProcessId GetCurrentThreadId GetLastError GetModuleFileNameW GetModuleHandleW GetPrivateProfileStringW GetStdHandle GetSystemTimeAsFileTime GetTickCount GetUserDefaultUILanguage QueryPerformanceCounter WriteFile WritePrivateProfileStringW'.split()),
+        'KERNEL32.dll': set('CloseHandle CreateFileW ExitProcess GetCommandLineW GetCurrentProcess GetCurrentProcessId GetCurrentThreadId GetLastError GetModuleFileNameW GetModuleHandleW GetPrivateProfileStringW GetProcessHeap GetStdHandle GetSystemTimeAsFileTime GetTickCount GetUserDefaultUILanguage HeapAlloc QueryPerformanceCounter WriteFile WritePrivateProfileStringW'.split()),
         'USER32.dll': set('CreateWindowExW DialogBoxIndirectParamW DrawFocusRect DrawTextW EndDialog FillRect GetSysColor GetSysColorBrush GetWindowLongW MapDialogRect MessageBoxW SendMessageW SetWindowLongW SetWindowTextW'.split()),
         'GDI32.dll': set('CreateFontW DeleteObject SelectObject SetBkMode SetTextColor'.split()),
     }
