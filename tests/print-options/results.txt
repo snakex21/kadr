@@ -66,3 +66,13 @@ All 45 tests passed.
 20/21 test.preview and DC transformations preserve the same physical arrangement... OK
 21/21 test.stretch covers exactly the printable area, portrait, landscape and odd media... OK
 All 21 tests passed.
+print-options harness: default printer absent (page from paper list)
+PASS: preview 0 restored fit, saved fill
+PASS: preview 1 restored fill, saved stretch
+PASS: preview 2 restored stretch, saved actual
+PASS: preview 3 restored actual, saved percent
+PASS: preview 4 restored percent, saved width
+PASS: preview 5 restored width, saved height
+PASS: preview 6 restored height, saved fit
+PASS: preview 7 restored fit, saved fit
+PASS: 191 checks; every scale mode restored, laid out and persisted; no print job.

@@ -17,4 +17,11 @@ if errorlevel 1 exit /b 1
 if errorlevel 1 exit /b 1
 python ..\tests\print-options\audit.py
 if errorlevel 1 exit /b 1
-echo PASS: printing/layout tests and dedicated x86-XP preview harness build.
+rem End-to-end: printing.show() with Kadr.ini [Print] Scale restore/persist for every mode. Never prints.
+..\tests\print-options\Kadr-print-options.exe > ..\tests\print-options\harness.log 2>&1
+set "RESULT=%ERRORLEVEL%"
+type ..\tests\print-options\harness.log
+type ..\tests\print-options\harness.log >> ..\tests\print-options\results.txt
+del ..\tests\print-options\harness.log
+if not "%RESULT%"=="0" exit /b %RESULT%
+echo PASS: printing/layout tests and the x86-XP print-options harness.

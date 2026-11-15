@@ -6,6 +6,7 @@ import ctypes as C
 from ctypes import wintypes as W
 import hashlib
 import json
+import re
 from pathlib import Path
 import shutil
 import struct
@@ -38,6 +39,19 @@ U.GetDC.argtypes = [W.HWND]
 U.GetDC.restype = W.HDC
 U.ReleaseDC.argtypes = [W.HWND, W.HDC]
 U.PrintWindow.argtypes = [W.HWND, W.HDC, W.UINT]
+U.GetMenuItemCount.argtypes = [W.HMENU]
+U.GetMenuItemID.argtypes = [W.HMENU, C.c_int]
+U.GetMenuItemID.restype = W.UINT
+U.GetMenuStringW.argtypes = [W.HMENU, W.UINT, W.LPWSTR, C.c_int, W.UINT]
+U.GetMenuState.argtypes = [W.HMENU, W.UINT, W.UINT]
+U.GetMenuState.restype = W.UINT
+U.GetSubMenu.argtypes = [W.HMENU, C.c_int]
+U.GetSubMenu.restype = W.HMENU
+U.AttachThreadInput.argtypes = [W.DWORD, W.DWORD, W.BOOL]
+U.AttachThreadInput.restype = W.BOOL
+U.SetFocus.argtypes = [W.HWND]
+U.SetFocus.restype = W.HWND
+K.GetCurrentThreadId.restype = W.DWORD
 CALLBACK = C.WINFUNCTYPE(W.BOOL, W.HWND, W.LPARAM)
 WM_COMMAND, WM_CLOSE, BM_CLICK = 0x111, 0x10, 0xF5
 results = {}
@@ -188,6 +202,165 @@ def capture(hwnd, destination):
         U.ReleaseDC(hwnd, dc)
 
 
+def text(hwnd):
+    # WM_GETTEXT is marshalled across processes (GetWindowText is not for controls).
+    buf = C.create_unicode_buffer(1024)
+    U.SendMessageW(hwnd, 0xD, len(buf), C.cast(buf, C.c_void_p).value)
+    return buf.value
+
+
+def width(hwnd):
+    r = W.RECT()
+    U.GetWindowRect(hwnd, C.byref(r))
+    return r.right - r.left
+
+
+# Main toolbar, left to right: Open, Previous, Next, Fit, Zoom out, zoom field,
+# Apply zoom, Zoom in, Rotate, Edytuj, Print, Save, Full screen, Więcej (…).
+TOOLBAR_ROW = [100, 101, 102, 103, 105, 901, 116, 106, 107, 129, 109, 118, 110, 123]
+# 1:1 and slideshow live only in the Więcej menu; Pause only for animations.
+OFF_TOOLBAR = [104, 114, 108]
+# Unscaled widths of the text-labelled buttons (Open, Fit, Edytuj, Print).
+LABELLED_WIDE = {100: 100, 103: 100, 129: 96, 109: 96}
+LABELLED_COMPACT = {100: 40, 103: 36, 129: 40, 109: 40}
+
+
+def toolbar_row(main, labelled):
+    boxes = []
+    for ident in TOOLBAR_ROW:
+        h = U.GetDlgItem(main, ident)
+        assert h and U.IsWindowVisible(h), ('missing toolbar control', ident)
+        r = W.RECT()
+        U.GetWindowRect(h, C.byref(r))
+        boxes.append((ident, r.left, r.top, r.right, r.bottom))
+    for a, b in zip(boxes, boxes[1:]):
+        assert a[3] <= b[1], ('toolbar order/overlap', a, b)
+        assert abs((a[2] + a[4]) - (b[2] + b[4])) <= 2, ('toolbar not one row', a, b)
+    for ident in OFF_TOOLBAR:
+        h = U.GetDlgItem(main, ident)
+        assert h, ('control destroyed', ident)
+        assert not U.IsWindowVisible(h), ('control should not be on the toolbar', ident)
+    # Previous is always 36 px: use it as the DPI-virtualization unit.
+    unit = width(U.GetDlgItem(main, 101)) / 36
+    for ident, expected in labelled.items():
+        actual = width(U.GetDlgItem(main, ident))
+        assert abs(actual - expected * unit) <= 2, ('labelled button width', ident, actual, expected * unit)
+
+
+# Więcej (…) menu: command id -> required accelerator text ('' = none shown).
+MORE_MENU = {
+    100: '\tCtrl+O', 118: '\tCtrl+S', 117: '\tCtrl+Shift+S', 126: '', 119: '\tCtrl+C',
+    127: '\tCtrl+Shift+C', 120: '\tF2', 121: '\tDelete', 124: '\tShift+Delete', 122: '',
+    128: '', 129: '\tCtrl+E', 107: '\tR', 130: '\tL', 104: '\t1', 114: '\tF5',
+    109: '\tCtrl+P', 110: '\tF11', 111: '\tF1', 134: '', 125: '',
+}
+THEME_MENU = [131, 132, 133]
+MF_GRAYED, MF_DISABLED, MF_POPUP = 0x1, 0x2, 0x10
+
+
+def menu_items(menu):
+    items = {}
+    for pos in range(U.GetMenuItemCount(menu)):
+        ident = U.GetMenuItemID(menu, pos)
+        buf = C.create_unicode_buffer(256)
+        U.GetMenuStringW(menu, pos, buf, len(buf), 0x400)  # MF_BYPOSITION
+        state = U.GetMenuState(menu, pos, 0x400)
+        if ident == 0xFFFFFFFF:
+            items[('popup', buf.value)] = (U.GetSubMenu(menu, pos), state)
+        elif ident:
+            items[ident] = (buf.value, state)
+    return items
+
+
+def more_menu(pid, main):
+    send_command(main, 123)
+    popup = wait(lambda: next((h for h in windows(pid) if cls(h) == '#32768'), None), 'Więcej popup menu')
+    try:
+        menu = wait(lambda: U.SendMessageW(popup, 0x1E1, 0, 0), 'MN_GETHMENU')  # MN_GETHMENU
+        items = menu_items(menu)
+        for ident, accel in MORE_MENU.items():
+            assert ident in items, ('missing Więcej menu item', ident)
+            label, state = items[ident]
+            assert label.strip(), ('empty menu label', ident)
+            if accel:
+                assert label.endswith(accel), ('menu shortcut text', ident, label, accel)
+            # An image is shown and the folder has two files: all items usable.
+            assert not state & (MF_GRAYED | MF_DISABLED), ('menu item disabled', ident, label)
+        popups = [v[0] for k, v in items.items() if isinstance(k, tuple)]
+        assert len(popups) == 1, ('expected one submenu (Motyw)', list(items))
+        themes = menu_items(popups[0])
+        assert sorted(k for k in themes if isinstance(k, int)) == THEME_MENU, ('theme submenu', themes)
+        checked = [k for k in THEME_MENU if themes[k][1] & 0x8]  # MF_CHECKED
+        assert len(checked) == 1, ('exactly one theme is checked', themes)
+        return items
+    finally:
+        U.SendMessageW(main, 0x1F, 0, 0)  # WM_CANCELMODE ends menu tracking
+        try:
+            wait(lambda: not U.IsWindowVisible(popup), 'Więcej menu closes', 3)
+        except AssertionError:
+            U.PostMessageW(popup, 0x100, 0x1B, 0)
+            wait(lambda: not U.IsWindowVisible(popup), 'Więcej menu closes after Esc')
+
+
+def key(main, vk, ctrl=False):
+    # Queue-local modifier state for this disposable process only; never
+    # SendInput/keybd_event (same approach as save_delete.py).
+    own = K.GetCurrentThreadId()
+    target = U.GetWindowThreadProcessId(main, None)
+    old = (C.c_ubyte * 256)()
+    assert U.GetKeyboardState(old)
+    assert U.AttachThreadInput(own, target, True)
+    try:
+        U.SetFocus(main)
+        state = (C.c_ubyte * 256)()
+        if ctrl:
+            state[0x11] = state[0xA2] = 0x80
+        assert U.SetKeyboardState(state)
+        assert U.PostMessageW(main, 0x100, vk, 1)
+        time.sleep(.35)
+    finally:
+        U.SetKeyboardState((C.c_ubyte * 256)())
+        U.AttachThreadInput(own, target, False)
+        U.SetKeyboardState(old)
+
+
+def dimensions(main):
+    found = re.search(r'(\d+) × (\d+) px', text(U.GetDlgItem(main, 904)))
+    assert found, ('status without dimensions', text(U.GetDlgItem(main, 904)))
+    return int(found[1]), int(found[2])
+
+
+def shortcuts(pid, main):
+    status = U.GetDlgItem(main, 904)
+    wait(lambda: 'px' in text(status), 'status shows the image')
+    fitted = text(status)
+    key(main, 0x31)  # 1: actual size (menu only)
+    wait(lambda: text(status) != fitted and '100' in text(status), '1 switches to actual size')
+    key(main, 0x24)  # Home: fit again
+    wait(lambda: text(status) == fitted, 'Home returns to fit')
+    w0, h0 = dimensions(main)
+    assert w0 != h0, 'need a non-square image to observe rotation'
+    key(main, 0x52)  # R
+    wait(lambda: dimensions(main) == (h0, w0), 'R rotates right')
+    key(main, 0x4C)  # L (menu only)
+    wait(lambda: dimensions(main) == (w0, h0), 'L rotates back left')
+    key(main, 0x4C)
+    wait(lambda: dimensions(main) == (h0, w0), 'L rotates left')
+    key(main, 0x52)
+    wait(lambda: dimensions(main) == (w0, h0), 'R restores orientation')
+    slide = U.GetDlgItem(main, 114)
+    idle = text(slide)
+    key(main, 0x74)  # F5: slideshow (menu only)
+    wait(lambda: text(slide) != idle, 'F5 starts slideshow')
+    key(main, 0x1B)  # Esc stops it
+    wait(lambda: text(slide) == idle, 'Esc stops slideshow')
+    key(main, 0x45, ctrl=True)  # Ctrl+E: editor
+    editor = wait(lambda: next((h for h in windows(pid) if cls(h) == 'KadrEditorWindow'), None), 'Ctrl+E opens the editor')
+    U.PostMessageW(editor, WM_CLOSE, 0, 0)
+    wait(lambda: not U.IsWindow(editor), 'unchanged editor closes')
+    wait(lambda: U.IsWindowEnabled(main), 'main window enabled after editor')
+
+
 def run():
     parser = argparse.ArgumentParser()
     parser.add_argument('--save-only', action='store_true')
@@ -275,20 +448,22 @@ def run():
             assert int(count) >= 1, 'file not found in Windows Recycle Bin: ' + count
             results['recycle'] = 'PASS: file in Recycle Bin; navigated to ' + title(main)
             capture(main, OUT / 'toolbar.png')
-            # Smallest supported outer size; check controls for overlap.
+            # Wide window (client >= 1000 px): Open/Fit/Edit/Print carry text labels.
+            client = W.RECT()
+            U.GetClientRect(main, C.byref(client))
+            assert client.right >= 1000, ('default window is not wide', client.right)
+            toolbar_row(main, LABELLED_WIDE)
+            # Smallest supported outer size: icon-only, single row, no overlap.
             U.SetWindowPos(main, None, 0, 0, 800, 620, 0x16)
             time.sleep(.3)
-            controls = [U.GetDlgItem(main, x) for x in [100, 101, 102, 103, 104, 105, 901, 116, 106, 107, 118, 109, 108, 114, 110, 123]]
-            boxes = []
-            for h in controls:
-                assert h and U.IsWindowVisible(h), 'missing compact toolbar control'
-                r = W.RECT()
-                U.GetWindowRect(h, C.byref(r))
-                boxes.append((r.left, r.top, r.right, r.bottom))
-            for a, b in zip(boxes, boxes[1:]):
-                assert a[2] <= b[0], ('toolbar overlap', a, b)
+            toolbar_row(main, LABELLED_COMPACT)
             capture(main, OUT / 'toolbar-800.png')
-            results['toolbar'] = 'PASS: no overlap at 800px; screenshots saved'
+            results['toolbar'] = 'PASS: row order, Edytuj button, labels >=1000px, no overlap at 800px; 1:1/Pokaz/Pauza off the bar; screenshots saved'
+            items = more_menu(proc.pid, main)
+            results['more_menu'] = 'PASS: ' + ', '.join(str(ident) for ident in MORE_MENU)
+            results['menu_items'] = len(items)
+            shortcuts(proc.pid, main)
+            results['shortcuts'] = 'PASS: 1, Home, R, L, F5, Esc, Ctrl+E'
         assert hashlib.sha256((ROOT / 'tests/fixtures/01-krajobraz.png').read_bytes()).hexdigest() == fixture_hash
         results['fixtures'] = 'PASS: fixture original unchanged'
         results['work'] = str(work)

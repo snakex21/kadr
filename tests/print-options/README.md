@@ -8,16 +8,16 @@ From `src`:
 
 ```bat
 ..\tests\print-options\check.cmd
-..\tests\print-options\Kadr-print-options.exe
+..\tests\print-options\Kadr-print-options.exe --interactive
 ```
 
-The batch file builds/runs printing tests (including layout), runs standalone layout tests, builds only `tests/print-options/Kadr-print-options.exe`, then audits all three test PEs. `--test-no-exec` plus a separate native invocation avoids Zig 0.11's mixed-separator `BadPathName` launcher issue on this host. `-fsingle-threaded` is mandatory even for the standalone Zig test runner to avoid its SRW-lock imports.
+The batch file builds/runs printing tests (including layout), runs standalone layout tests, builds `tests/print-options/Kadr-print-options.exe` from `harness.zig`, audits all three test PEs, then runs the harness and appends its lines to `results.txt`. `--test-no-exec` plus a separate native invocation avoids Zig 0.11's mixed-separator `BadPathName` launcher issue on this host. `-fsingle-threaded` is mandatory even for the standalone Zig test runner to avoid its SRW-lock imports.
 
-The GUI EXE generates its own colored source in memory and opens **its own** print preview and owner. It scripts native control messages: Advanced expand/collapse, focused-button Enter, native Tab, own percentage, invalid blank percentage disabling Print, comma input, absolute X/Y, page-preview drag, Center, grayscale, Esc and owner restoration. It never invokes the Print command. `--interactive` leaves that dedicated test preview open for inspection; close it with Wróć/Esc afterward. The harness does not enumerate or manipulate existing application windows; its class lookup is process-ID checked.
+The harness (console EXE) generates its own 1600×900 source in memory, creates its own hidden owner and goes through the production `printing.show()` entry point: class registration, the silent default-printer query (PD_RETURNDEFAULT, no dialog), owner disabling and restoration, and Esc closing through the preview's own message loop. It chains eight previews through `Kadr.ini` `[Print] Scale` next to the EXE (created with `Language=pl`, deleted afterwards): an invalid saved value opens as Fit, and each preview must restore the mode saved by the previous one, walking Dopasuj (cały obraz) / Wypełnij (przytnij) / Rozciągnij (cała strona) / 100% (96 DPI) / Własny procent / Szerokość (mm) / Wysokość (mm). For every mode it checks the combo labels and order, the restored selection, Advanced value-field visibility and label, and the placement shown in the summary field (Fit keeps aspect inside the sheet, Fill keeps aspect and covers, Stretch fills the page, 100% and percent are 96 DPI, mm modes lock aspect). Own-value modes also get a value edit, a decimal comma, and a blank value that must keep the last placement and disable Print. Drag, Center, custom media and grayscale are covered by the printing.zig unit tests on a private window class. The harness never invokes the Print command and only looks for its own thread's preview window. `--interactive` opens one preview and leaves it for inspection; close it with Wróć/Esc.
 
 ## Coverage and artifacts
 
-- `results.txt`: printing suite and standalone layout results.
+- `results.txt`: printing suite, standalone layout results and the harness lines.
 - All 17 paper sizes and both orientations; distinct metric/inch photos; ISO B4/B5; DEVMODE paper codes, DMPAPER_USER tenths-mm bounds, orientation, dmScale=100, dmColor.
 - Custom media, 96-DPI percent, aspect-locked physical width/height, signed absolute physical-sheet X/Y, edge clipping/no intersection, drag grab-area recovery.
 - Asymmetric physical offsets, non-square printer DPI and common physical placement/clip transforms.

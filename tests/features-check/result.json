@@ -9,9 +9,12 @@
   "save_as": "PASS: rotated pixels; source unchanged",
   "save_rotation": "PASS: rotated dimensions and exact PNG pixels",
   "rename": "PASS: disk file, title, image pixels",
-  "folder": "PASS: Explorer shows kadr-fbccc4f8-plt_bfg2",
-  "recycle": "PASS: file in Recycle Bin; navigated to kadr-fbccc4f8-export.png — Kadr",
-  "toolbar": "PASS: no overlap at 800px; screenshots saved",
+  "folder": "PASS: Explorer shows kadr-c88cf51f-3q20j2mx",
+  "recycle": "PASS: file in Recycle Bin; navigated to kadr-c88cf51f-export.png — Kadr",
+  "toolbar": "PASS: row order, Edytuj button, labels >=1000px, no overlap at 800px; 1:1/Pokaz/Pauza off the bar; screenshots saved",
+  "more_menu": "PASS: 100, 118, 117, 126, 119, 127, 120, 121, 124, 122, 128, 129, 107, 130, 104, 114, 109, 110, 111, 134, 125",
+  "menu_items": 22,
+  "shortcuts": "PASS: 1, Home, R, L, F5, Esc, Ctrl+E",
   "fixtures": "PASS: fixture original unchanged",
-  "work": "C:\\Users\\ASRock\\AppData\\Local\\Temp\\kadr-fbccc4f8-plt_bfg2"
+  "work": "C:\\Users\\ASRock\\AppData\\Local\\Temp\\kadr-c88cf51f-3q20j2mx"
 }
