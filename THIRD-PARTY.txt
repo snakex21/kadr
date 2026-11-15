@@ -1,4 +1,4 @@
-Kadr 0.4 — GPL-3.0-or-later (pełny tekst w LICENSE)
+Kadr 0.4.1 — GPL-3.0-or-later (pełny tekst w LICENSE)
 Ikony interfejsu i znak Kadr są oryginalną grafiką projektu (src/ui.zig,
 tools/make_icon.py); nie wymagają zewnętrznych fontów ikon ani usług internetowych.
 Źródła aplikacji: src/. Kompilacja: build.cmd, Zig 0.11.0.
