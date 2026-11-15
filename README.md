@@ -28,7 +28,7 @@ Kadr is a native Win32/GDI+ application written in [Zig](https://ziglang.org/). 
 
 - **Viewer** — open photos, browse the folder (arrow keys, previous/next), slideshow, full screen, smooth zoom (fit, 1:1, mouse wheel at the cursor, typed values such as `125%`, `37,5%` or `200×`), panning, animated GIF playback, multi-page TIFF and DjVu, automatic EXIF orientation.
 - **Editor** — crop with a live frame and aspect presets (free, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 portrait/landscape); pen, highlighter, eraser, line, arrow, rectangle and text; undo/redo; rotate and flip; brightness, contrast, saturation and black & white. Changes stay in memory until you save.
-- **Printing** — live print preview with paper size, orientation, scale (Fit / Fill (crop) / Stretch (whole page) / 100% / custom % / width or height in mm), margins, position, colour or grayscale.
+- **Printing** — live print preview with paper size, orientation, scale (Fit (whole image) / Fill (crop) / Stretch (whole page) / 100% / custom % / width or height in mm), margins, position, colour or grayscale.
 - **File tools** — save (rotation), save as, export / compress (PNG, JPEG, BMP, TIFF, GIF) with resize and size estimate, copy image or path to the clipboard, rename, Recycle Bin or permanent delete, show in folder, set as desktop wallpaper.
 - **Formats** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (merged image), PBM/PGM/PPM/PNM, QOI.
 - **30 interface languages** — the Windows language is detected automatically (falls back to English) and can be changed from the menu; right-to-left layout for Arabic, Hebrew, Urdu and Persian.
@@ -162,7 +162,7 @@ Scale modes:
 | **Fit (whole image)** | The whole picture fits inside the margins; proportions are kept, white space may remain on two sides. |
 | **Fill (crop)** | The picture covers the whole printable area; proportions are kept and the overflowing edges are cropped. |
 | **Stretch (whole page)** | The picture is stretched to exactly the printable area — no white bars, but the proportions are **not** kept. |
-| **100% (96 DPI)** | One pixel = 1/96 inch. |
+| **100% · Actual size (96 DPI)** | One pixel = 1/96 inch. |
 | **Custom percentage** | 0.1–1000 % relative to 96 DPI (100% = the size above). |
 | **Width / height (mm)** | Exact physical width or height; the other side follows the proportions. |
 

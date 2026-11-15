@@ -28,7 +28,7 @@ Kadr è un’applicazione nativa Win32/GDI+ scritta in [Zig](https://ziglang.org
 
 - **Visualizzatore** — apertura delle foto, navigazione nella cartella (tasti freccia, precedente/successiva), presentazione, schermo intero, zoom fluido (adatta, 1:1, rotellina del mouse sul cursore, valori digitati come `125%`, `37,5%` o `200×`), spostamento della vista, riproduzione di GIF animate, TIFF e DjVu multipagina, orientamento EXIF automatico.
 - **Editor** — ritaglio con cornice in tempo reale e proporzioni predefinite (libera, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 verticale/orizzontale); penna, evidenziatore, gomma, linea, freccia, rettangolo e testo; annulla/ripeti; rotazione e riflessione; luminosità, contrasto, saturazione e bianco e nero. Le modifiche restano in memoria finché non salvi.
-- **Stampa** — anteprima di stampa in tempo reale con formato carta, orientamento, scala (Adatta / Riempi (ritaglia) / Estendi (pagina intera) / 100% / percentuale personalizzata / larghezza o altezza in mm), margini, posizione, colore o scala di grigi.
+- **Stampa** — anteprima di stampa in tempo reale con formato carta, orientamento, scala (Adatta (immagine intera) / Riempi (ritaglia) / Estendi (pagina intera) / 100% / percentuale personalizzata / larghezza o altezza in mm), margini, posizione, colore o scala di grigi.
 - **Strumenti per i file** — salva (rotazione), salva con nome, esporta / comprimi (PNG, JPEG, BMP, TIFF, GIF) con ridimensionamento e stima delle dimensioni, copia dell’immagine o del percorso negli appunti, rinomina, Cestino o eliminazione definitiva, mostra nella cartella, imposta come sfondo del desktop.
 - **Formati** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (immagine unita), PBM/PGM/PPM/PNM, QOI.
 - **30 lingue dell’interfaccia** — la lingua di Windows viene rilevata automaticamente (con ripiego sull’inglese) e si può cambiare dal menu; layout da destra a sinistra per arabo, ebraico, urdu e persiano.
@@ -46,7 +46,7 @@ Kadr è un’applicazione nativa Win32/GDI+ scritta in [Zig](https://ziglang.org
 
 ![Editor con cornice di ritaglio e disegni](../docs/screenshots/editor-crop.png)
 
-**Anteprima di stampa** in modalità *Stretch (whole page)* (Estendi: pagina intera):
+**Anteprima di stampa** in modalità *Estendi (pagina intera)*:
 
 ![Anteprima di stampa, modalità Estendi](../docs/screenshots/print-stretch.png)
 
@@ -121,15 +121,15 @@ Per aprire le immagini con un doppio clic, usa in Windows *Apri con → Scegli u
 | Scorciatoia | Azione |
 |---|---|
 | C | Ritaglia |
-| P | Pen (penna) |
-| H | Highlighter (evidenziatore) |
-| E | Eraser (gomma) |
-| L | Line (linea) |
-| A | Arrow (freccia) |
-| B | Rectangle (rettangolo) |
-| T | Text (testo) |
-| Ctrl+Z | Undo (annulla) |
-| Ctrl+Y o Ctrl+Shift+Z | Redo (ripeti) |
+| P | Penna |
+| H | Evidenziatore |
+| E | Gomma |
+| L | Linea |
+| A | Freccia |
+| B | Rettangolo |
+| T | Testo |
+| Ctrl+Z | Disfa |
+| Ctrl+Y o Ctrl+Shift+Z | Rifai |
 | Enter (strumento Ritaglia) o doppio clic | Taglia la parte scurita |
 | Enter / Esc (durante la digitazione del testo) | Conferma / annulla il testo |
 | Esc | Chiudi l’editor senza modifiche |
@@ -143,13 +143,13 @@ Per aprire le immagini con un doppio clic, usa in Windows *Apri con → Scegli u
 
 ## Editor
 
-Apri l’editor con **Edit** (Modifica; Ctrl+E). Tutte le modifiche restano in memoria; il file originale non viene toccato finché non salvi.
+Apri l’editor con **Modifica** (Ctrl+E). Tutte le modifiche restano in memoria; il file originale non viene toccato finché non salvi.
 
-- **Ritaglia** — una cornice in tempo reale con otto maniglie; trascina la cornice o le maniglie, digita X / Y / larghezza / altezza esatte in pixel oppure scegli una proporzione predefinita (libera, quadrato 1:1, 4:3, 3:4, 3:2 (4×6 orizzontale), 2:3, 16:9, A4 verticale, A4 orizzontale). L’area fuori dalla cornice viene scurita; **Ritaglia** (Enter) la taglia via e **Whole photo** (foto intera) reimposta la cornice.
+- **Ritaglia** — una cornice in tempo reale con otto maniglie; trascina la cornice o le maniglie, digita X / Y / larghezza / altezza esatte in pixel oppure scegli una proporzione predefinita (libera, quadrato 1:1, 4:3, 3:4, 3:2 (4×6 orizzontale), 2:3, 16:9, A4 verticale, A4 orizzontale). L’area fuori dalla cornice viene scurita; **Ritaglia** (Enter) la taglia via e **Foto intera** reimposta la cornice.
 - **Disegno** — penna, evidenziatore semitrasparente, gomma (cancella solo disegni e testo, mai la foto), linea retta, freccia, rettangolo e testo, con dieci colori e spessore regolabile.
 - **Immagine** — annulla / ripeti, rotazione di 90° a sinistra o a destra, riflessione orizzontale o verticale, ripristina tutto.
 - **Colore e luce** — luminosità, contrasto, saturazione e bianco e nero.
-- **Conclusione** — *Applica* riporta l’immagine modificata nel visualizzatore, *Save as…* (Salva con nome…) salva una copia con un nuovo nome, *Print…* (Stampa…) passa direttamente all’anteprima di stampa, *Annulla* (Esc) scarta le modifiche.
+- **Conclusione** — *Applica* riporta l’immagine modificata nel visualizzatore, *Salva con nome…* salva una copia con un nuovo nome, *Stampa…* passa direttamente all’anteprima di stampa, *Annulla* (Esc) scarta le modifiche.
 
 ## Stampa
 
@@ -159,9 +159,9 @@ Modalità di scala:
 
 | Modalità | Cosa fa |
 |---|---|
-| **Adatta** | L’intera immagine sta dentro i margini; le proporzioni sono mantenute e su due lati può restare dello spazio bianco. |
-| **Riempi / ritaglia** | L’immagine copre l’intera area stampabile; le proporzioni sono mantenute e i bordi in eccesso vengono ritagliati. |
-| **Stretch (whole page)** (Estendi: pagina intera) | L’immagine viene estesa esattamente sull’area stampabile — niente bande bianche, ma le proporzioni **non** sono mantenute. |
+| **Adatta (immagine intera)** | L’intera immagine sta dentro i margini; le proporzioni sono mantenute e su due lati può restare dello spazio bianco. |
+| **Riempi (ritaglia)** | L’immagine copre l’intera area stampabile; le proporzioni sono mantenute e i bordi in eccesso vengono ritagliati. |
+| **Estendi (pagina intera)** | L’immagine viene estesa esattamente sull’area stampabile — niente bande bianche, ma le proporzioni **non** sono mantenute. |
 | **100% · Dimensioni reali (96 DPI)** | Un pixel = 1/96 di pollice. |
 | **Percentuale personalizzata** | 0,1–1000 % rispetto a 96 DPI (100% = la dimensione sopra). |
 | **Larghezza / Altezza (mm)** | Larghezza o altezza fisica esatta; l’altro lato segue le proporzioni. |

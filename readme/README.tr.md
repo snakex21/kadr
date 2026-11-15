@@ -28,7 +28,7 @@ Kadr, [Zig](https://ziglang.org/) ile yazılmış yerel bir Win32/GDI+ uygulamas
 
 - **Görüntüleyici** — fotoğraf açma, klasörde gezinme (ok tuşları, önceki/sonraki), slayt gösterisi, tam ekran, akıcı yakınlaştırma (sığdır, 1:1, imleç konumunda fare tekerleği, `125%`, `37,5%` veya `200×` gibi elle girilen değerler), kaydırma, hareketli GIF oynatma, çok sayfalı TIFF ve DjVu, otomatik EXIF yönlendirmesi.
 - **Düzenleyici** — canlı çerçeve ve hazır oranlarla kırpma (serbest, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 dikey/yatay); kalem, vurgulayıcı, silgi, çizgi, ok, dikdörtgen ve metin; geri al/yinele; döndürme ve çevirme; parlaklık, kontrast, doygunluk ve siyah beyaz. Değişiklikler siz kaydedene kadar bellekte kalır.
-- **Yazdırma** — kâğıt boyutu, yön, ölçek (sığdır / doldur (kırp) / Stretch (tüm sayfa) / %100 / özel % / mm cinsinden genişlik veya yükseklik), kenar boşlukları, konum, renkli veya gri tonlamalı baskı seçenekleriyle canlı baskı önizlemesi.
+- **Yazdırma** — kâğıt boyutu, yön, ölçek (Sığdır (tüm resim) / Doldur (kırp) / Uzat (tüm sayfa) / %100 / özel % / mm cinsinden genişlik veya yükseklik), kenar boşlukları, konum, renkli veya gri tonlamalı baskı seçenekleriyle canlı baskı önizlemesi.
 - **Dosya araçları** — kaydetme (döndürme), farklı kaydetme, yeniden boyutlandırma ve boyut tahminiyle dışa aktarma / sıkıştırma (PNG, JPEG, BMP, TIFF, GIF), görüntüyü veya yolu panoya kopyalama, yeniden adlandırma, Geri Dönüşüm Kutusu'na taşıma veya kalıcı olarak silme, klasörde gösterme, masaüstü duvar kâğıdı yapma.
 - **Biçimler** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (birleştirilmiş görüntü), PBM/PGM/PPM/PNM, QOI.
 - **30 arayüz dili** — Windows dili otomatik olarak algılanır (algılanamazsa İngilizce kullanılır) ve menüden değiştirilebilir; Arapça, İbranice, Urduca ve Farsça için sağdan sola düzen.
@@ -46,9 +46,9 @@ Kadr, [Zig](https://ziglang.org/) ile yazılmış yerel bir Win32/GDI+ uygulamas
 
 ![Kırpma çerçevesi ve çizimlerle düzenleyici](../docs/screenshots/editor-crop.png)
 
-*Stretch (whole page)* (Uzat: tüm sayfa) modunda **baskı önizleme**:
+*Uzat (tüm sayfa)* modunda **baskı önizleme**:
 
-![Baskı önizleme, Stretch modu](../docs/screenshots/print-stretch.png)
+![Baskı önizleme, Uzat modu](../docs/screenshots/print-stretch.png)
 
 *Tema* alt menüsüyle birlikte **"Daha fazla" (…) menüsü**:
 
@@ -121,15 +121,15 @@ Resimleri çift tıklamayla açmak için Windows'ta bir resme sağ tıklayıp *B
 | Kısayol | İşlem |
 |---|---|
 | C | Kırp |
-| P | Pen (kalem) |
-| H | Highlighter (vurgulayıcı) |
-| E | Eraser (silgi) |
-| L | Line (çizgi) |
-| A | Arrow (ok) |
-| B | Rectangle (dikdörtgen) |
-| T | Text (metin) |
-| Ctrl+Z | Undo (geri al) |
-| Ctrl+Y veya Ctrl+Shift+Z | Redo (yinele) |
+| P | Kalem |
+| H | Vurgulayıcı |
+| E | Silgi |
+| L | Çizgi |
+| A | Ok |
+| B | Dikdörtgen |
+| T | Metin |
+| Ctrl+Z | Geri al |
+| Ctrl+Y veya Ctrl+Shift+Z | Yinele |
 | Enter (Kırp aracı) veya çift tıklama | Karartılmış kısmı kesip at |
 | Enter / Esc (metin yazarken) | Metni bitir / iptal et |
 | Esc | Düzenleyiciyi değişiklik yapmadan kapat |
@@ -143,13 +143,13 @@ Resimleri çift tıklamayla açmak için Windows'ta bir resme sağ tıklayıp *B
 
 ## Düzenleyici
 
-Düzenleyiciyi **Edit** (Ctrl+E) ile açın. Tüm değişiklikler bellekte tutulur; siz kaydedene kadar özgün dosyaya dokunulmaz.
+Düzenleyiciyi **Düzenle** (Ctrl+E) ile açın. Tüm değişiklikler bellekte tutulur; siz kaydedene kadar özgün dosyaya dokunulmaz.
 
-- **Kırp** — sekiz tutamaçlı canlı bir çerçeve; çerçeveyi veya tutamaçlarını sürükleyin, piksel cinsinden tam X / Y / genişlik / yükseklik değerlerini yazın ya da hazır bir oran seçin (serbest, kare 1:1, 4:3, 3:4, 3:2 (4×6 yatay), 2:3, 16:9, A4 dikey, A4 yatay). Çerçevenin dışındaki alan karartılır; **Kırp** (Enter) bu alanı keser, **Whole photo** (tüm fotoğraf) ise çerçeveyi sıfırlar.
+- **Kırp** — sekiz tutamaçlı canlı bir çerçeve; çerçeveyi veya tutamaçlarını sürükleyin, piksel cinsinden tam X / Y / genişlik / yükseklik değerlerini yazın ya da hazır bir oran seçin (serbest, kare 1:1, 4:3, 3:4, 3:2 (4×6 yatay), 2:3, 16:9, A4 dikey, A4 yatay). Çerçevenin dışındaki alan karartılır; **Kırp** (Enter) bu alanı keser, **Tüm fotoğraf** ise çerçeveyi sıfırlar.
 - **Çizim** — kalem, yarı saydam vurgulayıcı, silgi (yalnızca çizimleri ve metni siler, fotoğrafı asla), düz çizgi, ok, dikdörtgen ve metin; on renk ve ayarlanabilir kalınlık.
-- **Görüntü** — geri al / yinele, 90° sola veya sağa döndürme, yatay veya dikey aynalama, tümünü sıfırlama.
+- **Resim** — geri al / yinele, 90° sola veya sağa döndürme, yatay veya dikey aynalama, tümünü sıfırlama.
 - **Renk ve ışık** — parlaklık, kontrast, doygunluk ve siyah beyaz.
-- **Bitirme** — *Uygula* düzenlenen resmi görüntüleyiciye geri gönderir, *Save as…* (farklı kaydet) bir kopyayı yeni adla kaydeder, *Print…* (yazdır) doğrudan baskı önizlemesine geçer, *İptal* (Esc) değişiklikleri atar.
+- **Bitirme** — *Uygula* düzenlenen resmi görüntüleyiciye geri gönderir, *Farklı kaydet…* bir kopyayı yeni adla kaydeder, *Yazdır…* doğrudan baskı önizlemesine geçer, *İptal* (Esc) değişiklikleri atar.
 
 ## Yazdırma
 
@@ -159,9 +159,9 @@ Düzenleyiciyi **Edit** (Ctrl+E) ile açın. Tüm değişiklikler bellekte tutul
 
 | Mod | Ne yapar |
 |---|---|
-| **Sığdır** | Resmin tamamı kenar boşluklarının içine sığar; oranlar korunur, iki kenarda beyaz boşluk kalabilir. |
-| **Doldur / kırp** | Resim yazdırılabilir alanın tamamını kaplar; oranlar korunur ve taşan kenarlar kırpılır. |
-| **Stretch (whole page)** | Resim tam olarak yazdırılabilir alana uzatılır — beyaz şerit kalmaz, ancak oranlar **korunmaz**. |
+| **Sığdır (tüm resim)** | Resmin tamamı kenar boşluklarının içine sığar; oranlar korunur, iki kenarda beyaz boşluk kalabilir. |
+| **Doldur (kırp)** | Resim yazdırılabilir alanın tamamını kaplar; oranlar korunur ve taşan kenarlar kırpılır. |
+| **Uzat (tüm sayfa)** | Resim tam olarak yazdırılabilir alana uzatılır — beyaz şerit kalmaz, ancak oranlar **korunmaz**. |
 | **100% · Gerçek boyut (96 DPI)** | Bir piksel = 1/96 inç. |
 | **Özel yüzde** | 96 DPI'ya göre %0,1–1000 (%100 = yukarıdaki boyut). |
 | **Genişlik (mm) / Yükseklik (mm)** | Tam fiziksel genişlik veya yükseklik; diğer kenar oranlara göre belirlenir. |

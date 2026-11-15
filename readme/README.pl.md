@@ -28,7 +28,7 @@ Kadr to natywna aplikacja Win32/GDI+ napisana w [Zigu](https://ziglang.org/). Be
 
 - **Przeglądarka** — otwieranie zdjęć, nawigacja po folderze (strzałki, poprzednie/następne), pokaz slajdów, pełny ekran, płynny zoom (dopasowanie, 1:1, kółko myszy w miejscu kursora, wpisywane wartości, np. `125%`, `37,5%` lub `200×`), przesuwanie, odtwarzanie animowanych GIF-ów, wielostronicowe TIFF i DjVu, automatyczna orientacja EXIF.
 - **Edytor** — kadrowanie z ramką na żywo i gotowymi proporcjami (dowolne, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 pionowo/poziomo); pisak, zakreślacz, gumka, linia, strzałka, prostokąt i tekst; cofnij/ponów; obrót i odbicia; jasność, kontrast, nasycenie i czerń-biel. Zmiany zostają w pamięci, dopóki ich nie zapiszesz.
-- **Drukowanie** — podgląd wydruku na żywo z wyborem papieru, orientacji, skali (Dopasuj / Wypełnij (przytnij) / Rozciągnij (cała strona) / 100% / własny procent / szerokość lub wysokość w mm), marginesów, położenia, koloru lub skali szarości.
+- **Drukowanie** — podgląd wydruku na żywo z wyborem papieru, orientacji, skali (Dopasuj (cały obraz) / Wypełnij (przytnij) / Rozciągnij (cała strona) / 100% / własny procent / szerokość lub wysokość w mm), marginesów, położenia, koloru lub skali szarości.
 - **Operacje na plikach** — zapis (obrotu), zapis jako, eksport / kompresja (PNG, JPEG, BMP, TIFF, GIF) ze zmianą rozmiaru i szacowaniem wielkości pliku, kopiowanie obrazu lub ścieżki do schowka, zmiana nazwy, usuwanie do Kosza lub trwale, pokazanie w folderze, ustawienie jako tapety pulpitu.
 - **Formaty** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (scalony obraz), PBM/PGM/PPM/PNM, QOI.
 - **30 języków interfejsu** — język Windows jest wykrywany automatycznie (z odesłaniem na angielski) i można go zmienić z menu; układ od prawej do lewej dla arabskiego, hebrajskiego, urdu i perskiego.
@@ -145,7 +145,7 @@ Aby otwierać zdjęcia dwuklikiem, użyj w Windows *Otwórz za pomocą → Wybie
 
 Edytor otwiera przycisk **Edytuj** (Ctrl+E). Wszystkie zmiany są trzymane w pamięci; oryginalny plik pozostaje nietknięty, dopóki nie zapiszesz.
 
-- **Kadrowanie** — ramka na żywo z ośmioma uchwytami; przeciągaj ramkę lub uchwyty, wpisz dokładne X / Y / szerokość / wysokość w pikselach albo wybierz proporcje (dowolne, kwadrat 1:1, 4:3 poziomo, 3:4 pionowo, 3:2 (10×15 poziomo), 2:3 (10×15 pionowo), 16:9, A4 pionowo, A4 poziomo). Obszar poza ramką jest przyciemniony; **Przytnij** (Enter) go odcina, a **Całe zdjęcie** przywraca ramkę.
+- **Kadruj** — ramka na żywo z ośmioma uchwytami; przeciągaj ramkę lub uchwyty, wpisz dokładne X / Y / szerokość / wysokość w pikselach albo wybierz proporcje (dowolne, kwadrat 1:1, 4:3 poziomo, 3:4 pionowo, 3:2 (10×15 poziomo), 2:3 (10×15 pionowo), 16:9, A4 pionowo, A4 poziomo). Obszar poza ramką jest przyciemniony; **Przytnij** (Enter) go odcina, a **Całe zdjęcie** przywraca ramkę.
 - **Rysowanie** — pisak, półprzezroczysty zakreślacz, gumka (ściera tylko rysunki i napisy, nigdy zdjęcie), prosta linia, strzałka, prostokąt i tekst, z dziesięcioma kolorami i regulowaną grubością.
 - **Obraz** — cofnij / ponów, obrót o 90° w lewo lub w prawo, odbicie lustrzane w poziomie lub w pionie, resetuj wszystko.
 - **Kolory i światło** — jasność, kontrast, nasycenie i czerń-biel.
@@ -163,7 +163,7 @@ Tryby skali:
 | **Wypełnij (przytnij)** | Zdjęcie pokrywa cały obszar druku; proporcje są zachowane, a wystające brzegi zostają przycięte. |
 | **Rozciągnij (cała strona)** | Zdjęcie jest rozciągnięte dokładnie na obszar druku — bez białych pasów, ale **bez** zachowania proporcji. |
 | **100% (96 DPI)** | Jeden piksel = 1/96 cala. |
-| **Własny procent** | 0,1–1000% względem 96 DPI (100% = rozmiar powyżej). |
+| **Własny (%)** | 0,1–1000% względem 96 DPI (100% = rozmiar powyżej). |
 | **Szerokość / wysokość (mm)** | Dokładna fizyczna szerokość lub wysokość; drugi wymiar wynika z proporcji. |
 
 **Zaawansowane ▸** dodaje własny rozmiar papieru, marginesy i dokładne położenie na arkuszu (albo przeciągnij zdjęcie w podglądzie; *Wyśrodkuj / reset pozycji* ustawia je z powrotem na środku). Szara linia pokazuje sprzętową granicę drukarki. Ostatnio wybrany tryb skali jest zapamiętywany w `Kadr.ini`.

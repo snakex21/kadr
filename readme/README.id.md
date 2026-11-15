@@ -28,7 +28,7 @@ Kadr adalah aplikasi Win32/GDI+ native yang ditulis dalam [Zig](https://ziglang.
 
 - **Penampil** — membuka foto, menelusuri folder (tombol panah, sebelumnya/berikutnya), tayangan slide, layar penuh, zoom halus (sesuaikan, 1:1, roda mouse di posisi kursor, nilai yang diketik seperti `125%`, `37,5%` atau `200×`), menggeser gambar, memutar GIF animasi, TIFF dan DjVu multihalaman, orientasi EXIF otomatis.
 - **Editor** — pangkas dengan bingkai langsung dan rasio siap pakai (bebas, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 potret/lanskap); pena, stabilo, penghapus, garis, panah, persegi panjang, dan teks; urungkan/ulangi; putar dan balik; kecerahan, kontras, saturasi, serta hitam putih. Perubahan tetap di memori sampai Anda menyimpannya.
-- **Pencetakan** — pratinjau cetak langsung dengan ukuran kertas, orientasi, skala (sesuaikan / isi (potong) / Stretch (seluruh halaman) / 100% / % khusus / lebar atau tinggi dalam mm), margin, posisi, warna atau skala abu-abu.
+- **Pencetakan** — pratinjau cetak langsung dengan ukuran kertas, orientasi, skala (Sesuaikan (seluruh gambar) / Isi (potong) / Rentangkan (seluruh halaman) / 100% / % khusus / lebar atau tinggi dalam mm), margin, posisi, warna atau skala abu-abu.
 - **Alat berkas** — simpan (rotasi), simpan sebagai, ekspor / kompres (PNG, JPEG, BMP, TIFF, GIF) dengan pengubahan ukuran dan perkiraan ukuran berkas, salin gambar atau jalur ke papan klip, ganti nama, pindahkan ke Keranjang Sampah atau hapus permanen, tampilkan di folder, jadikan wallpaper desktop.
 - **Format** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (gambar gabungan), PBM/PGM/PPM/PNM, QOI.
 - **30 bahasa antarmuka** — bahasa Windows terdeteksi otomatis (jika tidak tersedia, kembali ke bahasa Inggris) dan dapat diganti dari menu; tata letak kanan-ke-kiri untuk bahasa Arab, Ibrani, Urdu, dan Persia.
@@ -46,9 +46,9 @@ Kadr adalah aplikasi Win32/GDI+ native yang ditulis dalam [Zig](https://ziglang.
 
 ![Editor dengan bingkai pangkas dan gambar coretan](../docs/screenshots/editor-crop.png)
 
-**Pratinjau cetak** dalam mode *Stretch (whole page)* (rentangkan: seluruh halaman):
+**Pratinjau cetak** dalam mode *Rentangkan (seluruh halaman)*:
 
-![Pratinjau cetak, mode Stretch](../docs/screenshots/print-stretch.png)
+![Pratinjau cetak, mode Rentangkan](../docs/screenshots/print-stretch.png)
 
 **Menu "Lainnya" (…)** dengan submenu *Tema*:
 
@@ -121,15 +121,15 @@ Agar gambar terbuka dengan klik ganda, gunakan *Buka dengan → Pilih aplikasi l
 | Pintasan | Tindakan |
 |---|---|
 | C | Pangkas |
-| P | Pen (pena) |
-| H | Highlighter (stabilo) |
-| E | Eraser (penghapus) |
-| L | Line (garis) |
-| A | Arrow (panah) |
-| B | Rectangle (persegi panjang) |
-| T | Text (teks) |
-| Ctrl+Z | Undo (urungkan) |
-| Ctrl+Y atau Ctrl+Shift+Z | Redo (ulangi) |
+| P | Pena |
+| H | Stabilo |
+| E | Penghapus |
+| L | Garis |
+| A | Panah |
+| B | Persegi panjang |
+| T | Teks |
+| Ctrl+Z | Urungkan |
+| Ctrl+Y atau Ctrl+Shift+Z | Ulangi |
 | Enter (alat Pangkas) atau klik ganda | Potong bagian yang digelapkan |
 | Enter / Esc (saat mengetik teks) | Selesaikan / batalkan teks |
 | Esc | Tutup editor tanpa perubahan |
@@ -143,13 +143,13 @@ Agar gambar terbuka dengan klik ganda, gunakan *Buka dengan → Pilih aplikasi l
 
 ## Editor
 
-Buka editor dengan **Edit** (Ctrl+E). Semua perubahan disimpan di memori; berkas asli tidak diubah sampai Anda menyimpannya.
+Buka editor dengan **Sunting** (Ctrl+E). Semua perubahan disimpan di memori; berkas asli tidak diubah sampai Anda menyimpannya.
 
-- **Pangkas** — bingkai langsung dengan delapan pegangan; seret bingkai atau pegangannya, ketik X / Y / lebar / tinggi yang tepat dalam piksel, atau pilih rasio siap pakai (bebas, persegi 1:1, 4:3, 3:4, 3:2 (4×6 lanskap), 2:3, 16:9, A4 potret, A4 lanskap). Area di luar bingkai digelapkan; **Pangkas** (Enter) memotongnya dan **Whole photo** (seluruh foto) mengatur ulang bingkai.
+- **Pangkas** — bingkai langsung dengan delapan pegangan; seret bingkai atau pegangannya, ketik X / Y / lebar / tinggi yang tepat dalam piksel, atau pilih rasio siap pakai (bebas, persegi 1:1, 4:3, 3:4, 3:2 (4×6 lanskap), 2:3, 16:9, A4 potret, A4 lanskap). Area di luar bingkai digelapkan; **Pangkas** (Enter) memotongnya dan **Seluruh foto** mengatur ulang bingkai.
 - **Menggambar** — pena, stabilo tembus pandang, penghapus (hanya menghapus coretan dan teks, tidak pernah fotonya), garis lurus, panah, persegi panjang, dan teks, dengan sepuluh warna dan ketebalan yang dapat diatur.
 - **Gambar** — urungkan / ulangi, putar 90° ke kiri atau ke kanan, cerminkan secara horizontal atau vertikal, atur ulang semua.
 - **Warna dan cahaya** — kecerahan, kontras, saturasi, serta hitam putih.
-- **Selesai** — *Terapkan* mengembalikan gambar yang sudah diedit ke penampil, *Save as…* (simpan sebagai) menyimpan salinan dengan nama baru, *Print…* (cetak) langsung membuka pratinjau cetak, *Batal* (Esc) membuang perubahan.
+- **Selesai** — *Terapkan* mengembalikan gambar yang sudah diedit ke penampil, *Simpan sebagai…* menyimpan salinan dengan nama baru, *Cetak…* langsung membuka pratinjau cetak, *Batal* (Esc) membuang perubahan.
 
 ## Pencetakan
 
@@ -159,9 +159,9 @@ Mode skala:
 
 | Mode | Fungsinya |
 |---|---|
-| **Sesuaikan** | Seluruh gambar muat di dalam margin; proporsi dipertahankan, ruang putih mungkin tersisa di dua sisi. |
-| **Isi / potong** | Gambar menutupi seluruh area cetak; proporsi dipertahankan dan tepi yang berlebih dipotong. |
-| **Stretch (whole page)** | Gambar direntangkan tepat ke area cetak — tanpa bilah putih, tetapi proporsi **tidak** dipertahankan. |
+| **Sesuaikan (seluruh gambar)** | Seluruh gambar muat di dalam margin; proporsi dipertahankan, ruang putih mungkin tersisa di dua sisi. |
+| **Isi (potong)** | Gambar menutupi seluruh area cetak; proporsi dipertahankan dan tepi yang berlebih dipotong. |
+| **Rentangkan (seluruh halaman)** | Gambar direntangkan tepat ke area cetak — tanpa bilah putih, tetapi proporsi **tidak** dipertahankan. |
 | **100% · Ukuran asli (96 DPI)** | Satu piksel = 1/96 inci. |
 | **Persentase khusus** | 0,1–1000% relatif terhadap 96 DPI (100% = ukuran di atas). |
 | **Lebar (mm) / Tinggi (mm)** | Lebar atau tinggi fisik yang tepat; sisi lainnya mengikuti proporsi. |

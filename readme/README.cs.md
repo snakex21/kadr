@@ -28,7 +28,7 @@ Kadr je nativní aplikace Win32/GDI+ napsaná v jazyce [Zig](https://ziglang.org
 
 - **Prohlížeč** — otevírání fotografií, procházení složky (šipky, předchozí/další), prezentace, celá obrazovka, plynulé zvětšování (přizpůsobit, 1:1, kolečko myši v místě kurzoru, zadané hodnoty jako `125%`, `37,5%` nebo `200×`), posouvání obrázku, přehrávání animovaných GIFů, vícestránkové TIFF a DjVu, automatická orientace podle EXIF.
 - **Editor** — ořez s živým rámečkem a předvolbami poměru stran (volný, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 na výšku/na šířku); pero, zvýrazňovač, guma, čára, šipka, obdélník a text; zpět/znovu; otáčení a převracení; jas, kontrast, sytost a černobílý režim. Změny zůstávají v paměti, dokud je neuložíte.
-- **Tisk** — živý náhled tisku s volbou velikosti papíru, orientace, měřítka (přizpůsobit / vyplnit (s ořezem) / roztáhnout (celá stránka) / 100% / vlastní % / šířka nebo výška v mm), okrajů, polohy, barevného tisku nebo odstínů šedi.
+- **Tisk** — živý náhled tisku s volbou velikosti papíru, orientace, měřítka (Přizpůsobit (celý obrázek) / Vyplnit (oříznout) / Roztáhnout (celá stránka) / 100% / vlastní % / šířka nebo výška v mm), okrajů, polohy, barevného tisku nebo odstínů šedi.
 - **Práce se soubory** — uložení (otočení), uložení jako, export / komprese (PNG, JPEG, BMP, TIFF, GIF) se změnou velikosti a odhadem velikosti souboru, kopírování obrázku nebo cesty do schránky, přejmenování, přesun do Koše nebo trvalé odstranění, zobrazení ve složce, nastavení jako pozadí plochy.
 - **Formáty** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (sloučený obraz), PBM/PGM/PPM/PNM, QOI.
 - **30 jazyků rozhraní** — jazyk Windows se rozpozná automaticky (jinak se použije angličtina) a lze ho změnit v nabídce; pro arabštinu, hebrejštinu, urdštinu a perštinu se rozhraní zobrazuje zprava doleva.
@@ -46,9 +46,9 @@ Kadr je nativní aplikace Win32/GDI+ napsaná v jazyce [Zig](https://ziglang.org
 
 ![Editor s rámečkem ořezu a kresbami](../docs/screenshots/editor-crop.png)
 
-**Náhled tisku** v režimu *Stretch (whole page)* (roztáhnout na celou stránku):
+**Náhled tisku** v režimu *Roztáhnout (celá stránka)*:
 
-![Náhled tisku, režim Stretch](../docs/screenshots/print-stretch.png)
+![Náhled tisku, režim Roztáhnout](../docs/screenshots/print-stretch.png)
 
 **Nabídka „Více“ (…)** s podnabídkou *Motiv*:
 
@@ -121,15 +121,15 @@ Chcete-li otevírat obrázky dvojklikem, použijte ve Windows na obrázku *Otev�
 | Zkratka | Akce |
 |---|---|
 | C | Oříznout |
-| P | Pen (pero) |
-| H | Highlighter (zvýrazňovač) |
-| E | Eraser (guma) |
-| L | Line (čára) |
-| A | Arrow (šipka) |
-| B | Rectangle (obdélník) |
-| T | Text (text) |
-| Ctrl+Z | Undo (zpět) |
-| Ctrl+Y nebo Ctrl+Shift+Z | Redo (znovu) |
+| P | Pero |
+| H | Zvýrazňovač |
+| E | Guma |
+| L | Čára |
+| A | Šipka |
+| B | Obdélník |
+| T | Text |
+| Ctrl+Z | Zpět |
+| Ctrl+Y nebo Ctrl+Shift+Z | Znovu |
 | Enter (nástroj Oříznout) nebo dvojklik | Odříznout ztmavenou část |
 | Enter / Esc (při psaní textu) | Dokončit / zrušit text |
 | Esc | Zavřít editor bez změn |
@@ -143,13 +143,13 @@ Chcete-li otevírat obrázky dvojklikem, použijte ve Windows na obrázku *Otev�
 
 ## Editor
 
-Editor otevřete tlačítkem **Edit** (upravit, Ctrl+E). Všechny změny se drží v paměti; původní soubor zůstane nedotčen, dokud neuložíte.
+Editor otevřete tlačítkem **Upravit** (Ctrl+E). Všechny změny se drží v paměti; původní soubor zůstane nedotčen, dokud neuložíte.
 
-- **Oříznout** — živý rámeček s osmi úchyty; táhněte rámeček nebo jeho úchyty, zadejte přesné X / Y / šířku / výšku v pixelech nebo zvolte předvolbu poměru stran (volný, čtverec 1:1, 4:3, 3:4, 3:2 (4×6 na šířku), 2:3, 16:9, A4 na výšku, A4 na šířku). Oblast mimo rámeček je ztmavená; **Oříznout** (Enter) ji odřízne a **Whole photo** (celá fotografie) rámeček obnoví.
+- **Oříznout** — živý rámeček s osmi úchyty; táhněte rámeček nebo jeho úchyty, zadejte přesné X / Y / šířku / výšku v pixelech nebo zvolte předvolbu poměru stran (volný, čtverec 1:1, 4:3, 3:4, 3:2 (4×6 na šířku), 2:3, 16:9, A4 na výšku, A4 na šířku). Oblast mimo rámeček je ztmavená; **Oříznout** (Enter) ji odřízne a **Celá fotka** rámeček obnoví.
 - **Kreslení** — pero, průsvitný zvýrazňovač, guma (maže jen kresby a text, nikdy fotografii), rovná čára, šipka, obdélník a text, s deseti barvami a nastavitelnou tloušťkou.
-- **Image** (obrázek) — zpět / znovu, otočení o 90° doleva nebo doprava, zrcadlení vodorovně nebo svisle, obnovení všeho.
-- **Colour and light** (barvy a světlo) — jas, kontrast, sytost a černobílý režim.
-- **Dokončení** — *Použít* vrátí upravený obrázek do prohlížeče, *Save as…* (uložit jako) uloží kopii pod novým názvem, *Print…* (tisk) přejde rovnou do náhledu tisku, *Zrušit* (Esc) změny zahodí.
+- **Obrázek** — zpět / znovu, otočení o 90° doleva nebo doprava, zrcadlení vodorovně nebo svisle, obnovení všeho.
+- **Barvy a světlo** — jas, kontrast, sytost a černobílý režim.
+- **Dokončení** — *Použít* vrátí upravený obrázek do prohlížeče, *Uložit jako…* uloží kopii pod novým názvem, *Tisk…* přejde rovnou do náhledu tisku, *Zrušit* (Esc) změny zahodí.
 
 ## Tisk
 
@@ -159,9 +159,9 @@ Režimy měřítka:
 
 | Režim | Co dělá |
 |---|---|
-| **Přizpůsobit** | Celý obrázek se vejde do okrajů; poměr stran zůstane zachován, na dvou stranách může zůstat bílé místo. |
-| **Vyplnit / oříznout** | Obrázek pokryje celou tisknutelnou oblast; poměr stran zůstane zachován a přečnívající okraje se oříznou. |
-| **Stretch (whole page)** (roztáhnout na celou stránku) | Obrázek se roztáhne přesně na tisknutelnou oblast — bez bílých pruhů, ale poměr stran se **nezachová**. |
+| **Přizpůsobit (celý obrázek)** | Celý obrázek se vejde do okrajů; poměr stran zůstane zachován, na dvou stranách může zůstat bílé místo. |
+| **Vyplnit (oříznout)** | Obrázek pokryje celou tisknutelnou oblast; poměr stran zůstane zachován a přečnívající okraje se oříznou. |
+| **Roztáhnout (celá stránka)** | Obrázek se roztáhne přesně na tisknutelnou oblast — bez bílých pruhů, ale poměr stran se **nezachová**. |
 | **100% · Skutečná velikost (96 DPI)** | Jeden pixel = 1/96 palce. |
 | **Vlastní procenta** | 0.1–1000 % vzhledem k 96 DPI (100% = velikost o řádek výše). |
 | **Šířka / Výška (mm)** | Přesná fyzická šířka nebo výška; druhý rozměr vyplyne z poměru stran. |

@@ -28,7 +28,7 @@ Kadr este o aplicație nativă Win32/GDI+ scrisă în [Zig](https://ziglang.org/
 
 - **Vizualizator** — deschiderea fotografiilor, răsfoirea dosarului (tastele săgeți, anterioara/următoarea), prezentare, ecran complet, zoom fin (potrivire, 1:1, rotița mouse-ului în dreptul cursorului, valori tastate precum `125%`, `37,5%` sau `200×`), deplasarea imaginii, redarea GIF-urilor animate, TIFF și DjVu cu mai multe pagini, orientare EXIF automată.
 - **Editor** — decupare cu cadru în timp real și proporții predefinite (liber, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 portret/peisaj); creion, marker, radieră, linie, săgeată, dreptunghi și text; anulare/refacere; rotire și oglindire; luminozitate, contrast, saturație și alb-negru. Modificările rămân în memorie până când salvezi.
-- **Imprimare** — previzualizare în timp real cu dimensiunea hârtiei, orientare, scară (Potrivește / Umple (decupează) / Întinde (toată pagina) / 100% / procent personalizat / lățime sau înălțime în mm), margini, poziție, color sau tonuri de gri.
+- **Imprimare** — previzualizare în timp real cu dimensiunea hârtiei, orientare, scară (Potrivește (toată imaginea) / Umple (decupează) / Întinde (pagina întreagă) / 100% / procent personalizat / lățime sau înălțime în mm), margini, poziție, color sau tonuri de gri.
 - **Instrumente pentru fișiere** — salvare (rotire), salvare ca, export / comprimare (PNG, JPEG, BMP, TIFF, GIF) cu redimensionare și estimarea dimensiunii, copierea imaginii sau a căii în clipboard, redenumire, mutare în Coș sau ștergere definitivă, afișare în dosar, setare ca fundal al desktopului.
 - **Formate** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (imagine combinată), PBM/PGM/PPM/PNM, QOI.
 - **30 de limbi ale interfeței** — limba Windows este detectată automat (cu revenire la engleză) și poate fi schimbată din meniu; aranjare de la dreapta la stânga pentru arabă, ebraică, urdu și persană.
@@ -46,7 +46,7 @@ Kadr este o aplicație nativă Win32/GDI+ scrisă în [Zig](https://ziglang.org/
 
 ![Editor cu cadru de decupare și desene](../docs/screenshots/editor-crop.png)
 
-**Previzualizarea imprimării** în modul *Stretch (whole page)* (Întinde: toată pagina):
+**Previzualizarea imprimării** în modul *Întinde (pagina întreagă)*:
 
 ![Previzualizare imprimare, modul Întinde](../docs/screenshots/print-stretch.png)
 
@@ -121,15 +121,15 @@ Pentru a deschide imaginile cu dublu clic, folosește în Windows *Deschidere cu
 | Comandă rapidă | Acțiune |
 |---|---|
 | C | Decupare |
-| P | Pen (creion) |
-| H | Highlighter (marker) |
-| E | Eraser (radieră) |
-| L | Line (linie) |
-| A | Arrow (săgeată) |
-| B | Rectangle (dreptunghi) |
+| P | Stilou |
+| H | Marcator |
+| E | Radieră |
+| L | Linie |
+| A | Săgeată |
+| B | Dreptunghi |
 | T | Text |
-| Ctrl+Z | Undo (anulare) |
-| Ctrl+Y sau Ctrl+Shift+Z | Redo (refacere) |
+| Ctrl+Z | Anulare |
+| Ctrl+Y sau Ctrl+Shift+Z | Refacere |
 | Enter (instrumentul Decupare) sau dublu clic | Taie partea întunecată |
 | Enter / Esc (în timpul scrierii textului) | Finalizează / anulează textul |
 | Esc | Închide editorul fără modificări |
@@ -143,13 +143,13 @@ Pentru a deschide imaginile cu dublu clic, folosește în Windows *Deschidere cu
 
 ## Editor
 
-Deschide editorul cu **Edit** (Editare; Ctrl+E). Toate modificările sunt păstrate în memorie; fișierul original nu este atins până când nu salvezi.
+Deschide editorul cu **Editare** (Ctrl+E). Toate modificările sunt păstrate în memorie; fișierul original nu este atins până când nu salvezi.
 
-- **Decupare** — un cadru în timp real cu opt mânere; trage cadrul sau mânerele, tastează valorile exacte X / Y / lățime / înălțime în pixeli sau alege o proporție predefinită (liber, pătrat 1:1, 4:3, 3:4, 3:2 (4×6 peisaj), 2:3, 16:9, A4 portret, A4 peisaj). Zona din afara cadrului este întunecată; **Decupează** (Enter) o taie, iar **Whole photo** (toată fotografia) resetează cadrul.
+- **Decupare** — un cadru în timp real cu opt mânere; trage cadrul sau mânerele, tastează valorile exacte X / Y / lățime / înălțime în pixeli sau alege o proporție predefinită (liber, pătrat 1:1, 4:3, 3:4, 3:2 (4×6 peisaj), 2:3, 16:9, A4 portret, A4 peisaj). Zona din afara cadrului este întunecată; **Decupează** (Enter) o taie, iar **Toată fotografia** resetează cadrul.
 - **Desen** — creion, marker semitransparent, radieră (șterge doar desenele și textul, niciodată fotografia), linie dreaptă, săgeată, dreptunghi și text, cu zece culori și grosime reglabilă.
 - **Imagine** — anulare / refacere, rotire cu 90° la stânga sau la dreapta, oglindire orizontală sau verticală, resetare completă.
 - **Culoare și lumină** — luminozitate, contrast, saturație și alb-negru.
-- **Finalizare** — *Aplică* trimite imaginea editată înapoi în vizualizator, *Save as…* (Salvează ca…) salvează o copie sub un nume nou, *Print…* (Imprimă…) duce direct la previzualizarea imprimării, *Anulează* (Esc) renunță la modificări.
+- **Finalizare** — *Aplică* trimite imaginea editată înapoi în vizualizator, *Salvează ca…* salvează o copie sub un nume nou, *Imprimă…* duce direct la previzualizarea imprimării, *Anulează* (Esc) renunță la modificări.
 
 ## Imprimare
 
@@ -159,9 +159,9 @@ Moduri de scalare:
 
 | Mod | Ce face |
 |---|---|
-| **Potrivește** | Întreaga imagine încape între margini; proporțiile sunt păstrate, pe două laturi poate rămâne spațiu alb. |
-| **Umple / decupează** | Imaginea acoperă toată zona imprimabilă; proporțiile sunt păstrate, iar marginile care depășesc sunt decupate. |
-| **Stretch (whole page)** (Întinde: toată pagina) | Imaginea este întinsă exact pe zona imprimabilă — fără benzi albe, dar proporțiile **nu** sunt păstrate. |
+| **Potrivește (toată imaginea)** | Întreaga imagine încape între margini; proporțiile sunt păstrate, pe două laturi poate rămâne spațiu alb. |
+| **Umple (decupează)** | Imaginea acoperă toată zona imprimabilă; proporțiile sunt păstrate, iar marginile care depășesc sunt decupate. |
+| **Întinde (pagina întreagă)** | Imaginea este întinsă exact pe zona imprimabilă — fără benzi albe, dar proporțiile **nu** sunt păstrate. |
 | **100% · Dimensiune reală (96 DPI)** | Un pixel = 1/96 inch. |
 | **Procent personalizat** | 0,1–1000 % raportat la 96 DPI (100% = dimensiunea de mai sus). |
 | **Lățime / Înălțime (mm)** | Lățime sau înălțime fizică exactă; cealaltă latură urmează proporțiile. |

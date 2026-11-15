@@ -28,7 +28,7 @@ Kadr ist eine native Win32/GDI+-Anwendung, geschrieben in [Zig](https://ziglang.
 
 - **Betrachter** — Fotos öffnen, durch den Ordner blättern (Pfeiltasten, vorheriges/nächstes), Diashow, Vollbild, stufenloser Zoom (einpassen, 1:1, Mausrad an der Cursorposition, eingetippte Werte wie `125%`, `37,5%` oder `200×`), Verschieben des Bildausschnitts, Wiedergabe animierter GIFs, mehrseitige TIFF- und DjVu-Dateien, automatische EXIF-Ausrichtung.
 - **Editor** — Zuschneiden mit Live-Rahmen und Seitenverhältnis-Vorgaben (frei, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 hoch/quer); Stift, Textmarker, Radierer, Linie, Pfeil, Rechteck und Text; Rückgängig/Wiederholen; Drehen und Spiegeln; Helligkeit, Kontrast, Sättigung und Schwarzweiß. Änderungen bleiben im Speicher, bis Sie speichern.
-- **Drucken** — Live-Druckvorschau mit Papierformat, Ausrichtung, Skalierung (Einpassen / Füllen (zuschneiden) / Strecken (ganze Seite) / 100% / eigener Prozentsatz / Breite oder Höhe in mm), Rändern, Position, Farbe oder Graustufen.
+- **Drucken** — Live-Druckvorschau mit Papierformat, Ausrichtung, Skalierung (Einpassen (ganzes Bild) / Füllen (zuschneiden) / Strecken (ganze Seite) / 100% / eigener Prozentsatz / Breite oder Höhe in mm), Rändern, Position, Farbe oder Graustufen.
 - **Dateiwerkzeuge** — Speichern (Drehung), Speichern unter, Exportieren / Komprimieren (PNG, JPEG, BMP, TIFF, GIF) mit Größenänderung und Größenschätzung, Bild oder Pfad in die Zwischenablage kopieren, Umbenennen, in den Papierkorb verschieben oder endgültig löschen, im Ordner anzeigen, als Desktophintergrund festlegen.
 - **Formate** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (zusammengefügtes Bild), PBM/PGM/PPM/PNM, QOI.
 - **30 Oberflächensprachen** — die Windows-Sprache wird automatisch erkannt (Rückfall auf Englisch) und lässt sich im Menü ändern; Rechts-nach-links-Layout für Arabisch, Hebräisch, Urdu und Persisch.
@@ -46,7 +46,7 @@ Kadr ist eine native Win32/GDI+-Anwendung, geschrieben in [Zig](https://ziglang.
 
 ![Editor mit Zuschneiderahmen und Zeichnungen](../docs/screenshots/editor-crop.png)
 
-**Druckvorschau** im Modus *Stretch (whole page)* (Strecken: ganze Seite):
+**Druckvorschau** im Modus *Strecken (ganze Seite)*:
 
 ![Druckvorschau, Modus Strecken](../docs/screenshots/print-stretch.png)
 
@@ -121,15 +121,15 @@ Um Bilder per Doppelklick zu öffnen, in Windows auf einer Bilddatei *Öffnen mi
 | Tastenkürzel | Aktion |
 |---|---|
 | C | Zuschneiden |
-| P | Pen (Stift) |
-| H | Highlighter (Textmarker) |
-| E | Eraser (Radierer) |
-| L | Line (Linie) |
-| A | Arrow (Pfeil) |
-| B | Rectangle (Rechteck) |
+| P | Stift |
+| H | Textmarker |
+| E | Radierer |
+| L | Linie |
+| A | Pfeil |
+| B | Rechteck |
 | T | Text |
-| Ctrl+Z | Undo (Rückgängig) |
-| Ctrl+Y oder Ctrl+Shift+Z | Redo (Wiederholen) |
+| Ctrl+Z | Rückgängig |
+| Ctrl+Y oder Ctrl+Shift+Z | Wiederholen |
 | Enter (Werkzeug Zuschneiden) oder Doppelklick | Abgedunkelten Bereich abschneiden |
 | Enter / Esc (beim Eingeben von Text) | Text abschließen / verwerfen |
 | Esc | Editor ohne Änderungen schließen |
@@ -143,13 +143,13 @@ Um Bilder per Doppelklick zu öffnen, in Windows auf einer Bilddatei *Öffnen mi
 
 ## Editor
 
-Den Editor öffnen Sie mit **Edit** (Bearbeiten; Ctrl+E). Alle Änderungen bleiben im Speicher; die Originaldatei wird erst beim Speichern angetastet.
+Den Editor öffnen Sie mit **Bearbeiten** (Ctrl+E). Alle Änderungen bleiben im Speicher; die Originaldatei wird erst beim Speichern angetastet.
 
-- **Zuschneiden** — ein Live-Rahmen mit acht Anfassern; ziehen Sie den Rahmen oder seine Anfasser, geben Sie X / Y / Breite / Höhe exakt in Pixeln ein oder wählen Sie eine Seitenverhältnis-Vorgabe (frei, Quadrat 1:1, 4:3, 3:4, 3:2 (4×6 quer), 2:3, 16:9, A4 hoch, A4 quer). Der Bereich außerhalb des Rahmens wird abgedunkelt; **Zuschneiden** (Enter) schneidet ihn ab, **Whole photo** (ganzes Foto) setzt den Rahmen zurück.
+- **Zuschneiden** — ein Live-Rahmen mit acht Anfassern; ziehen Sie den Rahmen oder seine Anfasser, geben Sie X / Y / Breite / Höhe exakt in Pixeln ein oder wählen Sie eine Seitenverhältnis-Vorgabe (frei, Quadrat 1:1, 4:3, 3:4, 3:2 (4×6 quer), 2:3, 16:9, A4 hoch, A4 quer). Der Bereich außerhalb des Rahmens wird abgedunkelt; **Zuschneiden** (Enter) schneidet ihn ab, **Ganzes Foto** setzt den Rahmen zurück.
 - **Zeichnen** — Stift, durchscheinender Textmarker, Radierer (entfernt nur Zeichnungen und Text, nie das Foto), gerade Linie, Pfeil, Rechteck und Text, mit zehn Farben und einstellbarer Stärke.
 - **Bild** — Rückgängig / Wiederholen, um 90° nach links oder rechts drehen, horizontal oder vertikal spiegeln, alles zurücksetzen.
 - **Farbe und Licht** — Helligkeit, Kontrast, Sättigung und Schwarzweiß.
-- **Abschließen** — *Übernehmen* gibt das bearbeitete Bild an den Betrachter zurück, *Save as…* (Speichern unter…) speichert eine Kopie unter neuem Namen, *Print…* (Drucken…) führt direkt zur Druckvorschau, *Abbrechen* (Esc) verwirft die Änderungen.
+- **Abschließen** — *Übernehmen* gibt das bearbeitete Bild an den Betrachter zurück, *Speichern unter…* speichert eine Kopie unter neuem Namen, *Drucken…* führt direkt zur Druckvorschau, *Abbrechen* (Esc) verwirft die Änderungen.
 
 ## Drucken
 
@@ -159,9 +159,9 @@ Skalierungsmodi:
 
 | Modus | Wirkung |
 |---|---|
-| **Einpassen** | Das ganze Bild passt in die Ränder; die Proportionen bleiben erhalten, an zwei Seiten kann ein weißer Rand bleiben. |
-| **Füllen / zuschneiden** | Das Bild bedeckt den gesamten druckbaren Bereich; die Proportionen bleiben erhalten, überstehende Ränder werden abgeschnitten. |
-| **Stretch (whole page)** (Strecken: ganze Seite) | Das Bild wird exakt auf den druckbaren Bereich gestreckt — keine weißen Balken, aber die Proportionen bleiben **nicht** erhalten. |
+| **Einpassen (ganzes Bild)** | Das ganze Bild passt in die Ränder; die Proportionen bleiben erhalten, an zwei Seiten kann ein weißer Rand bleiben. |
+| **Füllen (zuschneiden)** | Das Bild bedeckt den gesamten druckbaren Bereich; die Proportionen bleiben erhalten, überstehende Ränder werden abgeschnitten. |
+| **Strecken (ganze Seite)** | Das Bild wird exakt auf den druckbaren Bereich gestreckt — keine weißen Balken, aber die Proportionen bleiben **nicht** erhalten. |
 | **100% · Originalgröße (96 DPI)** | Ein Pixel = 1/96 Zoll. |
 | **Eigener Prozentsatz** | 0,1–1000 % bezogen auf 96 DPI (100% = die Größe darüber). |
 | **Breite / Höhe (mm)** | Exakte physische Breite oder Höhe; die andere Seite folgt den Proportionen. |

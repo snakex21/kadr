@@ -28,7 +28,7 @@ Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://zigl
 
 - **Trình xem** — mở ảnh, duyệt thư mục (phím mũi tên, trước/sau), trình chiếu, toàn màn hình, thu phóng mượt (vừa khung, 1:1, con lăn chuột tại vị trí con trỏ, nhập giá trị như `125%`, `37,5%` hoặc `200×`), kéo để di chuyển ảnh, phát GIF động, TIFF và DjVu nhiều trang, tự xoay theo hướng EXIF.
 - **Trình chỉnh sửa** — cắt ảnh với khung trực tiếp và các tỷ lệ có sẵn (tự do, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 dọc/ngang); bút, bút đánh dấu, tẩy, đường thẳng, mũi tên, hình chữ nhật và chữ; hoàn tác/làm lại; xoay và lật; độ sáng, độ tương phản, độ bão hòa và đen trắng. Các thay đổi chỉ nằm trong bộ nhớ cho đến khi bạn lưu.
-- **In** — xem trước bản in trực tiếp với khổ giấy, hướng, tỷ lệ (Vừa khung / Lấp đầy (cắt) / Kéo giãn (cả trang) / 100% / % tùy chỉnh / chiều rộng hoặc chiều cao theo mm), lề, vị trí, in màu hoặc thang xám.
+- **In** — xem trước bản in trực tiếp với khổ giấy, hướng, tỷ lệ (Vừa khung (toàn bộ ảnh) / Lấp đầy (cắt) / Kéo giãn (cả trang) / 100% / % tùy chỉnh / chiều rộng hoặc chiều cao theo mm), lề, vị trí, in màu hoặc thang xám.
 - **Công cụ tệp** — lưu (góc xoay), lưu thành, xuất / nén (PNG, JPEG, BMP, TIFF, GIF) kèm đổi kích thước và ước tính dung lượng, sao chép ảnh hoặc đường dẫn vào bộ nhớ tạm, đổi tên, chuyển vào Thùng rác hoặc xóa vĩnh viễn, hiện trong thư mục, đặt làm hình nền màn hình.
 - **Định dạng** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (ảnh đã gộp lớp), PBM/PGM/PPM/PNM, QOI.
 - **30 ngôn ngữ giao diện** — ngôn ngữ của Windows được nhận diện tự động (mặc định về tiếng Anh nếu không có) và có thể đổi từ menu; bố cục từ phải sang trái cho tiếng Ả Rập, tiếng Hebrew, tiếng Urdu và tiếng Ba Tư.
@@ -46,7 +46,7 @@ Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://zigl
 
 ![Trình chỉnh sửa với khung cắt và hình vẽ](../docs/screenshots/editor-crop.png)
 
-**Xem trước khi in** ở chế độ *Stretch (whole page)* (Kéo giãn: cả trang):
+**Xem trước khi in** ở chế độ *Kéo giãn (cả trang)*:
 
 ![Xem trước khi in, chế độ Kéo giãn](../docs/screenshots/print-stretch.png)
 
@@ -121,15 +121,15 @@ Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://zigl
 | Phím tắt | Thao tác |
 |---|---|
 | C | Cắt |
-| P | Pen (bút) |
-| H | Highlighter (bút đánh dấu) |
-| E | Eraser (tẩy) |
-| L | Line (đường thẳng) |
-| A | Arrow (mũi tên) |
-| B | Rectangle (hình chữ nhật) |
-| T | Text (chữ) |
-| Ctrl+Z | Undo (hoàn tác) |
-| Ctrl+Y hoặc Ctrl+Shift+Z | Redo (làm lại) |
+| P | Bút |
+| H | Bút dạ quang |
+| E | Tẩy |
+| L | Đường thẳng |
+| A | Mũi tên |
+| B | Hình chữ nhật |
+| T | Chữ |
+| Ctrl+Z | Hoàn tác |
+| Ctrl+Y hoặc Ctrl+Shift+Z | Làm lại |
 | Enter (công cụ Cắt) hoặc nhấp đúp | Cắt bỏ phần bị làm tối |
 | Enter / Esc (khi đang nhập chữ) | Hoàn tất / hủy chữ |
 | Esc | Đóng trình chỉnh sửa mà không thay đổi |
@@ -143,13 +143,13 @@ Kadr là ứng dụng Win32/GDI+ gốc được viết bằng [Zig](https://zigl
 
 ## Trình chỉnh sửa
 
-Mở trình chỉnh sửa bằng **Edit** (Chỉnh sửa; Ctrl+E). Mọi thay đổi được giữ trong bộ nhớ; tệp gốc không bị động đến cho đến khi bạn lưu.
+Mở trình chỉnh sửa bằng **Sửa** (Ctrl+E). Mọi thay đổi được giữ trong bộ nhớ; tệp gốc không bị động đến cho đến khi bạn lưu.
 
-- **Cắt** — khung trực tiếp với tám tay nắm; kéo khung hoặc các tay nắm, nhập chính xác X / Y / chiều rộng / chiều cao theo pixel, hoặc chọn tỷ lệ có sẵn (tự do, vuông 1:1, 4:3, 3:4, 3:2 (4×6 ngang), 2:3, 16:9, A4 dọc, A4 ngang). Vùng bên ngoài khung bị làm tối; **Cắt** (Enter) cắt bỏ vùng đó và **Whole photo** (toàn bộ ảnh) đặt lại khung.
+- **Cắt** — khung trực tiếp với tám tay nắm; kéo khung hoặc các tay nắm, nhập chính xác X / Y / chiều rộng / chiều cao theo pixel, hoặc chọn tỷ lệ có sẵn (tự do, vuông 1:1, 4:3, 3:4, 3:2 (4×6 ngang), 2:3, 16:9, A4 dọc, A4 ngang). Vùng bên ngoài khung bị làm tối; **Cắt** (Enter) cắt bỏ vùng đó và **Toàn bộ ảnh** đặt lại khung.
 - **Vẽ** — bút, bút đánh dấu bán trong suốt, tẩy (chỉ xóa nét vẽ và chữ, không bao giờ xóa ảnh), đường thẳng, mũi tên, hình chữ nhật và chữ, với mười màu và độ dày điều chỉnh được.
-- **Hình ảnh** — hoàn tác / làm lại, xoay 90° sang trái hoặc phải, lật ngang hoặc dọc, đặt lại tất cả.
-- **Màu sắc và ánh sáng** — độ sáng, độ tương phản, độ bão hòa và đen trắng.
-- **Hoàn tất** — *Áp dụng* đưa ảnh đã chỉnh sửa về trình xem, *Save as…* (Lưu thành…) lưu bản sao với tên mới, *Print…* (In…) chuyển thẳng đến bản xem trước khi in, *Hủy* (Esc) bỏ các thay đổi.
+- **Ảnh** — hoàn tác / làm lại, xoay 90° sang trái hoặc phải, lật ngang hoặc dọc, đặt lại tất cả.
+- **Màu và ánh sáng** — độ sáng, độ tương phản, độ bão hòa và đen trắng.
+- **Hoàn tất** — *Áp dụng* đưa ảnh đã chỉnh sửa về trình xem, *Lưu thành…* lưu bản sao với tên mới, *In…* chuyển thẳng đến bản xem trước khi in, *Hủy* (Esc) bỏ các thay đổi.
 
 ## In
 
@@ -159,9 +159,9 @@ Các chế độ tỷ lệ:
 
 | Chế độ | Tác dụng |
 |---|---|
-| **Vừa khung** | Toàn bộ ảnh nằm trong lề; giữ nguyên tỷ lệ, có thể còn khoảng trắng ở hai cạnh. |
-| **Lấp đầy / cắt** | Ảnh phủ kín toàn bộ vùng in được; giữ nguyên tỷ lệ và các mép thừa bị cắt bỏ. |
-| **Stretch (whole page)** (Kéo giãn: cả trang) | Ảnh được kéo giãn vừa khít vùng in được — không có dải trắng, nhưng tỷ lệ **không** được giữ nguyên. |
+| **Vừa khung (toàn bộ ảnh)** | Toàn bộ ảnh nằm trong lề; giữ nguyên tỷ lệ, có thể còn khoảng trắng ở hai cạnh. |
+| **Lấp đầy (cắt)** | Ảnh phủ kín toàn bộ vùng in được; giữ nguyên tỷ lệ và các mép thừa bị cắt bỏ. |
+| **Kéo giãn (cả trang)** | Ảnh được kéo giãn vừa khít vùng in được — không có dải trắng, nhưng tỷ lệ **không** được giữ nguyên. |
 | **100% · Kích thước thật (96 DPI)** | Một pixel = 1/96 inch. |
 | **Phần trăm tùy chỉnh** | 0,1–1000 % so với 96 DPI (100% = kích thước ở trên). |
 | **Chiều rộng / Chiều cao (mm)** | Chiều rộng hoặc chiều cao vật lý chính xác; cạnh còn lại theo tỷ lệ. |

@@ -28,7 +28,7 @@ Kadr is een native Win32/GDI+-toepassing, geschreven in [Zig](https://ziglang.or
 
 - **Viewer** — foto's openen, door de map bladeren (pijltoetsen, vorige/volgende), diavoorstelling, volledig scherm, vloeiend zoomen (passend maken, 1:1, muiswiel op de cursorpositie, getypte waarden zoals `125%`, `37,5%` of `200×`), verschuiven, afspelen van geanimeerde GIF's, TIFF en DjVu met meerdere pagina's, automatische EXIF-oriëntatie.
 - **Editor** — bijsnijden met een live kader en vaste verhoudingen (vrij, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 staand/liggend); pen, markeerstift, gum, lijn, pijl, rechthoek en tekst; ongedaan maken/opnieuw; draaien en spiegelen; helderheid, contrast, verzadiging en zwart-wit. Wijzigingen blijven in het geheugen tot u opslaat.
-- **Afdrukken** — live afdrukvoorbeeld met papierformaat, afdrukstand, schaal (passend / vullen (bijsnijden) / Stretch (hele pagina) / 100% / eigen % / breedte of hoogte in mm), marges, positie, kleur of grijstinten.
+- **Afdrukken** — live afdrukvoorbeeld met papierformaat, afdrukstand, schaal (Passend maken (hele afbeelding) / Vullen (bijsnijden) / Uitrekken (hele pagina) / 100% / eigen % / breedte of hoogte in mm), marges, positie, kleur of grijstinten.
 - **Bestandsfuncties** — opslaan (rotatie), opslaan als, exporteren / comprimeren (PNG, JPEG, BMP, TIFF, GIF) met formaat wijzigen en geschatte bestandsgrootte, afbeelding of pad naar het klembord kopiëren, hernoemen, naar de Prullenbak of definitief verwijderen, in map weergeven, als bureaubladachtergrond instellen.
 - **Formaten** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (samengevoegde afbeelding), PBM/PGM/PPM/PNM, QOI.
 - **30 interfacetalen** — de taal van Windows wordt automatisch herkend (met Engels als terugval) en kan via het menu worden gewijzigd; lay-out van rechts naar links voor Arabisch, Hebreeuws, Urdu en Perzisch.
@@ -46,9 +46,9 @@ Kadr is een native Win32/GDI+-toepassing, geschreven in [Zig](https://ziglang.or
 
 ![Editor met bijsnijkader en tekeningen](../docs/screenshots/editor-crop.png)
 
-**Afdrukvoorbeeld** in de modus *Stretch (whole page)* (uitrekken: hele pagina):
+**Afdrukvoorbeeld** in de modus *Uitrekken (hele pagina)*:
 
-![Afdrukvoorbeeld, Stretch-modus](../docs/screenshots/print-stretch.png)
+![Afdrukvoorbeeld, Uitrekken-modus](../docs/screenshots/print-stretch.png)
 
 **Het menu "Meer" (…)** met het submenu *Thema*:
 
@@ -122,14 +122,14 @@ Om afbeeldingen met een dubbelklik te openen, kiest u in Windows bij een afbeeld
 |---|---|
 | C | Bijsnijden |
 | P | Pen |
-| H | Highlighter (markeerstift) |
-| E | Eraser (gum) |
-| L | Line (lijn) |
-| A | Arrow (pijl) |
-| B | Rectangle (rechthoek) |
-| T | Text (tekst) |
-| Ctrl+Z | Undo (ongedaan maken) |
-| Ctrl+Y of Ctrl+Shift+Z | Redo (opnieuw) |
+| H | Markeerstift |
+| E | Gum |
+| L | Lijn |
+| A | Pijl |
+| B | Rechthoek |
+| T | Tekst |
+| Ctrl+Z | Ongedaan maken |
+| Ctrl+Y of Ctrl+Shift+Z | Opnieuw |
 | Enter (gereedschap Bijsnijden) of dubbelklikken | Het verduisterde deel wegsnijden |
 | Enter / Esc (tijdens het typen van tekst) | Tekst voltooien / annuleren |
 | Esc | Editor sluiten zonder wijzigingen |
@@ -143,13 +143,13 @@ Om afbeeldingen met een dubbelklik te openen, kiest u in Windows bij een afbeeld
 
 ## Editor
 
-Open de editor met **Edit** (Ctrl+E). Alle wijzigingen blijven in het geheugen; het oorspronkelijke bestand wordt pas aangepast als u opslaat.
+Open de editor met **Bewerken** (Ctrl+E). Alle wijzigingen blijven in het geheugen; het oorspronkelijke bestand wordt pas aangepast als u opslaat.
 
-- **Bijsnijden** — een live kader met acht grepen; sleep het kader of de grepen, typ exacte X / Y / breedte / hoogte in pixels of kies een vaste verhouding (vrij, vierkant 1:1, 4:3, 3:4, 3:2 (4×6 liggend), 2:3, 16:9, A4 staand, A4 liggend). Het gebied buiten het kader wordt verduisterd; **Bijsnijden** (Enter) snijdt het weg en **Whole photo** (hele foto) zet het kader terug.
+- **Bijsnijden** — een live kader met acht grepen; sleep het kader of de grepen, typ exacte X / Y / breedte / hoogte in pixels of kies een vaste verhouding (vrij, vierkant 1:1, 4:3, 3:4, 3:2 (4×6 liggend), 2:3, 16:9, A4 staand, A4 liggend). Het gebied buiten het kader wordt verduisterd; **Bijsnijden** (Enter) snijdt het weg en **Hele foto** zet het kader terug.
 - **Tekenen** — pen, doorschijnende markeerstift, gum (wist alleen tekeningen en tekst, nooit de foto), rechte lijn, pijl, rechthoek en tekst, met tien kleuren en een instelbare dikte.
 - **Afbeelding** — ongedaan maken / opnieuw, 90° naar links of rechts draaien, horizontaal of verticaal spiegelen, alles herstellen.
 - **Kleur en licht** — helderheid, contrast, verzadiging en zwart-wit.
-- **Afronden** — *Toepassen* brengt de bewerkte afbeelding terug naar de viewer, *Save as…* (opslaan als) slaat een kopie onder een nieuwe naam op, *Print…* (afdrukken) gaat direct naar het afdrukvoorbeeld, *Annuleren* (Esc) verwerpt de wijzigingen.
+- **Afronden** — *Toepassen* brengt de bewerkte afbeelding terug naar de viewer, *Opslaan als…* slaat een kopie onder een nieuwe naam op, *Afdrukken…* gaat direct naar het afdrukvoorbeeld, *Annuleren* (Esc) verwerpt de wijzigingen.
 
 ## Afdrukken
 
@@ -159,9 +159,9 @@ Schaalmodi:
 
 | Modus | Wat het doet |
 |---|---|
-| **Passend maken** | De hele afbeelding past binnen de marges; de verhoudingen blijven behouden, aan twee kanten kan witruimte overblijven. |
-| **Vullen / bijsnijden** | De afbeelding bedekt het hele afdrukbare gebied; de verhoudingen blijven behouden en de uitstekende randen worden bijgesneden. |
-| **Stretch (whole page)** | De afbeelding wordt precies tot het afdrukbare gebied uitgerekt — geen witte balken, maar de verhoudingen blijven **niet** behouden. |
+| **Passend maken (hele afbeelding)** | De hele afbeelding past binnen de marges; de verhoudingen blijven behouden, aan twee kanten kan witruimte overblijven. |
+| **Vullen (bijsnijden)** | De afbeelding bedekt het hele afdrukbare gebied; de verhoudingen blijven behouden en de uitstekende randen worden bijgesneden. |
+| **Uitrekken (hele pagina)** | De afbeelding wordt precies tot het afdrukbare gebied uitgerekt — geen witte balken, maar de verhoudingen blijven **niet** behouden. |
 | **100% · Ware grootte (96 DPI)** | Eén pixel = 1/96 inch. |
 | **Aangepast percentage** | 0,1–1000% ten opzichte van 96 DPI (100% = de grootte hierboven). |
 | **Breedte (mm) / Hoogte (mm)** | Exacte fysieke breedte of hoogte; de andere kant volgt de verhoudingen. |

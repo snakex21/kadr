@@ -28,7 +28,7 @@ A Kadr natív Win32/GDI+ alkalmazás, [Zig](https://ziglang.org/) nyelven írva.
 
 - **Képnézegető** — fényképek megnyitása, lapozás a mappában (nyílbillentyűk, előző/következő), diavetítés, teljes képernyő, egyenletes nagyítás (igazítás, 1:1, egérgörgő a kurzor helyén, beírt értékek, például `125%`, `37,5%` vagy `200×`), a kép mozgatása, animált GIF-ek lejátszása, többoldalas TIFF és DjVu, automatikus EXIF-tájolás.
 - **Szerkesztő** — körülvágás élő kerettel és előre beállított képarányokkal (szabad, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 álló/fekvő); toll, kiemelő, radír, vonal, nyíl, téglalap és szöveg; visszavonás/újra; forgatás és tükrözés; fényerő, kontraszt, telítettség és fekete-fehér. A módosítások a mentésig a memóriában maradnak.
-- **Nyomtatás** — élő nyomtatási kép papírmérettel, tájolással, méretezéssel (igazítás / kitöltés (körülvágással) / nyújtás (teljes oldalra) / 100% / egyéni % / szélesség vagy magasság mm-ben), margókkal, pozícióval, színes vagy szürkeárnyalatos nyomtatással.
+- **Nyomtatás** — élő nyomtatási kép papírmérettel, tájolással, méretezéssel (Igazítás (teljes kép) / Kitöltés (körülvágás) / Nyújtás (teljes oldal) / 100% / egyéni % / szélesség vagy magasság mm-ben), margókkal, pozícióval, színes vagy szürkeárnyalatos nyomtatással.
 - **Fájlműveletek** — mentés (forgatás), mentés másként, exportálás / tömörítés (PNG, JPEG, BMP, TIFF, GIF) átméretezéssel és méretbecsléssel, a kép vagy az elérési út vágólapra másolása, átnevezés, Lomtárba helyezés vagy végleges törlés, megjelenítés a mappában, beállítás asztali háttérképként.
 - **Formátumok** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (egyesített kép), PBM/PGM/PPM/PNM, QOI.
 - **30 felületi nyelv** — a Windows nyelvét automatikusan felismeri (ennek hiányában angol), és a menüből módosítható; jobbról balra írt elrendezés arab, héber, urdu és perzsa nyelvhez.
@@ -46,9 +46,9 @@ A Kadr natív Win32/GDI+ alkalmazás, [Zig](https://ziglang.org/) nyelven írva.
 
 ![Szerkesztő vágókerettel és rajzokkal](../docs/screenshots/editor-crop.png)
 
-**Nyomtatási kép** *Stretch (whole page)* (nyújtás a teljes oldalra) módban:
+**Nyomtatási kép** *Nyújtás (teljes oldal)* módban:
 
-![Nyomtatási kép, Stretch mód](../docs/screenshots/print-stretch.png)
+![Nyomtatási kép, Nyújtás mód](../docs/screenshots/print-stretch.png)
 
 **A „Továbbiak” (…) menü** a *Téma* almenüvel:
 
@@ -121,15 +121,15 @@ Ha dupla kattintással szeretne képeket megnyitni, egy képen válassza a Windo
 | Billentyű | Művelet |
 |---|---|
 | C | Vágás |
-| P | Pen (toll) |
-| H | Highlighter (kiemelő) |
-| E | Eraser (radír) |
-| L | Line (vonal) |
-| A | Arrow (nyíl) |
-| B | Rectangle (téglalap) |
-| T | Text (szöveg) |
-| Ctrl+Z | Undo (visszavonás) |
-| Ctrl+Y vagy Ctrl+Shift+Z | Redo (újra) |
+| P | Toll |
+| H | Kiemelő |
+| E | Radír |
+| L | Vonal |
+| A | Nyíl |
+| B | Téglalap |
+| T | Szöveg |
+| Ctrl+Z | Visszavonás |
+| Ctrl+Y vagy Ctrl+Shift+Z | Újra |
 | Enter (Vágás eszköz) vagy dupla kattintás | A sötétített rész levágása |
 | Enter / Esc (szövegírás közben) | A szöveg befejezése / elvetése |
 | Esc | A szerkesztő bezárása módosítás nélkül |
@@ -143,13 +143,13 @@ Ha dupla kattintással szeretne képeket megnyitni, egy képen válassza a Windo
 
 ## Szerkesztő
 
-A szerkesztőt az **Edit** („Szerkesztés”, Ctrl+E) gomb nyitja meg. Minden módosítás a memóriában marad; az eredeti fájl a mentésig érintetlen.
+A szerkesztőt a **Szerkesztés** (Ctrl+E) gomb nyitja meg. Minden módosítás a memóriában marad; az eredeti fájl a mentésig érintetlen.
 
-- **Körülvágás** — élő keret nyolc fogóponttal; húzza a keretet vagy a fogópontjait, adja meg pontosan az X / Y / szélesség / magasság értékét pixelben, vagy válasszon előre beállított képarányt (szabad, négyzet 1:1, 4:3, 3:4, 3:2 (4×6 fekvő), 2:3, 16:9, A4 álló, A4 fekvő). A kereten kívüli terület elsötétül; a **Körülvágás** (Enter) levágja, a **Whole photo** (teljes kép) pedig visszaállítja a keretet.
+- **Vágás** — élő keret nyolc fogóponttal; húzza a keretet vagy a fogópontjait, adja meg pontosan az X / Y / szélesség / magasság értékét pixelben, vagy válasszon előre beállított képarányt (szabad, négyzet 1:1, 4:3, 3:4, 3:2 (4×6 fekvő), 2:3, 16:9, A4 álló, A4 fekvő). A kereten kívüli terület elsötétül; a **Körülvágás** (Enter) levágja, a **Teljes fotó** pedig visszaállítja a keretet.
 - **Rajzolás** — toll, áttetsző kiemelő, radír (csak a rajzokat és a szöveget törli, a fényképet soha), egyenes vonal, nyíl, téglalap és szöveg, tíz színnel és állítható vastagsággal.
 - **Kép** — visszavonás / újra, forgatás 90°-kal balra vagy jobbra, vízszintes vagy függőleges tükrözés, minden visszaállítása.
 - **Szín és fény** — fényerő, kontraszt, telítettség és fekete-fehér.
-- **Befejezés** — az *Alkalmazás* visszaviszi a szerkesztett képet a nézegetőbe, a *Save as…* új néven ment egy másolatot, a *Print…* egyenesen a nyomtatási képre ugrik, a *Mégse* (Esc) elveti a módosításokat.
+- **Befejezés** — az *Alkalmazás* visszaviszi a szerkesztett képet a nézegetőbe, a *Mentés másként…* új néven ment egy másolatot, a *Nyomtatás…* egyenesen a nyomtatási képre ugrik, a *Mégse* (Esc) elveti a módosításokat.
 
 ## Nyomtatás
 
@@ -159,9 +159,9 @@ Méretezési módok:
 
 | Mód | Mit csinál |
 |---|---|
-| **Igazítás** | A teljes kép a margókon belül fér el; a képarány megmarad, két oldalon fehér sáv maradhat. |
-| **Kitöltés / körülvágás** | A kép a teljes nyomtatható területet kitölti; a képarány megmarad, a kilógó széleket levágja. |
-| **Stretch (whole page)** (nyújtás a teljes oldalra) | A kép pontosan a nyomtatható területre nyúlik — fehér sávok nélkül, de a képarány **nem** marad meg. |
+| **Igazítás (teljes kép)** | A teljes kép a margókon belül fér el; a képarány megmarad, két oldalon fehér sáv maradhat. |
+| **Kitöltés (körülvágás)** | A kép a teljes nyomtatható területet kitölti; a képarány megmarad, a kilógó széleket levágja. |
+| **Nyújtás (teljes oldal)** | A kép pontosan a nyomtatható területre nyúlik — fehér sávok nélkül, de a képarány **nem** marad meg. |
 | **100% · Tényleges méret (96 DPI)** | Egy pixel = 1/96 hüvelyk. |
 | **Egyéni százalék** | 0,1–1000% a 96 DPI-hez viszonyítva (100% = a fenti méret). |
 | **Szélesség (mm)** / **Magasság (mm)** | Pontos fizikai szélesség vagy magasság; a másik oldal a képarányból adódik. |

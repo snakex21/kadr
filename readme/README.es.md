@@ -28,7 +28,7 @@ Kadr es una aplicación nativa Win32/GDI+ escrita en [Zig](https://ziglang.org/)
 
 - **Visor** — abre fotos, recorre la carpeta (teclas de flecha, anterior/siguiente), presentación, pantalla completa, zoom suave (ajustar, 1:1, rueda del ratón en la posición del cursor, valores escritos como `125%`, `37,5%` o `200×`), desplazamiento de la imagen, reproducción de GIF animados, TIFF y DjVu de varias páginas, orientación EXIF automática.
 - **Editor** — recorte con marco en vivo y proporciones predefinidas (libre, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 vertical/horizontal); lápiz, resaltador, borrador, línea, flecha, rectángulo y texto; deshacer/rehacer; girar y voltear; brillo, contraste, saturación y blanco y negro. Los cambios permanecen en memoria hasta que guardas.
-- **Impresión** — vista previa de impresión en vivo con tamaño de papel, orientación, escala (ajustar / rellenar (recortar) / estirar (página completa) / 100% / % personalizado / ancho o alto en mm), márgenes, posición, color o escala de grises.
+- **Impresión** — vista previa de impresión en vivo con tamaño de papel, orientación, escala (Ajustar (imagen completa) / Rellenar (recortar) / Estirar (toda la página) / 100% / % personalizado / ancho o alto en mm), márgenes, posición, color o escala de grises.
 - **Herramientas de archivo** — guardar (rotación), guardar como, exportar / comprimir (PNG, JPEG, BMP, TIFF, GIF) con cambio de tamaño y estimación del tamaño, copiar la imagen o la ruta al portapapeles, cambiar nombre, enviar a la papelera o eliminar permanentemente, mostrar en la carpeta, usar como fondo de escritorio.
 - **Formatos** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (imagen combinada), PBM/PGM/PPM/PNM, QOI.
 - **30 idiomas de interfaz** — el idioma de Windows se detecta automáticamente (si no está disponible, se usa el inglés) y se puede cambiar desde el menú; diseño de derecha a izquierda para árabe, hebreo, urdu y persa.
@@ -46,9 +46,9 @@ Kadr es una aplicación nativa Win32/GDI+ escrita en [Zig](https://ziglang.org/)
 
 ![Editor con marco de recorte y dibujos](../docs/screenshots/editor-crop.png)
 
-**Vista previa de impresión** en el modo *Stretch (whole page)* (estirar: página completa):
+**Vista previa de impresión** en el modo *Estirar (toda la página)*:
 
-![Vista previa de impresión, modo Stretch](../docs/screenshots/print-stretch.png)
+![Vista previa de impresión, modo Estirar](../docs/screenshots/print-stretch.png)
 
 **El menú «Más» (…)** con el submenú *Tema*:
 
@@ -121,15 +121,15 @@ Para abrir imágenes con doble clic, usa en Windows *Abrir con → Elegir otra a
 | Atajo | Acción |
 |---|---|
 | C | Recortar |
-| P | Pen (lápiz) |
-| H | Highlighter (resaltador) |
-| E | Eraser (borrador) |
-| L | Line (línea) |
-| A | Arrow (flecha) |
-| B | Rectangle (rectángulo) |
-| T | Text (texto) |
-| Ctrl+Z | Undo (deshacer) |
-| Ctrl+Y o Ctrl+Shift+Z | Redo (rehacer) |
+| P | Lápiz |
+| H | Resaltador |
+| E | Borrador |
+| L | Línea |
+| A | Flecha |
+| B | Rectángulo |
+| T | Texto |
+| Ctrl+Z | Deshacer |
+| Ctrl+Y o Ctrl+Shift+Z | Rehacer |
 | Enter (herramienta Recortar) o doble clic | Cortar la parte oscurecida |
 | Enter / Esc (mientras escribes texto) | Terminar / cancelar el texto |
 | Esc | Cerrar el editor sin cambios |
@@ -143,13 +143,13 @@ Para abrir imágenes con doble clic, usa en Windows *Abrir con → Elegir otra a
 
 ## Editor
 
-Abre el editor con **Edit** (editar, Ctrl+E). Todos los cambios se mantienen en memoria; el archivo original no se modifica hasta que guardas.
+Abre el editor con **Editar** (Ctrl+E). Todos los cambios se mantienen en memoria; el archivo original no se modifica hasta que guardas.
 
-- **Recortar** — un marco en vivo con ocho tiradores; arrastra el marco o sus tiradores, escribe X / Y / ancho / alto exactos en píxeles o elige una proporción predefinida (libre, cuadrado 1:1, 4:3, 3:4, 3:2 (4×6 horizontal), 2:3, 16:9, A4 vertical, A4 horizontal). La zona fuera del marco se oscurece; **Recortar** (Enter) la elimina y **Whole photo** (foto completa) restablece el marco.
+- **Recortar** — un marco en vivo con ocho tiradores; arrastra el marco o sus tiradores, escribe X / Y / ancho / alto exactos en píxeles o elige una proporción predefinida (libre, cuadrado 1:1, 4:3, 3:4, 3:2 (4×6 horizontal), 2:3, 16:9, A4 vertical, A4 horizontal). La zona fuera del marco se oscurece; **Recortar** (Enter) la elimina y **Foto completa** restablece el marco.
 - **Dibujo** — lápiz, resaltador translúcido, borrador (borra solo dibujos y texto, nunca la foto), línea recta, flecha, rectángulo y texto, con diez colores y un grosor ajustable.
-- **Image** (imagen) — deshacer / rehacer, girar 90° a la izquierda o a la derecha, voltear en horizontal o en vertical, restablecer todo.
-- **Colour and light** (color y luz) — brillo, contraste, saturación y blanco y negro.
-- **Finalizar** — *Aplicar* devuelve la imagen editada al visor, *Save as…* (guardar como) guarda una copia con otro nombre, *Print…* (imprimir) pasa directamente a la vista previa de impresión y *Cancelar* (Esc) descarta los cambios.
+- **Imagen** — deshacer / rehacer, girar 90° a la izquierda o a la derecha, voltear en horizontal o en vertical, restablecer todo.
+- **Color y luz** — brillo, contraste, saturación y blanco y negro.
+- **Finalizar** — *Aplicar* devuelve la imagen editada al visor, *Guardar como…* guarda una copia con otro nombre, *Imprimir…* pasa directamente a la vista previa de impresión y *Cancelar* (Esc) descarta los cambios.
 
 ## Impresión
 
@@ -159,9 +159,9 @@ Modos de escala:
 
 | Modo | Qué hace |
 |---|---|
-| **Ajustar** | La imagen entera cabe dentro de los márgenes; se mantienen las proporciones y puede quedar espacio en blanco en dos lados. |
-| **Rellenar / recortar** | La imagen cubre toda el área imprimible; se mantienen las proporciones y se recortan los bordes que sobresalen. |
-| **Stretch (whole page)** (estirar: página completa) | La imagen se estira exactamente al área imprimible — sin franjas blancas, pero las proporciones **no** se mantienen. |
+| **Ajustar (imagen completa)** | La imagen entera cabe dentro de los márgenes; se mantienen las proporciones y puede quedar espacio en blanco en dos lados. |
+| **Rellenar (recortar)** | La imagen cubre toda el área imprimible; se mantienen las proporciones y se recortan los bordes que sobresalen. |
+| **Estirar (toda la página)** | La imagen se estira exactamente al área imprimible — sin franjas blancas, pero las proporciones **no** se mantienen. |
 | **100% · Tamaño real (96 DPI)** | Un píxel = 1/96 de pulgada. |
 | **Porcentaje personalizado** | 0.1–1000 % respecto a 96 DPI (100% = el tamaño anterior). |
 | **Ancho / Alto (mm)** | Ancho o alto físico exacto; el otro lado se calcula según las proporciones. |

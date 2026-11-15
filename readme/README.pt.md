@@ -28,7 +28,7 @@ O Kadr é um aplicativo nativo Win32/GDI+ escrito em [Zig](https://ziglang.org/)
 
 - **Visualizador** — abra fotos, navegue pela pasta (setas do teclado, anterior/próxima), apresentação de slides, tela cheia, zoom suave (ajustar, 1:1, roda do mouse na posição do cursor, valores digitados como `125%`, `37,5%` ou `200×`), arrastar para mover a imagem, reprodução de GIFs animados, TIFF e DjVu com várias páginas, orientação EXIF automática.
 - **Editor** — recorte com moldura ao vivo e proporções predefinidas (livre, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 retrato/paisagem); caneta, marca-texto, borracha, linha, seta, retângulo e texto; desfazer/refazer; girar e espelhar; brilho, contraste, saturação e preto e branco. As alterações ficam na memória até você salvar.
-- **Impressão** — visualização de impressão ao vivo com tamanho do papel, orientação, escala (Ajustar / Preencher (cortar) / Stretch (página inteira) / 100% / % personalizada / largura ou altura em mm), margens, posição, cores ou tons de cinza.
+- **Impressão** — visualização de impressão ao vivo com tamanho do papel, orientação, escala (Ajustar (imagem inteira) / Preencher (cortar) / Esticar (página inteira) / 100% / % personalizada / largura ou altura em mm), margens, posição, cores ou tons de cinza.
 - **Ferramentas de arquivo** — salvar (rotação), salvar como, exportar / comprimir (PNG, JPEG, BMP, TIFF, GIF) com redimensionamento e estimativa de tamanho, copiar a imagem ou o caminho para a área de transferência, renomear, mover para a Lixeira ou excluir permanentemente, mostrar na pasta, definir como papel de parede da área de trabalho.
 - **Formatos** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (imagem mesclada), PBM/PGM/PPM/PNM, QOI.
 - **30 idiomas de interface** — o idioma do Windows é detectado automaticamente (com inglês como alternativa) e pode ser trocado pelo menu; layout da direita para a esquerda para árabe, hebraico, urdu e persa.
@@ -46,9 +46,9 @@ O Kadr é um aplicativo nativo Win32/GDI+ escrito em [Zig](https://ziglang.org/)
 
 ![Editor com moldura de recorte e desenhos](../docs/screenshots/editor-crop.png)
 
-**Visualização de impressão** no modo *Stretch (whole page)* (Esticar: página inteira):
+**Visualização de impressão** no modo *Esticar (página inteira)*:
 
-![Visualização de impressão, modo Stretch](../docs/screenshots/print-stretch.png)
+![Visualização de impressão, modo Esticar](../docs/screenshots/print-stretch.png)
 
 **O menu "Mais" (…)** com o submenu *Tema*:
 
@@ -121,15 +121,15 @@ Para abrir imagens com um clique duplo, use no Windows *Abrir com → Escolher o
 | Atalho | Ação |
 |---|---|
 | C | Recortar |
-| P | Pen (caneta) |
-| H | Highlighter (marca-texto) |
-| E | Eraser (borracha) |
-| L | Line (linha) |
-| A | Arrow (seta) |
-| B | Rectangle (retângulo) |
-| T | Text (texto) |
-| Ctrl+Z | Undo (desfazer) |
-| Ctrl+Y ou Ctrl+Shift+Z | Redo (refazer) |
+| P | Caneta |
+| H | Marca-texto |
+| E | Borracha |
+| L | Linha |
+| A | Seta |
+| B | Retângulo |
+| T | Texto |
+| Ctrl+Z | Desfazer |
+| Ctrl+Y ou Ctrl+Shift+Z | Refazer |
 | Enter (ferramenta Recortar) ou clique duplo | Cortar a parte escurecida |
 | Enter / Esc (ao digitar texto) | Concluir / cancelar o texto |
 | Esc | Fechar o editor sem alterações |
@@ -143,13 +143,13 @@ Para abrir imagens com um clique duplo, use no Windows *Abrir com → Escolher o
 
 ## Editor
 
-Abra o editor com o botão **Edit** (Ctrl+E). Todas as alterações ficam na memória; o arquivo original não é modificado até você salvar.
+Abra o editor com o botão **Editar** (Ctrl+E). Todas as alterações ficam na memória; o arquivo original não é modificado até você salvar.
 
-- **Recortar** — uma moldura ao vivo com oito alças; arraste a moldura ou as alças, digite X / Y / largura / altura exatos em pixels ou escolha uma proporção predefinida (livre, quadrado 1:1, 4:3, 3:4, 3:2 (4×6 paisagem), 2:3, 16:9, A4 retrato, A4 paisagem). A área fora da moldura fica escurecida; **Recortar** (Enter) corta essa área e **Whole photo** (foto inteira) redefine a moldura.
+- **Recortar** — uma moldura ao vivo com oito alças; arraste a moldura ou as alças, digite X / Y / largura / altura exatos em pixels ou escolha uma proporção predefinida (livre, quadrado 1:1, 4:3, 3:4, 3:2 (4×6 paisagem), 2:3, 16:9, A4 retrato, A4 paisagem). A área fora da moldura fica escurecida; **Recortar** (Enter) corta essa área e **Foto inteira** redefine a moldura.
 - **Desenho** — caneta, marca-texto translúcido, borracha (apaga apenas desenhos e textos, nunca a foto), linha reta, seta, retângulo e texto, com dez cores e espessura ajustável.
 - **Imagem** — desfazer / refazer, girar 90° para a esquerda ou para a direita, espelhar na horizontal ou na vertical, redefinir tudo.
 - **Cor e luz** — brilho, contraste, saturação e preto e branco.
-- **Conclusão** — *Aplicar* devolve a imagem editada ao visualizador, *Save as…* (salvar como) salva uma cópia com outro nome, *Print…* (imprimir) vai direto para a visualização de impressão, *Cancelar* (Esc) descarta as alterações.
+- **Conclusão** — *Aplicar* devolve a imagem editada ao visualizador, *Salvar como…* salva uma cópia com outro nome, *Imprimir…* vai direto para a visualização de impressão, *Cancelar* (Esc) descarta as alterações.
 
 ## Impressão
 
@@ -159,9 +159,9 @@ Modos de escala:
 
 | Modo | O que faz |
 |---|---|
-| **Ajustar** | A imagem inteira cabe dentro das margens; as proporções são mantidas e pode sobrar espaço em branco em dois lados. |
-| **Preencher / cortar** | A imagem cobre toda a área imprimível; as proporções são mantidas e as bordas excedentes são cortadas. |
-| **Stretch (whole page)** | A imagem é esticada exatamente até a área imprimível — sem faixas brancas, mas as proporções **não** são mantidas. |
+| **Ajustar (imagem inteira)** | A imagem inteira cabe dentro das margens; as proporções são mantidas e pode sobrar espaço em branco em dois lados. |
+| **Preencher (cortar)** | A imagem cobre toda a área imprimível; as proporções são mantidas e as bordas excedentes são cortadas. |
+| **Esticar (página inteira)** | A imagem é esticada exatamente até a área imprimível — sem faixas brancas, mas as proporções **não** são mantidas. |
 | **100% · Tamanho real (96 DPI)** | Um pixel = 1/96 de polegada. |
 | **Porcentagem personalizada** | 0,1–1000% em relação a 96 DPI (100% = o tamanho acima). |
 | **Largura (mm) / Altura (mm)** | Largura ou altura física exata; o outro lado segue as proporções. |

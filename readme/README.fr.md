@@ -28,7 +28,7 @@ Kadr est une application native Win32/GDI+ écrite en [Zig](https://ziglang.org/
 
 - **Visionneuse** — ouverture de photos, navigation dans le dossier (touches fléchées, précédente/suivante), diaporama, plein écran, zoom fluide (ajustement, 1:1, molette de la souris à l’emplacement du curseur, valeurs saisies comme `125%`, `37,5%` ou `200×`), déplacement de l’image, lecture des GIF animés, TIFF et DjVu multipages, orientation EXIF automatique.
 - **Éditeur** — recadrage avec un cadre en direct et des proportions prédéfinies (libre, 1:1, 4:3, 3:4, 3:2, 2:3, 16:9, A4 portrait/paysage) ; stylo, surligneur, gomme, ligne, flèche, rectangle et texte ; annuler/rétablir ; rotation et retournement ; luminosité, contraste, saturation et noir et blanc. Les modifications restent en mémoire jusqu’à ce que vous enregistriez.
-- **Impression** — aperçu avant impression en direct avec format du papier, orientation, échelle (ajustée / remplie (rognée) / étirée (page entière) / 100% / pourcentage personnalisé / largeur ou hauteur en mm), marges, position, couleur ou niveaux de gris.
+- **Impression** — aperçu avant impression en direct avec format du papier, orientation, échelle (Ajuster (image entière) / Remplir (rogner) / Étirer (page entière) / 100% / pourcentage personnalisé / largeur ou hauteur en mm), marges, position, couleur ou niveaux de gris.
 - **Outils de fichier** — enregistrer (rotation), enregistrer sous, exporter / compresser (PNG, JPEG, BMP, TIFF, GIF) avec redimensionnement et estimation de la taille, copier l’image ou son chemin dans le presse-papiers, renommer, mettre à la corbeille ou supprimer définitivement, afficher dans le dossier, définir comme fond d’écran.
 - **Formats** — PNG, JPEG/JFIF, BMP/DIB, GIF, TIFF, DjVu, ICO, WMF/EMF, TGA, PCX, PSD (image fusionnée), PBM/PGM/PPM/PNM, QOI.
 - **30 langues d’interface** — la langue de Windows est détectée automatiquement (à défaut, l’anglais est utilisé) et peut être changée depuis le menu ; disposition de droite à gauche pour l’arabe, l’hébreu, l’ourdou et le persan.
@@ -46,9 +46,9 @@ Kadr est une application native Win32/GDI+ écrite en [Zig](https://ziglang.org/
 
 ![Éditeur avec cadre de recadrage et dessins](../docs/screenshots/editor-crop.png)
 
-**Aperçu avant impression** en mode *Stretch (whole page)* (étirer sur toute la page) :
+**Aperçu avant impression** en mode *Étirer (page entière)* :
 
-![Aperçu avant impression, mode Stretch](../docs/screenshots/print-stretch.png)
+![Aperçu avant impression, mode Étirer](../docs/screenshots/print-stretch.png)
 
 **Le menu « Plus » (…)** avec le sous-menu *Thème* :
 
@@ -121,15 +121,15 @@ Pour ouvrir les images d’un double-clic, utilisez dans Windows *Ouvrir avec �
 | Raccourci | Action |
 |---|---|
 | C | Rogner |
-| P | Pen (stylo) |
-| H | Highlighter (surligneur) |
-| E | Eraser (gomme) |
-| L | Line (ligne) |
-| A | Arrow (flèche) |
+| P | Stylo |
+| H | Surligneur |
+| E | Gomme |
+| L | Ligne |
+| A | Flèche |
 | B | Rectangle |
-| T | Text (texte) |
-| Ctrl+Z | Undo (annuler) |
-| Ctrl+Y ou Ctrl+Shift+Z | Redo (rétablir) |
+| T | Texte |
+| Ctrl+Z | Défaire |
+| Ctrl+Y ou Ctrl+Shift+Z | Refaire |
 | Enter (outil Rogner) ou double-clic | Couper la partie assombrie |
 | Enter / Esc (pendant la saisie d’un texte) | Valider / annuler le texte |
 | Esc | Fermer l’éditeur sans modifications |
@@ -143,13 +143,13 @@ Pour ouvrir les images d’un double-clic, utilisez dans Windows *Ouvrir avec �
 
 ## Éditeur
 
-Ouvrez l’éditeur avec **Edit** (« Modifier », Ctrl+E). Toutes les modifications sont conservées en mémoire ; le fichier d’origine n’est pas touché tant que vous n’enregistrez pas.
+Ouvrez l’éditeur avec **Modifier** (Ctrl+E). Toutes les modifications sont conservées en mémoire ; le fichier d’origine n’est pas touché tant que vous n’enregistrez pas.
 
-- **Recadrage** — un cadre en direct avec huit poignées ; faites glisser le cadre ou ses poignées, saisissez les valeurs exactes X / Y / largeur / hauteur en pixels ou choisissez des proportions prédéfinies (libre, carré 1:1, 4:3, 3:4, 3:2 (4×6 paysage), 2:3, 16:9, A4 portrait, A4 paysage). La zone hors du cadre est assombrie ; **Rogner** (Enter) la supprime et **Whole photo** (photo entière) réinitialise le cadre.
+- **Rogner** — un cadre en direct avec huit poignées ; faites glisser le cadre ou ses poignées, saisissez les valeurs exactes X / Y / largeur / hauteur en pixels ou choisissez des proportions prédéfinies (libre, carré 1:1, 4:3, 3:4, 3:2 (4×6 paysage), 2:3, 16:9, A4 portrait, A4 paysage). La zone hors du cadre est assombrie ; **Rogner** (Enter) la supprime et **Photo entière** réinitialise le cadre.
 - **Dessin** — stylo, surligneur translucide, gomme (n’efface que les dessins et le texte, jamais la photo), ligne droite, flèche, rectangle et texte, avec dix couleurs et une taille réglable.
 - **Image** — annuler / rétablir, rotation de 90° à gauche ou à droite, miroir horizontal ou vertical, tout réinitialiser.
-- **Couleur et lumière** — luminosité, contraste, saturation et noir et blanc.
-- **Terminer** — *Appliquer* renvoie l’image modifiée à la visionneuse, *Save as…* enregistre une copie sous un nouveau nom, *Print…* passe directement à l’aperçu avant impression, *Annuler* (Esc) abandonne les modifications.
+- **Couleurs et lumière** — luminosité, contraste, saturation et noir et blanc.
+- **Terminer** — *Appliquer* renvoie l’image modifiée à la visionneuse, *Enregistrer sous…* enregistre une copie sous un nouveau nom, *Imprimer…* passe directement à l’aperçu avant impression, *Annuler* (Esc) abandonne les modifications.
 
 ## Impression
 
@@ -159,9 +159,9 @@ Modes d’échelle :
 
 | Mode | Effet |
 |---|---|
-| **Ajuster** | L’image entière tient dans les marges ; les proportions sont conservées, des bandes blanches peuvent subsister sur deux côtés. |
-| **Remplir / rogner** | L’image couvre toute la zone imprimable ; les proportions sont conservées et les bords qui dépassent sont rognés. |
-| **Stretch (whole page)** (étirer sur toute la page) | L’image est étirée exactement sur la zone imprimable — sans bandes blanches, mais les proportions ne sont **pas** conservées. |
+| **Ajuster (image entière)** | L’image entière tient dans les marges ; les proportions sont conservées, des bandes blanches peuvent subsister sur deux côtés. |
+| **Remplir (rogner)** | L’image couvre toute la zone imprimable ; les proportions sont conservées et les bords qui dépassent sont rognés. |
+| **Étirer (page entière)** | L’image est étirée exactement sur la zone imprimable — sans bandes blanches, mais les proportions ne sont **pas** conservées. |
 | **100% · Taille réelle (96 DPI)** | Un pixel = 1/96 de pouce. |
 | **Pourcentage personnalisé** | 0,1–1000 % par rapport à 96 DPI (100% = la taille ci-dessus). |
 | **Largeur (mm)** / **Hauteur (mm)** | Largeur ou hauteur physique exacte ; l’autre côté suit les proportions. |
