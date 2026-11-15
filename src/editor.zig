@@ -983,7 +983,7 @@ const State = struct {
             self.place(263, lx + half + 8, oy + 122, half, 16);
             self.place(ID.crop_h, lx + half + 8, oy + 138, half, 22);
         } else {
-            self.heading(lx, oy, L("Kolor"));
+            self.heading(lx, oy, L("Kolor (nagłówek edytora)"));
             self.place(ID.palette, lx, oy + 22, left_width, 94);
             self.heading(lx, oy + 124, L("Grubość"));
             self.place(ID.thickness, lx - 4, oy + 144, left_width - 34, 30);
@@ -993,21 +993,29 @@ const State = struct {
         const rx = cw - margin - right_width;
         const bw = @divTrunc(right_width - 8, 2);
         self.heading(rx, 12, L("Obraz"));
-        self.place(ID.undo, rx, 36, bw, 36);
-        self.place(ID.redo, rx + bw + 8, 36, bw, 36);
-        self.place(ID.left, rx, 78, right_width, 34);
-        self.place(ID.right, rx, 114, right_width, 34);
-        self.place(ID.flip_h, rx, 150, right_width, 34);
-        self.place(ID.flip_v, rx, 186, right_width, 34);
-        self.heading(rx, 230, L("Kolory i światło"));
+        // Undo and Redo share a row unless a translation needs more room.
+        const paired = buttonWidth(L("Cofnij")) <= bw and buttonWidth(L("Ponów")) <= bw;
+        const dy: i32 = if (paired) 0 else 40;
+        if (paired) {
+            self.place(ID.undo, rx, 36, bw, 36);
+            self.place(ID.redo, rx + bw + 8, 36, bw, 36);
+        } else {
+            self.place(ID.undo, rx, 36, right_width, 36);
+            self.place(ID.redo, rx, 76, right_width, 36);
+        }
+        self.place(ID.left, rx, 78 + dy, right_width, 34);
+        self.place(ID.right, rx, 114 + dy, right_width, 34);
+        self.place(ID.flip_h, rx, 150 + dy, right_width, 34);
+        self.place(ID.flip_v, rx, 186 + dy, right_width, 34);
+        self.heading(rx, 230 + dy, L("Kolory i światło"));
         for (0..3) |i| {
-            const y = 254 + @as(i32, @intCast(i)) * 52;
+            const y = 254 + dy + @as(i32, @intCast(i)) * 52;
             self.place(250 + @as(i32, @intCast(i)), rx, y, right_width - 50, 18);
             self.place(ID.value0 + @as(i32, @intCast(i)), rx + right_width - 48, y, 48, 18);
             self.place(ID.brightness + @as(i32, @intCast(i)), rx - 4, y + 20, right_width + 8, 30);
         }
-        self.place(ID.gray, rx, 410, right_width, 24);
-        self.place(ID.reset, rx, 442, right_width, 36);
+        self.place(ID.gray, rx, 410 + dy, right_width, 24);
+        self.place(ID.reset, rx, 442 + dy, right_width, 36);
         // Centre: hint bar, canvas.
         const cx = lx + left_width + margin;
         const cr = rx - margin;
@@ -1019,12 +1027,16 @@ const State = struct {
         }
         _ = c.MoveWindow(self.canvas, cx, 54, @max(32, cr - cx), @max(32, ch - 54 - 72), c.TRUE);
         // Bottom bar.
+        // Bottom bar: buttons grow to fit their translated labels.
         const by = ch - 56;
-        self.place(c.IDOK, cw - margin - 136, by, 136, 40);
-        self.place(ID.print, cw - margin - 136 - 8 - 120, by, 120, 40);
-        self.place(ID.save, cw - margin - 136 - 8 - 120 - 8 - 140, by, 140, 40);
-        self.place(c.IDCANCEL, cw - margin - 136 - 8 - 120 - 8 - 140 - 8 - 110, by, 110, 40);
-        self.place(ID.status, margin, by + 2, @max(10, cw - 2 * margin - 554 - 16), 36);
+        var bx = cw - margin;
+        inline for (.{ .{ c.IDOK, L("Zastosuj"), 136 }, .{ ID.print, L("Drukuj…"), 120 }, .{ ID.save, L("Zapisz jako…"), 140 }, .{ c.IDCANCEL, L("Anuluj"), 110 } }) |b| {
+            const width = std.math.clamp(buttonWidth(b[1]), b[2], 220);
+            bx -= width;
+            self.place(b[0], bx, by, width, 40);
+            bx -= 8;
+        }
+        self.place(ID.status, margin, by + 2, @max(10, bx - 8 - margin), 36);
     }
 };
 
@@ -1041,6 +1053,17 @@ fn cursor(id: usize) c.HCURSOR {
 }
 fn absI(value: i32) i32 {
     return if (value < 0) -value else value;
+}
+/// Width an owner-drawn ui.button needs to show `label` without an ellipsis.
+fn buttonWidth(label: [:0]const u16) i32 {
+    const dc = c.GetDC(null);
+    if (dc == null) return 0;
+    defer _ = c.ReleaseDC(null, dc);
+    const old = c.SelectObject(dc, guiFont());
+    defer _ = c.SelectObject(dc, old);
+    var r = c.RECT{ .left = 0, .top = 0, .right = 0, .bottom = 0 };
+    _ = c.DrawTextW(dc, label.ptr, @intCast(label.len), &r, c.DT_CALCRECT | c.DT_SINGLELINE);
+    return r.right + 13 + 29 + 8 + 4; // icon inset, icon + gap, right inset, slack
 }
 fn guiFont() c.HFONT {
     return ui.font orelse @ptrCast(@alignCast(c.GetStockObject(c.DEFAULT_GUI_FONT)));

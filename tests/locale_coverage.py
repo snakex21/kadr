@@ -82,3 +82,76 @@ if missing:
         print(repr(value), '|', ', '.join(locations))
     raise SystemExit(f'MISSING: {len(missing)} UI literals')
 print(f'PASS: {len(modules)} application modules; {len(known)} catalog sources; no untranslated UI literals')
+
+# --- English fallback check -------------------------------------------------
+# Resolve the real catalog (tests/i18n-check/catalog_dump.zig prints every
+# entry after comptime aliasing) and fail when a non-PL/EN language shows the
+# English text, unless that text is listed here as legitimately identical.
+CODES = 'pl en es fr de pt ru uk it nl cs hu ro tr el ar he hi bn ur zh ja ko id vi th fa ta te mr'.split()
+# Language-neutral by design: identical in every language.
+NEUTRAL = {
+    'Ctrl+O · F1', 'GIF', '4 × 6 in', '5 × 7 in', '8 × 10 in',
+}
+# English text -> languages where the same spelling is the native word.
+SAME_WORD = {
+    'OK': {'fr', 'de', 'pt', 'it', 'nl', 'cs', 'hu', 'ro', 'el', 'ja', 'id', 'vi'},
+    'Format': {'fr', 'de', 'ro', 'id'}, '&Format:': {'fr', 'de', 'ro', 'id'},
+    'Pause': {'fr', 'de'}, 'Pause (Space)': {'fr', 'de'},
+    'Printer': {'nl', 'id'}, 'Printer:': {'nl', 'id'},
+    'Orientation': {'fr'}, 'Orientation:': {'fr'},
+    'Portrait': {'fr'}, '3:4 portrait': {'fr'}, 'A4 portrait': {'fr'},
+    'Color': {'es'}, 'Color:': {'es'},
+    'Position': {'fr', 'de'}, 'Position (mm)': {'fr', 'de'}, 'Position (X/Y, mm):': {'fr', 'de'},
+    'Position · X/Y · ±10000 mm': {'fr', 'de'}, '&Position:': {'fr', 'de'},
+    'No': {'es', 'it'},
+    'Dimensions': {'fr'}, 'Dimensions ≤64 MP · PNG/TIFF α · JPEG RGB': {'fr'},
+    'animation': {'fr'}, '    ·    animation': {'fr'},
+    'Contrast': {'nl', 'ro'}, 'Saturation': {'fr'},
+    'Image': {'fr'}, 'Pen': {'nl'}, 'Rectangle': {'fr'}, 'Rectangle (B)': {'fr'},
+    'Text': {'de', 'cs', 'ro'},
+}
+ZIG = ROOT / 'tools/zig-windows-x86_64-0.11.0/zig.exe'
+import json
+import subprocess
+dump = subprocess.run([str(ZIG), 'run', '../tests/i18n-check/catalog_dump.zig', '--main-pkg-path', '..'],
+                      cwd=ROOT / 'src', check=True, capture_output=True)
+catalog = json.loads(dump.stdout.decode('utf-8'))
+fallbacks = []
+used_allowances = set()
+for row in catalog:
+    source, texts = row[0], row[1:]
+    assert len(texts) == len(CODES), source
+    english = texts[1]
+    if english.startswith('PNG / JPEG / BMP') and '*.png' in english:
+        continue  # file-dialog filter: format names and wildcards only
+    if english in NEUTRAL:
+        if any(t != english for t in texts[1:]):
+            fallbacks.append((source, 'neutral entry differs between languages'))
+        continue
+    for code, text in zip(CODES[2:], texts[2:]):
+        if text != english:
+            continue
+        if code in SAME_WORD.get(english, ()):
+            used_allowances.add((english, code))
+            continue
+        fallbacks.append((source, code))
+if fallbacks:
+    by_source = {}
+    for source, code in fallbacks:
+        by_source.setdefault(source, []).append(code)
+    for source, codes in by_source.items():
+        print(repr(source), '|', ' '.join(codes))
+    raise SystemExit(f'ENGLISH FALLBACK: {len(by_source)} catalog entries show English text in other languages')
+stale = sorted((t, c) for t, cs in SAME_WORD.items() for c in cs if (t, c) not in used_allowances)
+if stale:
+    raise SystemExit(f'STALE ALLOWLIST: {stale}')
+# A Polish sentence must not resolve to a bare vocabulary word (e.g. a print
+# hint showing only "Position"). Whitespace word counts: English is the probe.
+collapsed = [row[0] for row in catalog
+             if re.search(r'[.?!]$', row[1].strip()) and len(row[1].split()) >= 4 and len(row[2].split()) < 3]
+if collapsed:
+    for source in collapsed:
+        print(repr(source))
+    raise SystemExit(f'COLLAPSED: {len(collapsed)} Polish sentences translate to one or two words')
+print(f'PASS: {len(catalog)} catalog entries; no English fallback in {len(CODES) - 2} languages '
+      f'({len(used_allowances)} allowlisted identical words)')

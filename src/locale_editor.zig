@@ -13,7 +13,7 @@ const data = [30][10][]const u8{
     // de
     .{ "Bild bearbeiten", "Helligkeit", "Kontrast", "Sättigung", "Links drehen", "Horizontal spiegeln", "Vertikal spiegeln", "Zuschneiden: Bereich im Bild wählen oder Pixel eingeben.", "Änderungen im Speicher. Datei anschließend speichern.", "Es gibt ungespeicherte Änderungen. Ohne Speichern fortfahren?\n\nZum Behalten abbrechen und Speichern (Ctrl+S) oder Speichern unter (Ctrl+Shift+S) verwenden." },
     // pt
-    .{ "Editar imagem", "Brilho", "Contraste", "Saturação", "Rodar à esquerda", "Inverter horizontal", "Inverter vertical", "Recortar: selecione uma área ou introduza os píxeis.", "Alterações em memória. Guarde depois para alterar o ficheiro.", "Há alterações por guardar. Continuar sem guardar?\n\nPara as manter, cancele e use Guardar (Ctrl+S) ou Guardar como (Ctrl+Shift+S)." },
+    .{ "Editar imagem", "Brilho", "Contraste", "Saturação", "Girar à esquerda", "Inverter horizontal", "Inverter vertical", "Recortar: selecione uma área ou digite os pixels.", "Alterações na memória. Salve depois para alterar o arquivo.", "Há alterações não salvas. Continuar sem salvar?\n\nPara mantê-las, cancele e use Salvar (Ctrl+S) ou Salvar como (Ctrl+Shift+S)." },
     // ru
     .{ "Редактор фото", "Яркость", "Контраст", "Насыщенность", "Поворот влево", "Отразить по X", "Отразить по Y", "Обрезка: выделите область или введите размеры в пикселях.", "Изменения в памяти. Затем сохраните файл.", "Есть несохранённые изменения. Продолжить без сохранения?\n\nЧтобы сохранить их, нажмите Отмена и выберите Сохранить (Ctrl+S) или Сохранить как (Ctrl+Shift+S)." },
     // uk
